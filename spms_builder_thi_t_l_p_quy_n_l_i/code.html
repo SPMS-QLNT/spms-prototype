@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campaign Builder - Step 3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#6e7b6c",
+                        "tertiary-fixed": "#ffd9de",
+                        "error-container": "#ffdad6",
+                        "secondary": "#006a63",
+                        "primary-fixed": "#7ffc97",
+                        "on-primary-fixed-variant": "#005320",
+                        "inverse-on-surface": "#edf0ff",
+                        "inverse-primary": "#62df7d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#f7fff2",
+                        "primary-container": "#00873a",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "surface": "#f9f9ff",
+                        "primary-fixed-dim": "#62df7d",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-low": "#f1f3ff",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-dim": "#d3daef",
+                        "secondary-container": "#99efe5",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#3e4a3d",
+                        "surface-container": "#e9edff",
+                        "tertiary-container": "#c74668",
+                        "on-surface": "#141b2b",
+                        "tertiary": "#a72d51",
+                        "on-primary-fixed": "#002109",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#dce2f7",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#141b2b",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "on-secondary-fixed": "#00201d",
+                        "background": "#f9f9ff",
+                        "on-tertiary-fixed": "#3f0016",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#293040",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "on-secondary-container": "#006f67",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-variant": "#dce2f7",
+                        "outline-variant": "#bdcaba",
+                        "surface-tint": "#006e2d",
+                        "primary": "#006b2c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "table-row-height": "44px",
+                        "compact-padding": "8px",
+                        "form-gap": "20px",
+                        "gutter": "16px",
+                        "container-margin": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "page-title": ["Inter"],
+                        "table-cell": ["Inter"],
+                        "section-title": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md">
+<!-- Header (No nav shell as it's a transactional flow) -->
+<header class="bg-surface-lowest border-b border-outline-variant px-container-margin h-table-row-height flex items-center justify-between sticky top-0 z-10 shadow-sm">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-surface-container-low p-1 rounded transition-colors" onclick="alert('Go back')">arrow_back</span>
+<h1 class="text-page-title font-page-title text-on-surface">Campaign Builder</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-caption font-caption text-on-surface-variant">Step 3 of 4</span>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow p-container-margin max-w-5xl mx-auto w-full">
+<div class="mb-8">
+<h2 class="text-section-title font-section-title text-on-surface mb-2">Select Campaign Benefit</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">Choose the type of reward or discount for this campaign. The corresponding settings will appear below.</p>
+</div>
+<!-- Benefit Selection Cards (Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+<!-- Option 1 -->
+<div class="border border-outline-variant rounded-xl p-6 cursor-pointer hover:border-primary hover:shadow-sm transition-all bg-surface-container-lowest relative group" onclick="selectBenefit('bogo')">
+<div class="absolute top-4 right-4 hidden group-[.selected]:block text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="w-12 h-12 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<h3 class="text-section-title font-section-title text-on-surface mb-1">Mua X tặng Y</h3>
+<p class="text-caption font-caption text-on-surface-variant">Buy X items, get Y items free.</p>
+</div>
+<!-- Option 2 (Selected by default for demo) -->
+<div class="border border-primary rounded-xl p-6 cursor-pointer hover:shadow-sm transition-all bg-surface-container-lowest relative group selected shadow-[0_0_0_1px_rgba(0,107,44,1)] ring-2 ring-primary ring-offset-2" id="card-percent-product" onclick="selectBenefit('percent-product')">
+<div class="absolute top-4 right-4 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="w-12 h-12 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">percent</span>
+</div>
+<h3 class="text-section-title font-section-title text-on-surface mb-1">Giảm % (Product)</h3>
+<p class="text-caption font-caption text-on-surface-variant">Percentage discount on specific products.</p>
+</div>
+<!-- Option 3 -->
+<div class="border border-outline-variant rounded-xl p-6 cursor-pointer hover:border-primary hover:shadow-sm transition-all bg-surface-container-lowest relative group" onclick="selectBenefit('fixed-amount')">
+<div class="absolute top-4 right-4 hidden group-[.selected]:block text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="w-12 h-12 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<h3 class="text-section-title font-section-title text-on-surface mb-1">Giảm số tiền (Fixed)</h3>
+<p class="text-caption font-caption text-on-surface-variant">Fixed amount discount off the total.</p>
+</div>
+<!-- Option 4 -->
+<div class="border border-outline-variant rounded-xl p-6 cursor-pointer hover:border-primary hover:shadow-sm transition-all bg-surface-container-lowest relative group" onclick="selectBenefit('percent-bill')">
+<div class="absolute top-4 right-4 hidden group-[.selected]:block text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="w-12 h-12 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<h3 class="text-section-title font-section-title text-on-surface mb-1">Giảm % hóa đơn</h3>
+<p class="text-caption font-caption text-on-surface-variant">Percentage discount on the entire bill.</p>
+</div>
+<!-- Option 5 -->
+<div class="border border-outline-variant rounded-xl p-6 cursor-pointer hover:border-primary hover:shadow-sm transition-all bg-surface-container-lowest relative group" onclick="selectBenefit('free-gift')">
+<div class="absolute top-4 right-4 hidden group-[.selected]:block text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="w-12 h-12 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">redeem</span>
+</div>
+<h3 class="text-section-title font-section-title text-on-surface mb-1">Tặng sản phẩm</h3>
+<p class="text-caption font-caption text-on-surface-variant">Give a free product as a gift.</p>
+</div>
+<!-- Option 6 -->
+<div class="border border-outline-variant rounded-xl p-6 cursor-pointer hover:border-primary hover:shadow-sm transition-all bg-surface-container-lowest relative group" onclick="selectBenefit('tier-discount')">
+<div class="absolute top-4 right-4 hidden group-[.selected]:block text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="w-12 h-12 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">workspace_premium</span>
+</div>
+<h3 class="text-section-title font-section-title text-on-surface mb-1">Chiết khấu hạng KH</h3>
+<p class="text-caption font-caption text-on-surface-variant">Discount based on customer loyalty tier.</p>
+</div>
+</div>
+<!-- Dynamic Settings Area (Shown for "Giảm % (Product)" in this demo) -->
+<div class="bg-surface-container rounded-xl p-6 border border-outline-variant" id="settings-area">
+<h3 class="text-section-title font-section-title text-on-surface mb-6 border-b border-outline-variant pb-2">Benefit Configuration</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-form-gap">
+<!-- Percentage Input -->
+<div class="flex flex-col gap-2">
+<label class="text-label-caps font-label-caps text-on-surface" for="discount-percent">Discount Percentage</label>
+<div class="relative">
+<input class="w-full bg-surface-lowest border border-outline-variant rounded-lg p-3 text-body-md font-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="discount-percent" max="100" min="1" placeholder="e.g. 15" type="number"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant">%</span>
+</div>
+</div>
+<!-- Max Discount Amount -->
+<div class="flex flex-col gap-2">
+<label class="text-label-caps font-label-caps text-on-surface" for="max-discount">Max Discount Amount (Optional)</label>
+<div class="relative">
+<input class="w-full bg-surface-lowest border border-outline-variant rounded-lg p-3 text-body-md font-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" id="max-discount" placeholder="e.g. 500,000" type="number"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant">VND</span>
+</div>
+</div>
+<!-- Applicable Products (Mock selector) -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-label-caps font-label-caps text-on-surface">Applicable Products</label>
+<div class="border border-outline-variant rounded-lg bg-surface-lowest p-4">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="w-full bg-transparent border-none text-body-md font-body-md focus:ring-0 p-0" placeholder="Search products to apply discount..." type="text"/>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 bg-surface-container-high px-3 py-1 rounded-full text-caption font-caption text-on-surface">
+                                Paracetamol 500mg
+                                <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span>
+</span>
+<span class="inline-flex items-center gap-1 bg-surface-container-high px-3 py-1 rounded-full text-caption font-caption text-on-surface">
+                                Amoxicillin 250mg
+                                <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Actions -->
+<footer class="bg-surface-lowest border-t border-outline-variant p-container-margin mt-auto sticky bottom-0 z-10">
+<div class="max-w-5xl mx-auto flex justify-between items-center w-full">
+<button class="px-6 py-2 rounded-lg border border-outline-variant text-on-surface font-body-md hover:bg-surface-container-low transition-colors">
+                Quay lại
+            </button>
+<button class="px-6 py-2 rounded-lg bg-primary text-on-primary font-body-md hover:opacity-90 transition-opacity">
+                Tiếp theo
+            </button>
+</div>
+</footer>
+<script>
+        function selectBenefit(type) {
+            // Very basic selection logic for UI demonstration
+            const cards = document.querySelectorAll('.grid > div');
+            cards.forEach(card => {
+                card.classList.remove('selected', 'border-primary', 'shadow-[0_0_0_1px_rgba(0,107,44,1)]', 'ring-2', 'ring-primary', 'ring-offset-2');
+                card.classList.add('border-outline-variant');
+                const check = card.querySelector('.absolute.top-4');
+                if(check) check.classList.add('hidden');
+            });
+
+            // This is a simplified interaction just to show visual change
+            // In a real app, this would dynamically render the settings area based on 'type'
+            alert('Selected: ' + type + '. In a full implementation, the settings area below would change accordingly.');
+        }
+    </script>
+</body></html>

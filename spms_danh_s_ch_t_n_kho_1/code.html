@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Danh sách Tồn kho - Pharmacy MS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#dce2f7",
+                        "secondary": "#006a63",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "surface-tint": "#006e2d",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#f7fff2",
+                        "on-tertiary-fixed": "#3f0016",
+                        "on-error-container": "#93000a",
+                        "background": "#f9f9ff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002109",
+                        "surface-dim": "#d3daef",
+                        "outline-variant": "#bdcaba",
+                        "surface-container-high": "#e1e8fd",
+                        "inverse-surface": "#293040",
+                        "secondary-container": "#99efe5",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-variant": "#dce2f7",
+                        "tertiary-fixed": "#ffd9de",
+                        "surface": "#f9f9ff",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#00873a",
+                        "on-secondary-container": "#006f67",
+                        "outline": "#6e7b6c",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "on-secondary-fixed": "#00201d",
+                        "inverse-primary": "#62df7d",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "on-background": "#141b2b",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-surface": "#141b2b",
+                        "primary-fixed": "#7ffc97",
+                        "tertiary-container": "#c74668",
+                        "primary": "#006b2c",
+                        "primary-fixed-dim": "#62df7d",
+                        "secondary-fixed": "#9cf2e8",
+                        "surface-container": "#e9edff",
+                        "tertiary": "#a72d51",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f1f3ff",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "compact-padding": "8px",
+                        "form-gap": "20px",
+                        "table-row-height": "44px",
+                        "container-margin": "24px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "page-title": ["Inter"],
+                        "table-cell": ["Inter"],
+                        "body-md": ["Inter"],
+                        "section-title": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen flex overflow-hidden antialiased">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col z-20 transition-all duration-200 ease-in-out">
+<div class="p-container-margin flex flex-col gap-compact-padding border-b border-outline-variant">
+<div class="flex items-center gap-compact-padding">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold font-section-title text-section-title">P</div>
+<div>
+<h1 class="font-page-title text-page-title text-primary">Pharmacy MS</h1>
+<p class="font-caption text-caption text-on-surface-variant">FEFO Engine Active</p>
+</div>
+</div>
+<div class="mt-4 bg-error-container text-on-error-container px-compact-padding py-2 rounded flex items-center gap-2 font-caption text-caption">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                Hết hạn: 12 Lô
+            </div>
+</div>
+<div class="flex-1 py-container-margin flex flex-col gap-2 overflow-y-auto no-scrollbar">
+<a class="flex items-center gap-compact-padding py-3 px-4 text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Tổng quan
+            </a>
+<a class="bg-secondary-container text-on-secondary-container border-l-4 border-primary font-bold flex items-center gap-compact-padding py-3 px-4 font-body-md text-body-md transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Danh sách tồn kho
+            </a>
+<a class="flex items-center gap-compact-padding py-3 px-4 text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">layers</span>
+                Quản lý lô
+            </a>
+<a class="flex items-center gap-compact-padding py-3 px-4 text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">low_priority</span>
+                Thiết lập FEFO
+            </a>
+<a class="flex items-center gap-compact-padding py-3 px-4 text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">assessment</span>
+                Báo cáo
+            </a>
+</div>
+<div class="p-compact-padding border-t border-outline-variant">
+<a class="flex items-center gap-compact-padding py-3 px-4 text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+                Hỗ trợ
+            </a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col ml-[260px] h-full overflow-hidden">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-container-margin h-16 bg-surface border-b border-outline-variant z-10 shrink-0">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant">local_hospital</span>
+<select class="bg-transparent border-none text-body-md font-body-md text-on-surface focus:ring-0 cursor-pointer">
+<option>Chi nhánh Trung tâm</option>
+<option>Chi nhánh Q1</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex gap-6">
+<a class="text-primary border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Tồn kho</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md py-1 px-2 rounded" href="#">Lô hàng</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md py-1 px-2 rounded" href="#">Điều chỉnh</a>
+</nav>
+<div class="flex items-center gap-4 border-l border-outline-variant pl-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small, professional headshot of an administrator in a clinical setting, soft natural lighting, light mode aesthetic, crisp details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0lu-pyay19tX1ZsWf_-Zs_KqVBFcK2a8HKRyvZnjq414ge9co2d2s_86uKdv_5Xy3uYbehPLz0ZIMA3zGw9J9n8sHG-ha3Uyst_L0XGGuO1VlxEyqboyiSFc4ZQsB_o-xh3UaPr3Sm1KsX8ebUhuzo5j0XWegsFSUEaaFz566pti4C1gfrQizrCXU0bhdfkUhtbWjkbYWv_BNzOx7n1CVj-nEWI-FH1_KJJGzj3iF6XAMaaxpBB3aqQ"/>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto p-container-margin bg-surface-container-lowest">
+<!-- Header & Breadcrumb -->
+<div class="mb-gutter">
+<div class="flex items-center gap-2 text-on-surface-variant font-caption text-caption mb-2">
+<span>Kho</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface">Tồn kho</span>
+</div>
+<h2 class="font-page-title text-page-title text-on-background">Danh sách Tồn kho</h2>
+</div>
+<!-- Summary Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-container-margin">
+<div class="bg-surface rounded-xl p-4 border border-outline-variant flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Tổng SKU</span>
+<span class="font-section-title text-section-title text-on-surface">1,245</span>
+</div>
+<div class="bg-[#FEF9C3] rounded-xl p-4 border border-[#FDE047] flex flex-col gap-2 relative overflow-hidden">
+<span class="font-label-caps text-label-caps text-[#854D0E] uppercase">Tồn thấp</span>
+<span class="font-section-title text-section-title text-[#713F12]">12</span>
+<span class="material-symbols-outlined absolute right-2 bottom-2 text-[#FDE047] opacity-50 text-4xl">inventory_2</span>
+</div>
+<div class="bg-[#FFEDD5] rounded-xl p-4 border border-[#FDBA74] flex flex-col gap-2 relative overflow-hidden">
+<span class="font-label-caps text-label-caps text-[#9A3412] uppercase">Cận hạn</span>
+<span class="font-section-title text-section-title text-[#7C2D12]">8</span>
+<span class="material-symbols-outlined absolute right-2 bottom-2 text-[#FDBA74] opacity-50 text-4xl">warning</span>
+</div>
+<div class="bg-error-container rounded-xl p-4 border border-[#FCA5A5] flex flex-col gap-2 relative overflow-hidden">
+<span class="font-label-caps text-label-caps text-on-error-container uppercase">Hết hạn</span>
+<span class="font-section-title text-section-title text-on-error-container">3</span>
+<span class="material-symbols-outlined absolute right-2 bottom-2 text-[#FCA5A5] opacity-50 text-4xl">error</span>
+</div>
+<div class="bg-surface-variant rounded-xl p-4 border border-outline-variant flex flex-col gap-2 relative overflow-hidden">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Lô bị khóa</span>
+<span class="font-section-title text-section-title text-on-surface">2</span>
+<span class="material-symbols-outlined absolute right-2 bottom-2 text-outline-variant opacity-50 text-4xl">lock</span>
+</div>
+</div>
+<!-- Filters -->
+<div class="bg-surface rounded-xl p-4 border border-outline-variant mb-container-margin flex flex-wrap gap-4 items-end">
+<div class="flex-1 min-w-[200px]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Thuốc / SKU</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-3 py-2 border border-outline-variant rounded-lg bg-surface text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Tìm kiếm..." type="text"/>
+</div>
+</div>
+<div class="w-[150px]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Số lô</label>
+<input class="w-full px-3 py-2 border border-outline-variant rounded-lg bg-surface text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Nhập lô" type="text"/>
+</div>
+<div class="w-[150px]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Trạng thái</label>
+<select class="w-full px-3 py-2 border border-outline-variant rounded-lg bg-surface text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary outline-none">
+<option>Tất cả</option>
+<option>Bình thường</option>
+<option>Cận hạn</option>
+<option>Hết hạn</option>
+</select>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-body-md text-body-md hover:bg-surface-tint transition-colors flex items-center gap-2 h-[42px]">
+<span class="material-symbols-outlined">filter_list</span>
+                    Lọc
+                </button>
+</div>
+<!-- Data Table -->
+<div class="bg-surface rounded-xl border border-outline-variant overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[900px]">
+<thead class="bg-surface-container-low border-b border-outline-variant font-label-caps text-label-caps text-on-surface-variant uppercase">
+<tr>
+<th class="p-3 pl-4 sticky left-0 bg-surface-container-low z-10">Thuốc (SKU)</th>
+<th class="p-3">Lô</th>
+<th class="p-3">Hạn sử dụng</th>
+<th class="p-3 text-right">Vật lý</th>
+<th class="p-3 text-right">Giữ chỗ</th>
+<th class="p-3 text-right">Khả dụng</th>
+<th class="p-3">Trạng thái lô</th>
+<th class="p-3 pr-4 text-center">Hành động</th>
+</tr>
+</thead>
+<tbody class="font-table-cell text-table-cell text-on-surface">
+<!-- Normal Row -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-lowest transition-colors h-[table-row-height]">
+<td class="p-3 pl-4 sticky left-0 bg-surface group-hover:bg-surface-container-lowest z-10 font-medium">
+                                Paracetamol 500mg<br/>
+<span class="text-on-surface-variant text-[11px]">SKU: PR-500-12</span>
+</td>
+<td class="p-3">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[11px] font-bold">B-2023-A</span>
+</td>
+<td class="p-3 text-[#16A34A] flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                12/2025
+                            </td>
+<td class="p-3 text-right">500 <span class="text-on-surface-variant text-[11px]">Hộp</span></td>
+<td class="p-3 text-right">50 <span class="text-on-surface-variant text-[11px]">Hộp</span></td>
+<td class="p-3 text-right font-semibold">450 <span class="text-on-surface-variant text-[11px]">Hộp</span></td>
+<td class="p-3">
+<span class="px-2 py-1 bg-[#DCFCE7] text-[#166534] rounded-full text-[11px] font-medium border border-[#BBF7D0]">Bình thường</span>
+</td>
+<td class="p-3 pr-4 text-center">
+<button class="text-primary hover:text-surface-tint font-medium text-[12px]">Chi tiết</button>
+</td>
+</tr>
+<!-- Low Stock Row -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-lowest transition-colors h-[table-row-height] bg-[#FEF9C3]/20">
+<td class="p-3 pl-4 sticky left-0 bg-surface group-hover:bg-surface-container-lowest z-10 font-medium">
+                                Amoxicillin 250mg<br/>
+<span class="text-on-surface-variant text-[11px]">SKU: AM-250-05</span>
+</td>
+<td class="p-3">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[11px] font-bold">L-883-X</span>
+</td>
+<td class="p-3 text-[#16A34A] flex items-center gap-1">
+                                08/2024
+                            </td>
+<td class="p-3 text-right">15 <span class="text-on-surface-variant text-[11px]">Lọ</span></td>
+<td class="p-3 text-right">5 <span class="text-on-surface-variant text-[11px]">Lọ</span></td>
+<td class="p-3 text-right font-semibold text-[#B45309]">10 <span class="text-on-surface-variant text-[11px]">Lọ</span></td>
+<td class="p-3">
+<span class="px-2 py-1 bg-[#FEF9C3] text-[#854D0E] rounded-full text-[11px] font-medium border border-[#FDE047]">Tồn thấp</span>
+</td>
+<td class="p-3 pr-4 text-center">
+<button class="text-primary hover:text-surface-tint font-medium text-[12px]">Chi tiết</button>
+</td>
+</tr>
+<!-- Near Expiry Row -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-lowest transition-colors h-[table-row-height] bg-[#FFEDD5]/20">
+<td class="p-3 pl-4 sticky left-0 bg-surface group-hover:bg-surface-container-lowest z-10 font-medium">
+                                Ibuprofen 400mg<br/>
+<span class="text-on-surface-variant text-[11px]">SKU: IB-400-01</span>
+</td>
+<td class="p-3">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded text-[11px] font-bold text-[#9A3412] border-[#FDBA74]">FEFO-01</span>
+</td>
+<td class="p-3 text-[#D97706] flex items-center gap-1 font-medium">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                                05/2024
+                            </td>
+<td class="p-3 text-right">120 <span class="text-on-surface-variant text-[11px]">Vỉ</span></td>
+<td class="p-3 text-right">0 <span class="text-on-surface-variant text-[11px]">Vỉ</span></td>
+<td class="p-3 text-right font-semibold">120 <span class="text-on-surface-variant text-[11px]">Vỉ</span></td>
+<td class="p-3">
+<span class="px-2 py-1 bg-[#FFEDD5] text-[#9A3412] rounded-full text-[11px] font-medium border border-[#FDBA74]">Cận hạn</span>
+</td>
+<td class="p-3 pr-4 text-center">
+<button class="text-primary hover:text-surface-tint font-medium text-[12px]">Chi tiết</button>
+</td>
+</tr>
+<!-- Expired Row -->
+<tr class="border-b border-outline-variant hover:bg-surface-container-lowest transition-colors h-[table-row-height] bg-error-container/20">
+<td class="p-3 pl-4 sticky left-0 bg-surface group-hover:bg-surface-container-lowest z-10 font-medium text-on-surface-variant">
+                                Vitamin C 1000mg<br/>
+<span class="text-on-surface-variant text-[11px]">SKU: VC-100-99</span>
+</td>
+<td class="p-3">
+<span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[11px] font-bold">E-001-Z</span>
+</td>
+<td class="p-3 text-error flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                                01/2024
+                            </td>
+<td class="p-3 text-right opacity-50">50 <span class="text-on-surface-variant text-[11px]">Hộp</span></td>
+<td class="p-3 text-right opacity-50">0 <span class="text-on-surface-variant text-[11px]">Hộp</span></td>
+<td class="p-3 text-right font-semibold text-error">0 <span class="text-on-surface-variant text-[11px]">Hộp</span></td>
+<td class="p-3">
+<span class="px-2 py-1 bg-error-container text-on-error-container rounded-full text-[11px] font-medium border border-error">Hết hạn</span>
+</td>
+<td class="p-3 pr-4 text-center">
+<button class="text-primary hover:text-surface-tint font-medium text-[12px]">Chi tiết</button>
+</td>
+</tr>
+<!-- Locked Row -->
+<tr class="hover:bg-surface-container-lowest transition-colors h-[table-row-height] opacity-75">
+<td class="p-3 pl-4 sticky left-0 bg-surface group-hover:bg-surface-container-lowest z-10 font-medium">
+                                Diazepam 5mg<br/>
+<span class="text-on-surface-variant text-[11px]">SKU: DZ-05-33</span>
+</td>
+<td class="p-3">
+<span class="bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded text-[11px] font-bold">L-999-Q</span>
+</td>
+<td class="p-3 text-on-surface-variant">
+                                11/2026
+                            </td>
+<td class="p-3 text-right">30 <span class="text-on-surface-variant text-[11px]">Ống</span></td>
+<td class="p-3 text-right">30 <span class="text-on-surface-variant text-[11px]">Ống</span></td>
+<td class="p-3 text-right font-semibold text-on-surface-variant">0 <span class="text-on-surface-variant text-[11px]">Ống</span></td>
+<td class="p-3">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant rounded-full text-[11px] font-medium border border-outline-variant flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[14px]">lock</span> Khóa
+                                </span>
+</td>
+<td class="p-3 pr-4 text-center">
+<button class="text-primary hover:text-surface-tint font-medium text-[12px]">Chi tiết</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Placeholder -->
+<div class="mt-4 flex justify-between items-center text-body-md text-on-surface-variant">
+<span>Hiển thị 1-5 của 1,245 mục</span>
+<div class="flex gap-1">
+<button class="px-3 py-1 border border-outline-variant rounded bg-surface hover:bg-surface-container-high disabled:opacity-50">&lt;</button>
+<button class="px-3 py-1 border border-primary rounded bg-primary text-on-primary">1</button>
+<button class="px-3 py-1 border border-outline-variant rounded bg-surface hover:bg-surface-container-high">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded bg-surface hover:bg-surface-container-high">3</button>
+<button class="px-3 py-1 border border-outline-variant rounded bg-surface hover:bg-surface-container-high">&gt;</button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

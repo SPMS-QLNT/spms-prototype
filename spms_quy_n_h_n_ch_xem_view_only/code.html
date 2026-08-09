@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Công nợ Nhà cung cấp</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&amp;family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed": "#e0e3e5",
+                      "on-tertiary-fixed-variant": "#444749",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "tertiary-container": "#191c1e",
+                      "on-surface-variant": "#45464d",
+                      "primary-container": "#131b2e",
+                      "surface-container-high": "#dce9ff",
+                      "inverse-primary": "#bec6e0",
+                      "on-primary-fixed": "#131b2e",
+                      "on-secondary-fixed": "#001d31",
+                      "surface-container-low": "#eff4ff",
+                      "error": "#ba1a1a",
+                      "on-primary-container": "#7c839b",
+                      "on-surface": "#0b1c30",
+                      "secondary-fixed": "#cce5ff",
+                      "surface-container": "#e5eeff",
+                      "secondary-fixed-dim": "#93ccff",
+                      "surface": "#f8f9ff",
+                      "primary-fixed-dim": "#bec6e0",
+                      "on-secondary-fixed-variant": "#004b73",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#f8f9ff",
+                      "on-tertiary-container": "#818486",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-background": "#0b1c30",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed": "#191c1e",
+                      "surface-container-highest": "#d3e4fe",
+                      "secondary-container": "#5bb8fe",
+                      "surface-container-lowest": "#ffffff",
+                      "background": "#f8f9ff",
+                      "surface-tint": "#565e74",
+                      "outline": "#76777d",
+                      "outline-variant": "#c6c6cd",
+                      "primary": "#000000",
+                      "on-error-container": "#93000a",
+                      "tertiary": "#000000",
+                      "inverse-surface": "#213145",
+                      "surface-dim": "#cbdbf5",
+                      "tertiary-fixed-dim": "#c4c7c9",
+                      "surface-variant": "#d3e4fe",
+                      "on-error": "#ffffff",
+                      "secondary": "#006398",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-container": "#00476e",
+                      "primary-fixed": "#dae2fd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "row-height-standard": "48px",
+                      "container-padding": "24px",
+                      "unit": "4px",
+                      "row-height-dense": "32px",
+                      "gutter": "16px"
+              },
+              "fontFamily": {
+                      "display-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Hanken Grotesk"
+                      ],
+                      "data-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "12px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "data-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-hidden">
+<!-- App Container -->
+<div class="flex h-screen w-full relative">
+<!-- SideNavBar -->
+<nav class="w-[260px] h-screen fixed left-0 top-0 bg-surface dark:bg-background border-r border-outline-variant dark:border-outline flex flex-col h-full z-40">
+<!-- Brand -->
+<div class="p-container-padding flex items-center gap-3 border-b border-outline-variant/30">
+<div class="w-10 h-10 rounded bg-primary flex items-center justify-center text-on-primary font-bold shadow-sm">
+                    SP
+                </div>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed">SPMS Enterprise</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Pharmacy Management</p>
+</div>
+</div>
+<!-- Main Tabs -->
+<div class="flex-1 overflow-y-auto py-4 flex flex-col gap-1 px-3">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98] rounded" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98] rounded" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98] rounded" href="#">
+<span class="material-symbols-outlined">medication</span>
+<span class="font-body-md text-body-md">Drug Master</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98] rounded" href="#">
+<span class="material-symbols-outlined">monitor_heart</span>
+<span class="font-body-md text-body-md">Dispensing</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed border-l-[3px] border-primary hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98] rounded-r" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md text-body-md font-medium">Finance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98] rounded" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+</div>
+<!-- Footer Tabs -->
+<div class="mt-auto border-t border-outline-variant/30 py-4 px-3 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98] rounded" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98] rounded" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="h-[64px] fixed top-0 right-0 left-[260px] z-50 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline flex justify-between items-center px-container-padding w-[calc(100%-260px)]">
+<!-- Left: Search/Context -->
+<div class="flex items-center gap-4 w-1/3">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 18px;">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded pl-9 pr-4 py-1.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-on-surface-variant/60" disabled="" placeholder="Tìm kiếm công nợ, nhà cung cấp..." type="text"/>
+</div>
+</div>
+<!-- Right: Actions & Profile -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<button class="text-on-surface-variant hover:text-primary transition-opacity relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-surface"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-opacity">
+<span class="material-symbols-outlined">apps</span>
+</button>
+</div>
+<div class="h-8 w-px bg-outline-variant/50"></div>
+<div class="flex items-center gap-3 cursor-pointer">
+<div class="text-right flex flex-col items-end">
+<span class="font-label-caps text-label-caps text-primary font-bold">Main Hospital Branch</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">View Only</span>
+</div>
+<img alt="Administrator Portrait" class="w-9 h-9 rounded-full object-cover border border-outline-variant/30" data-alt="Professional headshot of a hospital administrator in a clean, brightly lit modern office setting. The portrait is sharp, corporate style, with soft natural light highlighting a professional demeanor. Neutral blurred background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgObZwHEGMYDDnz0iAtN9jIRlLaxEg9Xp-G8ddWN1bnbgxPK4TPC_8j9mK72EPuTrLoTsYTn0rtTWvaCgK-uudT8vvgsI65vu95e2VPgdDag_GNvoUwcFNLNShr8EVAwvfhrc8oPsfcdO3E1fYByMNycIU2Gc5DHVUdtfBrjArzH1KgKh9bfsqJJiNWnPzI7lCv4JhAwTxXSoF26L2IKqyUvipPT-CIH_Oz9_eerK2CXU7HcHpTq0lyg"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[260px] mt-[64px] p-container-padding w-[calc(100%-260px)] h-[calc(100vh-64px)] overflow-y-auto bg-background flex flex-col gap-gutter">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-2">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">FINANCE / PAYABLES</span>
+<span class="material-symbols-outlined text-outline-variant" style="font-size: 14px;">chevron_right</span>
+<span class="font-label-caps text-label-caps text-primary">CÔNG NỢ NHÀ CUNG CẤP</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-on-background">Tổng Hợp Công Nợ</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface border border-outline-variant rounded text-on-surface font-body-md text-body-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" style="font-size: 18px;">download</span>
+                        Xuất báo cáo
+                    </button>
+<!-- VIEW ONLY: Create payment button removed -->
+</div>
+</div>
+<!-- KPI Cards / Summary -->
+<div class="grid grid-cols-4 gap-gutter mb-2">
+<div class="bg-surface border border-outline-variant rounded p-4 flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">TỔNG CÔNG NỢ PHẢI TRẢ</span>
+<div class="font-headline-md text-headline-md text-on-surface">1,450,230,000 ₫</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary" style="font-size: 14px;">trending_up</span>
+<span>+5.2% so với tháng trước</span>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant rounded p-4 flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">NỢ ĐẾN HẠN (TRONG 7 NGÀY)</span>
+<div class="font-headline-md text-headline-md text-error">320,500,000 ₫</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-error" style="font-size: 14px;">warning</span>
+<span>Cần chú ý: 12 hóa đơn</span>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant rounded p-4 flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">ĐÃ THANH TOÁN (THÁNG NÀY)</span>
+<div class="font-headline-md text-headline-md text-secondary">850,000,000 ₫</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-secondary" style="font-size: 14px;">check_circle</span>
+<span>Hoàn thành 85% kế hoạch</span>
+</div>
+</div>
+<div class="bg-surface border border-outline-variant rounded p-4 flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SỐ LƯỢNG NHÀ CUNG CẤP</span>
+<div class="font-headline-md text-headline-md text-on-surface">45</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-outline" style="font-size: 14px;">group</span>
+<span>Đang giao dịch</span>
+</div>
+</div>
+</div>
+<!-- Filters Bar -->
+<div class="bg-surface border border-outline-variant rounded p-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 16px;">filter_list</span>
+<select class="pl-8 pr-8 py-1.5 bg-surface border border-outline-variant rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary appearance-none">
+<option>Tất cả trạng thái</option>
+<option>Chưa thanh toán</option>
+<option>Thanh toán một phần</option>
+<option>Đã thanh toán</option>
+</select>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 16px;">calendar_today</span>
+<input class="pl-8 pr-3 py-1.5 bg-surface border border-outline-variant rounded font-data-mono text-data-mono text-on-surface focus:outline-none focus:border-primary w-[200px]" readonly="" type="text" value="01/10/2023 - 31/10/2023"/>
+</div>
+<div class="relative">
+<input class="pl-3 pr-3 py-1.5 bg-surface border border-outline-variant rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary w-[220px]" placeholder="Mã NCC, Tên NCC..." type="text"/>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-primary font-body-sm text-body-sm hover:bg-surface-container-low rounded transition-colors">Xóa bộ lọc</button>
+<button class="px-4 py-1.5 bg-primary text-on-primary font-body-sm text-body-sm rounded hover:bg-primary/90 transition-colors">Áp dụng</button>
+</div>
+</div>
+<!-- Ledger Table (Clinical Precision) -->
+<div class="bg-surface border border-outline-variant rounded flex-1 flex flex-col overflow-hidden relative shadow-sm">
+<!-- Table Header -->
+<div class="grid grid-cols-[1fr_2fr_1.5fr_1.5fr_1fr_1fr] gap-4 px-4 py-2 border-b border-outline-variant bg-surface-container-lowest sticky top-0 z-10">
+<div class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-1 cursor-pointer hover:text-primary">MÃ NCC <span class="material-symbols-outlined" style="font-size: 14px;">arrow_downward</span></div>
+<div class="font-label-caps text-label-caps text-on-surface-variant flex items-center">TÊN NHÀ CUNG CẤP</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant flex items-center justify-end">NỢ ĐẦU KỲ</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant flex items-center justify-end">PHÁT SINH TRONG KỲ</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant flex items-center justify-end">ĐÃ THANH TOÁN</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant flex items-center justify-end font-bold text-on-surface">NỢ CUỐI KỲ</div>
+</div>
+<!-- Table Body -->
+<div class="flex-1 overflow-y-auto">
+<!-- Row 1 -->
+<div class="grid grid-cols-[1fr_2fr_1.5fr_1.5fr_1fr_1fr] gap-4 px-4 h-row-height-standard items-center border-b border-outline-variant/50 hover:bg-secondary/5 transition-colors group cursor-default">
+<div class="font-data-mono text-data-mono text-on-surface">NCC001</div>
+<div class="font-body-sm text-body-sm text-on-surface truncate">Công ty CP Dược phẩm Trung Ương 1 (Pharbaco)</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right">450,000,000</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-error">+ 120,500,000</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-secondary">- 200,000,000</div>
+<div class="font-data-mono text-data-mono text-on-surface font-bold text-right">370,500,000</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-[1fr_2fr_1.5fr_1.5fr_1fr_1fr] gap-4 px-4 h-row-height-standard items-center border-b border-outline-variant/50 hover:bg-secondary/5 transition-colors group cursor-default">
+<div class="font-data-mono text-data-mono text-on-surface">NCC015</div>
+<div class="font-body-sm text-body-sm text-on-surface truncate">Công ty TNHH Sanofi-Aventis Việt Nam</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right">820,100,000</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-error">+ 0</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-secondary">- 500,000,000</div>
+<div class="font-data-mono text-data-mono text-on-surface font-bold text-right">320,100,000</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-[1fr_2fr_1.5fr_1.5fr_1fr_1fr] gap-4 px-4 h-row-height-standard items-center border-b border-outline-variant/50 hover:bg-secondary/5 transition-colors group cursor-default">
+<div class="font-data-mono text-data-mono text-on-surface">NCC042</div>
+<div class="font-body-sm text-body-sm text-on-surface truncate">Công ty CP Xuất Nhập Khẩu Y Tế Domesco</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right">15,000,000</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-error">+ 85,200,000</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-secondary">- 0</div>
+<div class="font-data-mono text-data-mono text-on-surface font-bold text-right text-error">100,200,000</div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-[1fr_2fr_1.5fr_1.5fr_1fr_1fr] gap-4 px-4 h-row-height-standard items-center border-b border-outline-variant/50 hover:bg-secondary/5 transition-colors group cursor-default">
+<div class="font-data-mono text-data-mono text-on-surface">NCC088</div>
+<div class="font-body-sm text-body-sm text-on-surface truncate">Công ty Cổ phần Dược Hậu Giang</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right">0</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-error">+ 250,000,000</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-secondary">- 250,000,000</div>
+<div class="font-data-mono text-data-mono text-on-surface font-bold text-right">0</div>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-[1fr_2fr_1.5fr_1.5fr_1fr_1fr] gap-4 px-4 h-row-height-standard items-center border-b border-outline-variant/50 hover:bg-secondary/5 transition-colors group cursor-default">
+<div class="font-data-mono text-data-mono text-on-surface">NCC102</div>
+<div class="font-body-sm text-body-sm text-on-surface truncate">Công ty TNHH B. Braun Việt Nam</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right">1,200,000,000</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-error">+ 450,000,000</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-secondary">- 800,000,000</div>
+<div class="font-data-mono text-data-mono text-on-surface font-bold text-right text-error">850,000,000</div>
+</div>
+<!-- Row 6 -->
+<div class="grid grid-cols-[1fr_2fr_1.5fr_1.5fr_1fr_1fr] gap-4 px-4 h-row-height-standard items-center hover:bg-secondary/5 transition-colors group cursor-default">
+<div class="font-data-mono text-data-mono text-on-surface">NCC115</div>
+<div class="font-body-sm text-body-sm text-on-surface truncate">Công ty Cổ phần Traphaco</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right">45,500,000</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-error">+ 10,000,000</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant text-right text-secondary">- 55,500,000</div>
+<div class="font-data-mono text-data-mono text-on-surface font-bold text-right">0</div>
+</div>
+</div>
+<!-- Table Footer (Totals) -->
+<div class="grid grid-cols-[3fr_1.5fr_1.5fr_1fr_1fr] gap-4 px-4 py-3 border-t-2 border-outline bg-surface-container-lowest sticky bottom-0">
+<div class="font-label-caps text-label-caps text-on-surface text-right pr-4">TỔNG CỘNG</div>
+<div class="font-data-mono text-data-mono text-on-surface font-bold text-right">2,530,600,000</div>
+<div class="font-data-mono text-data-mono text-error font-bold text-right">+ 915,700,000</div>
+<div class="font-data-mono text-data-mono text-secondary font-bold text-right">- 1,805,500,000</div>
+<div class="font-data-mono text-data-mono text-on-surface font-bold text-right text-lg">1,640,800,000</div>
+</div>
+</div>
+<!-- Pagination (Simple) -->
+<div class="flex justify-between items-center py-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Hiển thị 1 - 6 trên 45 nhà cung cấp</span>
+<div class="flex items-center gap-1">
+<button class="p-1 text-outline-variant hover:text-on-surface transition-colors cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined" style="font-size: 20px;">chevron_left</span>
+</button>
+<button class="w-7 h-7 flex items-center justify-center rounded bg-primary text-on-primary font-body-sm text-body-sm">1</button>
+<button class="w-7 h-7 flex items-center justify-center rounded text-on-surface hover:bg-surface-container-low font-body-sm text-body-sm">2</button>
+<button class="w-7 h-7 flex items-center justify-center rounded text-on-surface hover:bg-surface-container-low font-body-sm text-body-sm">3</button>
+<span class="font-body-sm text-on-surface-variant">...</span>
+<button class="w-7 h-7 flex items-center justify-center rounded text-on-surface hover:bg-surface-container-low font-body-sm text-body-sm">8</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

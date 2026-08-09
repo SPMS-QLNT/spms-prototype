@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Nhật ký hệ thống</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#e5eeff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bec6e0",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary-fixed": "#191c1e",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed": "#cce5ff",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-low": "#eff4ff",
+                        "surface": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary-fixed": "#131b2e",
+                        "on-primary-container": "#7c839b",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-tint": "#565e74",
+                        "on-background": "#0b1c30",
+                        "outline-variant": "#c6c6cd",
+                        "on-surface-variant": "#45464d",
+                        "secondary-fixed-dim": "#93ccff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#004b73",
+                        "background": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary": "#000000",
+                        "on-secondary-container": "#00476e",
+                        "on-secondary-fixed": "#001d31",
+                        "secondary-container": "#5bb8fe",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "on-tertiary-container": "#818486",
+                        "tertiary-container": "#191c1e",
+                        "primary": "#000000",
+                        "primary-container": "#131b2e",
+                        "on-primary": "#ffffff",
+                        "outline": "#76777d",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "secondary": "#006398"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "row-height-dense": "32px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "row-height-standard": "48px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "data-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "data-mono": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="w-[260px] h-screen fixed left-0 top-0 bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col h-full py-4 z-50">
+<div class="px-6 pb-6">
+<h1 class="text-page-title font-page-title text-primary dark:text-inverse-primary text-headline-md font-headline-md">SPMS</h1>
+<p class="text-on-surface-variant text-body-sm font-body-sm">Pharmacy System</p>
+</div>
+<ul class="flex-1 flex flex-col gap-1 px-3">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest cursor-pointer transition-all active:scale-95 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+                    Tổng quan
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container border-l-4 border-primary dark:border-primary-fixed-dim cursor-pointer transition-all active:scale-95 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+                    Hệ thống
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest cursor-pointer transition-all active:scale-95 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_cart</span>
+                    Kinh doanh
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest cursor-pointer transition-all active:scale-95 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">inventory_2</span>
+                    Kho
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest cursor-pointer transition-all active:scale-95 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_balance_wallet</span>
+                    Tài chính
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest cursor-pointer transition-all active:scale-95 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">admin_panel_settings</span>
+                    Quản trị
+                </a>
+</li>
+</ul>
+</nav>
+<!-- TopNavBar -->
+<header class="h-16 fixed top-0 right-0 left-[260px] z-40 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex justify-between items-center px-6 h-full font-label-caps text-label-caps text-primary dark:text-primary-fixed-dim">
+<div class="flex items-center gap-4 text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined">search</span>
+<span>Nhà thuốc Trung tâm - Hà Nội</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">settings</span>
+<div class="flex items-center gap-2 border-l border-outline-variant pl-4 ml-2">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A small, professional headshot of an Asian male manager in his 30s, wearing a crisp white shirt. Neutral, light gray background, well-lit, sharp focus, corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN-BzfWftiA9WiB2nxCtItjG2as7mCuO8rQJysIfTf9DwEjUKSuWzvEFDmARagMZjyUK2P5nGMzP40tn6nqe4vY4E_cYprDK0GN4DW4XCXbVjpioQTIUeIA1uYO2alTiLMDIr3-Upr3-SdTtx6PS_RsMYr3pKsg8TOqw-2hzc2Ofscum33vdt7v7pHxynCxXZOCNywExIDienSEKTEpps6pfyRlpFc4-SJTaq-X23XhgEdtPDkb6HfHQ"/>
+<span class="font-body-md text-body-md text-on-surface">Nguyễn Văn An - Quản lý</span>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-[260px] mt-16 p-container-padding flex-1 h-[calc(100vh-64px)] overflow-y-auto bg-surface-container-low w-full flex flex-col">
+<!-- Breadcrumb & Title Area -->
+<div class="mb-gutter flex justify-between items-end">
+<div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mb-unit">
+<span>Hệ thống</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface font-medium">Nhật ký hệ thống</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Nhật ký hệ thống</h2>
+<p class="font-body-md text-body-md text-error mt-unit flex items-center gap-1 bg-error-container/20 py-1 px-2 rounded w-fit border border-error-container">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">security</span>
+                    Nhật ký kiểm toán không thể chỉnh sửa hoặc xóa.
+                </p>
+</div>
+<button class="bg-surface-container-lowest border border-outline-variant text-on-surface font-body-md text-body-md py-2 px-4 rounded flex items-center gap-2 hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                Xuất báo cáo
+            </button>
+</div>
+<!-- Filters Grid -->
+<div class="bg-surface-container-lowest p-gutter rounded-lg border border-outline-variant shadow-sm mb-gutter">
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-7 gap-3">
+<div class="flex flex-col gap-1 lg:col-span-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Module</label>
+<select class="w-full h-8 px-2 border-outline-variant rounded font-body-sm text-body-sm bg-surface-container-lowest text-on-surface focus:ring-secondary focus:border-secondary">
+<option>Tất cả Module</option>
+<option>Inventory</option>
+<option>Finance</option>
+<option>Pricing</option>
+<option>CRM</option>
+<option>Auth</option>
+</select>
+</div>
+<div class="flex flex-col gap-1 lg:col-span-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Hành động</label>
+<select class="w-full h-8 px-2 border-outline-variant rounded font-body-sm text-body-sm bg-surface-container-lowest text-on-surface focus:ring-secondary focus:border-secondary">
+<option>Tất cả Hành động</option>
+<option>Create</option>
+<option>Update</option>
+<option>Delete</option>
+<option>Login</option>
+<option>Override</option>
+</select>
+</div>
+<div class="flex flex-col gap-1 lg:col-span-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Mức độ</label>
+<select class="w-full h-8 px-2 border-outline-variant rounded font-body-sm text-body-sm bg-surface-container-lowest text-on-surface focus:ring-secondary focus:border-secondary">
+<option>Tất cả Mức độ</option>
+<option>Info</option>
+<option>Warning</option>
+<option>Critical</option>
+</select>
+</div>
+<div class="flex flex-col gap-1 lg:col-span-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Thời gian</label>
+<input class="w-full h-8 px-2 border-outline-variant rounded font-body-sm text-body-sm bg-surface-container-lowest text-on-surface focus:ring-secondary focus:border-secondary" type="date"/>
+</div>
+<div class="flex flex-col gap-1 lg:col-span-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Tìm kiếm</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-outline text-[16px]">search</span>
+<input class="w-full h-8 pl-8 pr-2 border-outline-variant rounded font-body-sm text-body-sm bg-surface-container-lowest text-on-surface focus:ring-secondary focus:border-secondary" placeholder="Người dùng, Đối tượng..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Ledger Table Area -->
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col shadow-sm">
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-container-low border-b border-outline-variant z-10 shadow-sm">
+<tr>
+<th class="py-2 px-3 font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Thời gian</th>
+<th class="py-2 px-3 font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Mức độ</th>
+<th class="py-2 px-3 font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Người dùng</th>
+<th class="py-2 px-3 font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Module</th>
+<th class="py-2 px-3 font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Hành động</th>
+<th class="py-2 px-3 font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">Đối tượng</th>
+<th class="py-2 px-3 font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap">IP Address</th>
+<th class="py-2 px-3 font-label-caps text-label-caps text-on-surface-variant whitespace-nowrap text-center">Kết quả</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-outline-variant">
+<!-- Row 1: Warning -->
+<tr class="h-row-height-dense hover:bg-surface-container-low transition-colors">
+<td class="py-1 px-3 whitespace-nowrap font-data-mono text-data-mono text-on-surface-variant">2023-10-27 14:22:10</td>
+<td class="py-1 px-3">
+<span class="inline-flex items-center gap-1 bg-[#fff3cd] text-[#856404] px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#856404]"></span> WRN
+                                </span>
+</td>
+<td class="py-1 px-3">
+<div class="flex items-center gap-2">
+<img class="w-5 h-5 rounded-full object-cover" data-alt="Small headshot of an Asian female pharmacist in a white coat. Professional studio lighting, neutral background, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBelv4eIkPADQTAAh9RwfiH1ZFHK5OghpmeCaiZkBi6xINRGYDGCRzPhYnicaoJrnROxPUxk6rTaw1-RfN5xueJOkQ-yoimMkaAnDtHuqLfp5bojRZ00Ui33X6ypPVI5P1-DxTBOsi3AIOio9VAjmxKzuQQ14Ci-gAx1ks8rkzS7F1jL_r1htEB--ecWsHSQDiW2ymN1vu1-zjhy3R-e1cUa7gn4DsDmXZGdW7h0W7uWq1wnh1yULuVIA"/>
+<span>Trần Thị B</span>
+</div>
+</td>
+<td class="py-1 px-3 text-on-surface-variant">Inventory</td>
+<td class="py-1 px-3 font-data-mono text-data-mono">FEFO_OVERRIDE</td>
+<td class="py-1 px-3"><a class="text-secondary hover:underline font-data-mono text-data-mono" href="#">INV-8821-X</a></td>
+<td class="py-1 px-3 text-on-surface-variant font-data-mono text-data-mono">192.168.1.105</td>
+<td class="py-1 px-3 text-center">
+<span class="material-symbols-outlined text-[16px] text-green-600" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</td>
+</tr>
+<!-- Row 2: Info -->
+<tr class="h-row-height-dense hover:bg-surface-container-low transition-colors">
+<td class="py-1 px-3 whitespace-nowrap font-data-mono text-data-mono text-on-surface-variant">2023-10-27 14:15:02</td>
+<td class="py-1 px-3">
+<span class="inline-flex items-center gap-1 bg-[#e2e3e5] text-[#383d41] px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#383d41]"></span> INF
+                                </span>
+</td>
+<td class="py-1 px-3">
+<div class="flex items-center gap-2">
+<img class="w-5 h-5 rounded-full object-cover" data-alt="Small headshot of an Asian male manager in a light blue shirt. Professional studio lighting, neutral background, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG3-6IE5l8zIpAwgTCLgn3NylUIAjPyXg9Iy46yvy4KFX6_O3_Vkmqd7BcJ_HYNMcmCUZOA_MNRlonvOq_uZyTCOPEy_-5ZEGbOZI9y4TrPZfVGgHwHFleXXlYNw33tGIiOpKnCPkE77Ux3gM1qruZt6uzF5b5zKyfyjaF4iFdSJtJxMGGtXO2QmmURTjEt9VuuLaG2XCqxP9ITyUINHBIuNrbNQRdLgpZF5hcnx6VB4VUJ8czZri4mQ"/>
+<span>Nguyễn Văn An</span>
+</div>
+</td>
+<td class="py-1 px-3 text-on-surface-variant">Auth</td>
+<td class="py-1 px-3 font-data-mono text-data-mono">LOGIN_SUCCESS</td>
+<td class="py-1 px-3"><span class="text-on-surface-variant font-data-mono text-data-mono">-</span></td>
+<td class="py-1 px-3 text-on-surface-variant font-data-mono text-data-mono">10.0.0.42</td>
+<td class="py-1 px-3 text-center">
+<span class="material-symbols-outlined text-[16px] text-green-600" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</td>
+</tr>
+<!-- Row 3: Critical -->
+<tr class="h-row-height-dense hover:bg-surface-container-low transition-colors bg-error-container/10 border-l-2 border-error">
+<td class="py-1 px-3 whitespace-nowrap font-data-mono text-data-mono text-on-surface-variant">2023-10-27 13:45:55</td>
+<td class="py-1 px-3">
+<span class="inline-flex items-center gap-1 bg-[#f8d7da] text-[#721c24] px-1.5 py-0.5 rounded text-[10px] font-bold tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-[#721c24]"></span> CRT
+                                </span>
+</td>
+<td class="py-1 px-3">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-bold text-on-surface-variant">SYS</div>
+<span>System API</span>
+</div>
+</td>
+<td class="py-1 px-3 text-on-surface-variant">Pricing</td>
+<td class="py-1 px-3 font-data-mono text-data-mono text-error">PRICE_CHANGE</td>
+<td class="py-1 px-3"><a class="text-secondary hover:underline font-data-mono text-data-mono" href="#">PRC-BULK-09</a></td>
+<td class="py-1 px-3 text-on-surface-variant font-data-mono text-data-mono">192.168.1.1</td>
+<td class="py-1 px-3 text-center">
+<span class="material-symbols-outlined text-[16px] text-green-600" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="p-2 border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center text-body-sm text-on-surface-variant">
+<span>Hiển thị 1-50 của 12,450 bản ghi</span>
+<div class="flex items-center gap-2">
+<button class="p-1 rounded hover:bg-surface-container disabled:opacity-50" disabled=""><span class="material-symbols-outlined text-[18px]">chevron_left</span></button>
+<span class="font-data-mono text-data-mono">Trang 1 / 249</span>
+<button class="p-1 rounded hover:bg-surface-container"><span class="material-symbols-outlined text-[18px]">chevron_right</span></button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

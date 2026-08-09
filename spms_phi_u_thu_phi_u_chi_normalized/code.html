@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Tạo Phiếu Thu/Chi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "tertiary-fixed": "#e0e3e5",
+                "primary-fixed-dim": "#bec6e0",
+                "on-secondary-fixed": "#001d31",
+                "on-tertiary-fixed": "#191c1e",
+                "primary-fixed": "#dae2fd",
+                "primary-container": "#131b2e",
+                "error-container": "#ffdad6",
+                "background": "#f8f9ff",
+                "tertiary-fixed-dim": "#c4c7c9",
+                "on-primary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "surface-container": "#e5eeff",
+                "surface-tint": "#565e74",
+                "tertiary": "#000000",
+                "on-error-container": "#93000a",
+                "error": "#ba1a1a",
+                "surface-bright": "#f8f9ff",
+                "on-tertiary-container": "#818486",
+                "surface": "#f8f9ff",
+                "surface-container-highest": "#d3e4fe",
+                "tertiary-container": "#191c1e",
+                "inverse-surface": "#213145",
+                "on-primary-container": "#7c839b",
+                "inverse-primary": "#bec6e0",
+                "secondary-container": "#5bb8fe",
+                "outline-variant": "#c6c6cd",
+                "on-primary-fixed": "#131b2e",
+                "surface-container-low": "#eff4ff",
+                "on-tertiary-fixed-variant": "#444749",
+                "secondary": "#006398",
+                "on-primary-fixed-variant": "#3f465c",
+                "on-surface-variant": "#45464d",
+                "on-secondary-container": "#00476e",
+                "on-background": "#0b1c30",
+                "secondary-fixed": "#cce5ff",
+                "inverse-on-surface": "#eaf1ff",
+                "on-secondary": "#ffffff",
+                "on-surface": "#0b1c30",
+                "primary": "#000000",
+                "on-tertiary": "#ffffff",
+                "on-secondary-fixed-variant": "#004b73",
+                "surface-variant": "#d3e4fe",
+                "surface-container-high": "#dce9ff",
+                "on-error": "#ffffff",
+                "secondary-fixed-dim": "#93ccff",
+                "outline": "#76777d",
+                "surface-dim": "#cbdbf5"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "unit": "4px",
+                "gutter": "16px",
+                "container-padding": "24px",
+                "row-height-standard": "48px",
+                "row-height-dense": "32px",
+                "form-gap": "20px"
+        },
+        "fontFamily": {
+                "data-mono": [
+                        "JetBrains Mono"
+                ],
+                "headline-sm": [
+                        "Hanken Grotesk"
+                ],
+                "headline-md": [
+                        "Hanken Grotesk"
+                ],
+                "label-caps": [
+                        "Inter"
+                ],
+                "body-sm": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "display-lg": [
+                        "Hanken Grotesk"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "page-title": ["Inter"],
+                "section-title": ["Inter"],
+                "caption": ["Inter"]
+        },
+        "fontSize": {
+                "data-mono": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-sm": [
+                        "18px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-md": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-caps": [
+                        "11px",
+                        {
+                                "lineHeight": "12px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-sm": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+          font-variation-settings: 'FILL' 1;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen antialiased flex">
+<!-- SideNavBar -->
+<aside class="w-[260px] h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface flex flex-col z-40 hidden md:flex">
+<!-- Brand Header -->
+<div class="h-[64px] flex items-center px-4 border-b border-outline-variant/30">
+<div class="w-8 h-8 rounded bg-primary-container text-on-primary-container flex items-center justify-center mr-3 font-bold">S</div>
+<div>
+<h1 class="font-page-title text-page-title font-bold text-primary text-lg leading-tight">SPMS Enterprise</h1>
+<p class="font-caption text-caption text-on-surface-variant">Pharmacy Management</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex-1 overflow-y-auto py-4 flex flex-col gap-1 px-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Tổng quan</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Hệ thống</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-body-md text-body-md">Kinh doanh</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Kho</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container border-l-[3px] border-primary rounded-r-lg cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined filled" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-body-md text-body-md font-semibold">Tài chính</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-lg cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-body-md text-body-md">Quản trị</span>
+</a>
+</nav>
+</aside>
+<!-- TopNavBar -->
+<header class="h-[64px] fixed top-0 right-0 left-0 md:left-[260px] z-50 border-b border-outline-variant bg-surface flex justify-between items-center px-container-padding w-auto md:w-[calc(100%-260px)]">
+<div class="flex items-center md:hidden">
+<button class="mr-4 text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="font-page-title text-page-title font-black text-primary text-xl">SPMS</span>
+</div>
+<div class="hidden md:flex flex-1 max-w-md items-center">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full pl-9 pr-4 py-2 bg-surface-container-low border-none rounded-lg font-body-md text-body-md focus:ring-2 focus:ring-primary focus:bg-surface transition-colors placeholder:text-outline" placeholder="Tìm kiếm..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-opacity relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-opacity hidden sm:block">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+<div class="h-6 w-px bg-outline-variant mx-2 hidden sm:block"></div>
+<button class="flex items-center gap-2 text-primary font-bold hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-sm">location_city</span>
+<span class="font-label-caps text-label-caps hidden sm:block">Nhà thuốc Trung tâm - Hà Nội</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container border border-outline-variant overflow-hidden ml-2 flex items-center justify-center cursor-pointer">
+<img alt="Nguyễn Văn An" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3THJTPBEBkYZmUKGFc5ZRxlca0y45dvtX2OdU1qBTo3JKWSt30lZH1hZDefeI-GkhWlzP-TF-w_64Jst9a7QZJH5DARIIoP7MPXhxQAu23wGNk8FfjWu4hkNXB72EdW4J0-5u4A5qRKWjeN6UB86rLkkVZA2TvC98GvrVI6VHMUm1qgNxCjHxLJw_lnBvaQ3fa_uvWuJmRfzKZWQkSOeSpHhxwTm-JqhB8YdxF0e_lZshrnAQAQRCxg"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 mt-[64px] md:ml-[260px] p-container-padding w-full flex flex-col gap-6 bg-background overflow-x-hidden min-h-[calc(100vh-64px)]">
+<!-- Breadcrumb & Header Area -->
+<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between w-full">
+<div class="flex flex-col gap-1">
+<nav class="flex items-center gap-2 font-caption text-caption text-on-surface-variant mb-1">
+<a class="hover:text-primary transition-colors" href="#">Tài chính</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Danh sách chứng từ</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface font-medium">Tạo Phiếu thu / chi</span>
+</nav>
+<h2 class="font-page-title text-page-title text-on-background">Tạo Phiếu thu / chi</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Ghi nhận dòng tiền vào/ra hệ thống. Mã chứng từ sẽ được tạo tự động.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<button class="px-4 py-2 border border-outline rounded text-primary font-body-md hover:bg-surface-container-low transition-colors">
+                    Hủy
+                </button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded font-body-md hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">save</span> Lưu phiếu
+                </button>
+</div>
+</div>
+<!-- Form Card -->
+<div class="bg-surface rounded-lg border border-outline-variant p-6 shadow-sm max-w-[800px]">
+<!-- Voucher Type Toggle -->
+<div class="flex p-1 bg-surface-container-low rounded-lg mb-6 w-fit border border-outline-variant">
+<button class="px-6 py-2 rounded-md font-body-sm text-body-sm font-medium bg-surface shadow-sm border border-outline-variant text-primary transition-all">
+                            Phiếu Thu
+                        </button>
+<button class="px-6 py-2 rounded-md font-body-sm text-body-sm font-medium text-on-surface-variant hover:text-primary transition-all">
+                            Phiếu Chi
+                        </button>
+</div>
+<form class="space-y-6">
+<!-- Two Column Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-form-gap">
+<!-- Account -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">
+                                    Tài khoản <span class="text-error">*</span>
+</label>
+<select class="bg-surface border border-outline rounded px-3 py-2 text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<option value="">Chọn tài khoản</option>
+<option value="1111">1111 - Tiền mặt VNĐ</option>
+<option value="1121">1121 - Tiền gửi ngân hàng VNĐ</option>
+</select>
+</div>
+<!-- Entity -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">
+                                    Đối tượng <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full bg-surface border border-outline rounded pl-9 pr-3 py-2 text-on-surface font-body-md placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tìm kiếm khách hàng, NCC, nhân viên..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+</div>
+</div>
+<!-- Amount -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">
+                                    Số tiền <span class="text-error">*</span>
+</label>
+<div class="relative">
+<input class="w-full bg-surface border border-outline rounded px-3 py-2 pr-12 text-on-surface font-data-mono text-right focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" type="text" value="0"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 font-body-sm text-body-sm text-on-surface-variant pointer-events-none">VNĐ</span>
+</div>
+</div>
+<!-- Payment Method -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">
+                                    Phương thức <span class="text-error">*</span>
+</label>
+<select class="bg-surface border border-outline rounded px-3 py-2 text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+<option value="cash">Tiền mặt</option>
+<option value="bank">Chuyển khoản</option>
+<option value="card">Thẻ tín dụng/ghi nợ</option>
+</select>
+</div>
+<!-- Date -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">
+                                    Ngày chứng từ <span class="text-error">*</span>
+</label>
+<input class="bg-surface border border-outline rounded px-3 py-2 text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" type="date" value="2023-10-25"/>
+</div>
+<!-- Reference Doc -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">
+                                    Tham chiếu chứng từ
+                                </label>
+<input class="w-full bg-surface border border-outline rounded px-3 py-2 text-on-surface font-body-md placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Số HĐ, phiếu nhập/xuất..." type="text"/>
+</div>
+</div>
+<!-- Full Width Reason -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">
+                                Lý do <span class="text-error">*</span>
+</label>
+<textarea class="w-full bg-surface border border-outline rounded px-3 py-2 text-on-surface font-body-md placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-none h-24" placeholder="Nhập lý do thu/chi tiền cụ thể..."></textarea>
+</div>
+<!-- Attachments (Optional UI Extra) -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">
+                                Đính kèm (Tùy chọn)
+                            </label>
+<div class="border border-dashed border-outline-variant rounded-md p-6 flex flex-col items-center justify-center text-center bg-surface-container-lowest hover:bg-surface-container-low transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant mb-2">upload_file</span>
+<p class="font-body-md text-body-md text-on-surface mb-1">Kéo thả file hoặc <span class="text-primary font-medium">chọn từ thiết bị</span></p>
+<p class="font-caption text-caption text-on-surface-variant">PNG, JPG, PDF tối đa 5MB</p>
+</div>
+</div>
+</form>
+</div>
+</main>
+</body></html>

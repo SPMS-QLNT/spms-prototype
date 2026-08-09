@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quy đổi đơn vị tính - SPMS Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#bdcaba",
+                        "error": "#ba1a1a",
+                        "surface": "#f9f9ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#002109",
+                        "tertiary": "#a72d51",
+                        "inverse-primary": "#62df7d",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "primary-container": "#00873a",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-low": "#f1f3ff",
+                        "primary-fixed-dim": "#62df7d",
+                        "tertiary-container": "#c74668",
+                        "surface-tint": "#006e2d",
+                        "on-tertiary-fixed": "#3f0016",
+                        "on-background": "#141b2b",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "secondary": "#006a63",
+                        "primary-fixed": "#7ffc97",
+                        "on-primary-container": "#f7fff2",
+                        "on-secondary-fixed": "#00201d",
+                        "outline": "#6e7b6c",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e1e8fd",
+                        "on-error": "#ffffff",
+                        "surface-container": "#e9edff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#fffbff",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#293040",
+                        "on-surface": "#141b2b",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed": "#ffd9de",
+                        "surface-container-highest": "#dce2f7",
+                        "surface-dim": "#d3daef",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "on-secondary-container": "#006f67",
+                        "on-primary-fixed-variant": "#005320",
+                        "primary": "#006b2c",
+                        "surface-variant": "#dce2f7",
+                        "secondary-container": "#99efe5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "compact-padding": "8px",
+                        "form-gap": "20px",
+                        "container-margin": "24px",
+                        "table-row-height": "44px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "table-cell": ["Inter"],
+                        "body-md": ["Inter"],
+                        "page-title": ["Inter"],
+                        "caption": ["Inter"],
+                        "section-title": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex">
+<!-- SideNavBar (from JSON, active tab: Inventory) -->
+<aside class="w-[260px] h-full fixed left-0 top-0 bg-surface border-r border-outline-variant flex flex-col z-30">
+<div class="px-6 py-5 border-b border-outline-variant flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">local_pharmacy</span>
+</div>
+<div>
+<h1 class="font-page-title text-page-title text-primary">SPMS Pro</h1>
+<p class="font-caption text-caption text-on-surface-variant">Central Pharmacy</p>
+</div>
+</div>
+<div class="p-4">
+<button class="w-full bg-primary text-on-primary hover:bg-surface-tint rounded-lg py-2.5 px-4 font-body-md text-body-md font-medium flex items-center justify-center gap-2 transition-colors duration-200 shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                New Prescription
+            </button>
+</div>
+<nav class="flex-1 overflow-y-auto py-2 px-2 space-y-1">
+<a class="text-on-surface-variant hover:bg-surface-container-low px-4 py-3 flex items-center gap-3 rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="bg-secondary-container text-on-secondary-container border-l-4 border-primary px-4 py-3 flex items-center gap-3 rounded-r-lg opacity-90 transition-all duration-150" href="#">
+<span class="material-symbols-outlined icon-fill">inventory_2</span>
+<span class="font-medium">Inventory</span>
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-low px-4 py-3 flex items-center gap-3 rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">medication</span>
+                Dispensing
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-container-low px-4 py-3 flex items-center gap-3 rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+                Procurement
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-container-low px-4 py-3 flex items-center gap-3 rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">assessment</span>
+                Reports
+            </a>
+<a class="text-on-surface-variant hover:bg-surface-container-low px-4 py-3 flex items-center gap-3 rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+</aside>
+<!-- TopNavBar (from JSON) -->
+<header class="h-16 fixed top-0 right-0 left-[260px] z-40 bg-surface-bright border-b border-outline-variant flex justify-between items-center px-gutter w-[calc(100%-260px)]">
+<div class="flex items-center gap-8">
+<h2 class="font-page-title text-page-title text-primary hidden lg:block">Pharmacy Management System</h2>
+<nav class="hidden md:flex gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps uppercase" href="#">Branches</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps uppercase" href="#">Staff</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-caps text-label-caps uppercase" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-error-container text-on-error-container font-caption text-caption px-3 py-1.5 rounded flex items-center gap-1.5 hover:bg-error hover:text-on-error transition-colors">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+                Emergency Alert
+            </button>
+<div class="flex items-center gap-2 border-l border-outline-variant pl-4">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors"><span class="material-symbols-outlined">help_outline</span></button>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest rounded-full transition-colors"><span class="material-symbols-outlined">account_circle</span></button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] pt-16 flex-1 min-h-screen bg-surface-container-lowest overflow-x-hidden">
+<div class="p-container-margin max-w-7xl mx-auto space-y-6">
+<!-- Breadcrumb & Header -->
+<div>
+<div class="flex items-center gap-2 text-on-surface-variant font-caption text-caption mb-2">
+<a class="hover:text-primary" href="#">Inventory</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Master Data</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface font-medium">Drug Unit Conversion</span>
+</div>
+<div class="flex items-center justify-between">
+<h1 class="font-page-title text-page-title text-on-background">Quy đổi đơn vị tính</h1>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-surface-container text-on-surface rounded-lg font-medium hover:bg-surface-container-high transition-colors">Hủy</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-medium hover:bg-surface-tint transition-colors shadow-sm">Lưu thay đổi</button>
+</div>
+</div>
+</div>
+<!-- Drug Info Card -->
+<div class="bg-surface border border-outline-variant rounded-xl p-5 flex items-start gap-5 shadow-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-[28px]">medication_liquid</span>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-2 flex-1">
+<div>
+<span class="font-caption text-caption text-on-surface-variant block mb-1">Tên thuốc</span>
+<div class="font-section-title text-section-title text-on-surface">Paracetamol 500mg</div>
+</div>
+<div>
+<span class="font-caption text-caption text-on-surface-variant block mb-1">Mã thuốc</span>
+<div class="font-body-md text-body-md font-medium text-on-surface font-mono bg-surface-container-low px-2 py-1 rounded inline-block">DRUG-00124</div>
+</div>
+</div>
+</div>
+<!-- Safety Alert -->
+<div class="bg-surface-container-low border-l-4 border-error rounded-r-lg p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-error mt-0.5">info</span>
+<div>
+<h4 class="font-medium text-on-surface text-sm">Lưu ý quan trọng</h4>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Hệ số quy đổi không thể thay đổi sau khi đã có giao dịch nhập/xuất kho liên quan đến thuốc này để đảm bảo tính toàn vẹn dữ liệu.</p>
+</div>
+</div>
+<!-- Conversion Table Section -->
+<div class="bg-surface border border-outline-variant rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-4 border-b border-outline-variant flex justify-between items-center bg-surface-bright">
+<h3 class="font-section-title text-section-title text-on-surface">Cấu hình đơn vị</h3>
+<button class="text-primary hover:text-surface-tint flex items-center gap-1 font-medium text-sm transition-colors">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                        Thêm đơn vị quy đổi
+                    </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="bg-surface-container-lowest border-b border-outline-variant font-label-caps text-label-caps text-on-surface-variant uppercase bg-surface-container-low">
+<th class="py-3 px-4 font-semibold w-[20%]">Đơn vị</th>
+<th class="py-3 px-4 font-semibold w-[15%] text-center">Đơn vị cơ sở</th>
+<th class="py-3 px-4 font-semibold w-[15%] text-right">Hệ số quy đổi</th>
+<th class="py-3 px-4 font-semibold w-[25%]">Mã vạch (Barcode)</th>
+<th class="py-3 px-4 font-semibold w-[15%] text-center">Trạng thái</th>
+<th class="py-3 px-4 font-semibold w-[10%] text-center">Thao tác</th>
+</tr>
+</thead>
+<tbody class="font-table-cell text-table-cell text-on-surface divide-y divide-outline-variant">
+<!-- Row 1: Base Unit -->
+<tr class="hover:bg-surface-container-lowest transition-colors bg-surface-container-low/30">
+<td class="py-2 px-4">
+<input class="w-full bg-transparent border border-outline-variant rounded px-3 py-1.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-sm font-medium" readonly="" type="text" value="Viên"/>
+</td>
+<td class="py-2 px-4 text-center">
+<div class="inline-flex items-center justify-center bg-primary-container text-on-primary-container rounded-full w-6 h-6">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+</td>
+<td class="py-2 px-4 text-right">
+<span class="font-mono bg-surface-container px-2 py-1 rounded">1</span>
+</td>
+<td class="py-2 px-4">
+<div class="relative flex items-center">
+<input class="w-full border border-outline-variant rounded pl-3 pr-8 py-1.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm font-mono" placeholder="Scan barcode..." type="text" value="8935041123456"/>
+<button class="absolute right-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">barcode_scanner</span>
+</button>
+</div>
+</td>
+<td class="py-2 px-4 text-center">
+<div class="inline-flex items-center gap-2">
+<div class="w-8 h-4 bg-primary rounded-full relative cursor-not-allowed opacity-70">
+<div class="absolute right-1 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-4 text-center text-on-surface-variant opacity-50 cursor-not-allowed">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</td>
+</tr>
+<!-- Row 2: Vỉ -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-2 px-4">
+<input class="w-full border border-outline-variant rounded px-3 py-1.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm font-medium" type="text" value="Vỉ"/>
+</td>
+<td class="py-2 px-4 text-center">
+<input class="w-4 h-4 text-primary focus:ring-primary border-outline-variant cursor-pointer" name="base_unit" type="radio"/>
+</td>
+<td class="py-2 px-4">
+<div class="relative">
+<input class="w-full border border-outline-variant rounded px-3 py-1.5 text-right font-mono focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm pr-10" type="number" value="10"/>
+<span class="absolute right-3 top-1.5 text-on-surface-variant text-sm">Viên</span>
+</div>
+</td>
+<td class="py-2 px-4">
+<div class="relative flex items-center">
+<input class="w-full border border-outline-variant rounded pl-3 pr-8 py-1.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm font-mono" placeholder="Scan barcode..." type="text"/>
+<button class="absolute right-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">barcode_scanner</span>
+</button>
+</div>
+</td>
+<td class="py-2 px-4 text-center">
+<div class="inline-flex items-center gap-2 cursor-pointer">
+<div class="w-8 h-4 bg-primary rounded-full relative">
+<div class="absolute right-1 top-0.5 w-3 h-3 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-4 text-center text-on-surface-variant hover:text-error cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</td>
+</tr>
+<!-- Row 3: Hộp -->
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-2 px-4">
+<input class="w-full border border-outline-variant rounded px-3 py-1.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm font-medium" type="text" value="Hộp"/>
+</td>
+<td class="py-2 px-4 text-center">
+<input class="w-4 h-4 text-primary focus:ring-primary border-outline-variant cursor-pointer" name="base_unit" type="radio"/>
+</td>
+<td class="py-2 px-4">
+<div class="relative">
+<input class="w-full border border-outline-variant rounded px-3 py-1.5 text-right font-mono focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm pr-10" type="number" value="100"/>
+<span class="absolute right-3 top-1.5 text-on-surface-variant text-sm">Viên</span>
+</div>
+</td>
+<td class="py-2 px-4">
+<div class="relative flex items-center">
+<input class="w-full border border-outline-variant rounded pl-3 pr-8 py-1.5 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm font-mono" type="text" value="8935041123499"/>
+<button class="absolute right-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">barcode_scanner</span>
+</button>
+</div>
+</td>
+<td class="py-2 px-4 text-center">
+<div class="inline-flex items-center gap-2 cursor-pointer">
+<div class="w-8 h-4 bg-primary rounded-full relative">
+<div class="absolute right-1 top-0.5 w-3 h-3 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+</td>
+<td class="py-2 px-4 text-center text-on-surface-variant hover:text-error cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Preview Section (Bento style card) -->
+<div class="bg-secondary-container/30 border border-outline-variant rounded-xl p-6 relative overflow-hidden">
+<!-- Abstract deco pattern -->
+<div class="absolute -right-10 -top-10 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[120px]">calculate</span>
+</div>
+<h3 class="font-section-title text-section-title text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">visibility</span>
+                    Xem trước quy đổi
+                </h3>
+<div class="flex items-center flex-wrap gap-4 font-mono text-lg font-medium text-secondary p-4 bg-surface rounded-lg border border-outline-variant/50 shadow-sm w-fit">
+<div class="flex items-center gap-2">
+<span class="bg-surface-container-highest px-3 py-1 rounded text-on-surface">1 Hộp</span>
+</div>
+<span class="text-outline">=</span>
+<div class="flex items-center gap-2">
+<span class="bg-surface-container-highest px-3 py-1 rounded text-on-surface">10 Vỉ</span>
+</div>
+<span class="text-outline">=</span>
+<div class="flex items-center gap-2">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded border border-primary/20">100 Viên</span>
+</div>
+</div>
+<p class="font-caption text-caption text-on-surface-variant mt-3 ml-1">Chuỗi quy đổi tự động tính toán dựa trên hệ số so với đơn vị cơ sở (Viên).</p>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nhập dữ liệu từ Excel - SPMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#e9edff",
+                        "background": "#f9f9ff",
+                        "surface-bright": "#f9f9ff",
+                        "primary-fixed": "#7ffc97",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "on-surface": "#141b2b",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-primary-fixed": "#002109",
+                        "tertiary-container": "#c74668",
+                        "secondary": "#006a63",
+                        "tertiary-fixed": "#ffd9de",
+                        "surface-tint": "#006e2d",
+                        "primary-container": "#00873a",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#d3daef",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-primary-container": "#f7fff2",
+                        "inverse-surface": "#293040",
+                        "error": "#ba1a1a",
+                        "outline": "#6e7b6c",
+                        "surface-container-high": "#e1e8fd",
+                        "inverse-primary": "#62df7d",
+                        "on-secondary-fixed": "#00201d",
+                        "on-tertiary-container": "#fffbff",
+                        "primary": "#006b2c",
+                        "surface-container-highest": "#dce2f7",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "on-background": "#141b2b",
+                        "surface-variant": "#dce2f7",
+                        "on-secondary-container": "#006f67",
+                        "secondary-fixed": "#9cf2e8",
+                        "surface-container-low": "#f1f3ff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#3f0016",
+                        "on-surface-variant": "#3e4a3d",
+                        "outline-variant": "#bdcaba",
+                        "secondary-container": "#99efe5",
+                        "tertiary": "#a72d51",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "24px",
+                        "form-gap": "20px",
+                        "table-row-height": "44px",
+                        "compact-padding": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "section-title": ["Inter"],
+                        "body-md": ["Inter"],
+                        "page-title": ["Inter"],
+                        "table-cell": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased flex">
+<!-- SideNavBar (Shared Component) -->
+<aside class="w-[260px] h-screen fixed left-0 top-0 bg-surface border-r border-outline-variant flex flex-col h-full z-40 hidden md:flex">
+<!-- Header -->
+<div class="p-container-margin border-b border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined fill-icon" data-icon="local_hospital">local_hospital</span>
+</div>
+<div>
+<h1 class="font-page-title text-[18px] font-bold text-primary">SPMS Enterprise</h1>
+<p class="font-caption text-caption text-on-surface-variant">Pharmacy Management</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex-1 overflow-y-auto py-4 flex flex-col gap-1">
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Inventory</span>
+</a>
+<!-- Active (Mapped to "Danh mục thuốc" / Drug Master) -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container border-l-[3px] border-primary cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined fill-icon" data-icon="medication">medication</span>
+<span class="font-medium">Drug Master</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="monitor_heart">monitor_heart</span>
+<span>Dispensing</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Finance</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</a>
+</nav>
+<!-- Footer Tabs -->
+<div class="border-t border-outline-variant p-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span>Support</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="h-[64px] fixed top-0 right-0 left-0 md:left-[260px] z-50 bg-surface border-b border-outline-variant flex justify-between items-center px-container-margin w-full">
+<!-- Brand/Search -->
+<div class="flex items-center gap-4 w-1/3">
+<span class="md:hidden font-page-title text-page-title font-black text-primary">SPMS</span>
+<div class="hidden md:flex relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 text-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-shadow" placeholder="Search..." type="text"/>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center gap-2 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant rounded-lg cursor-pointer hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<span class="font-label-caps text-label-caps text-on-surface">Main Hospital Branch</span>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="arrow_drop_down">arrow_drop_down</span>
+</div>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-low flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-low flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer ml-2">
+<img alt="Administrator Portrait" class="w-full h-full object-cover" data-alt="A professional headshot of a hospital administrator in a well-lit, modern clinical office environment. The lighting is soft and neutral, conveying competence and calm authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcCfI0aBYL9MuTODxkSj23dDaFsc8IjAvQwJ5LMCsCJhc-cCOALIp4D2nkry9GEwEpZd0grS6UIOPBsR4cCUXHjdqU6YnZWS_kup6pwuvLX5M6gXf4klOZBWJV83SEsiUUgs7eaLZcichzEK4-OhhVSKmkkb537XvawZOk18NgaGMgR3TDxDfvF64xjFMH07oLMrgjJwossolwbqO_AXHMVNQjwwaMbdgHhM5jI8OVTGMZNNNBJizLHw"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full pt-[64px] md:ml-[260px] min-h-screen bg-background flex flex-col">
+<div class="p-container-margin flex flex-col gap-form-gap flex-1 max-w-6xl w-full mx-auto">
+<!-- Breadcrumb & Title -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-md text-body-md">
+<span class="cursor-pointer hover:text-primary transition-colors">Kho</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<span class="cursor-pointer hover:text-primary transition-colors">Danh mục thuốc</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface font-medium">Import</span>
+</div>
+<h1 class="font-page-title text-page-title font-bold text-primary">Nhập dữ liệu từ Excel</h1>
+</div>
+<!-- Import Layout (Bento-style grid) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-container-margin items-start">
+<!-- Upload Area (Main Column) -->
+<div class="lg:col-span-2 flex flex-col gap-form-gap">
+<!-- Drop Zone Card -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 shadow-sm">
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-10 flex flex-col items-center justify-center gap-4 bg-surface-container-low hover:bg-surface-container-highest transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container group-hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-4xl" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<div class="text-center">
+<p class="text-on-surface font-medium mb-1">Kéo thả file Excel vào đây</p>
+<p class="text-on-surface-variant font-body-md text-body-md">hoặc click để chọn file từ máy tính</p>
+</div>
+<p class="text-caption font-caption text-outline">Định dạng hỗ trợ: .xlsx, .xls, .csv (Tối đa 10MB)</p>
+<div class="mt-4 flex gap-3">
+<button class="px-6 py-2.5 bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-colors rounded-lg font-label-caps text-label-caps uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="attach_file">attach_file</span>
+                                    Chọn file
+                                </button>
+</div>
+</div>
+<!-- Action Row -->
+<div class="mt-6 flex items-center justify-between border-t border-outline-variant pt-6">
+<a class="flex items-center gap-2 text-primary hover:text-primary-container transition-colors font-body-md text-body-md underline" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+                                Tải file mẫu
+                            </a>
+<button class="px-8 py-2.5 bg-primary text-on-primary hover:bg-primary-container transition-colors rounded-lg font-label-caps text-label-caps uppercase shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="fact_check">fact_check</span>
+                                Kiểm tra dữ liệu
+                            </button>
+</div>
+</div>
+<!-- Validation Table (Simulated State after Check) -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h2 class="font-section-title text-section-title text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+                                Kết quả kiểm tra dữ liệu
+                            </h2>
+<span class="px-3 py-1 bg-error-container text-on-error-container rounded-full font-caption text-caption">Phát hiện lỗi</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest border-b border-outline-variant h-table-row-height">
+<th class="px-4 font-label-caps text-label-caps text-on-surface-variant uppercase w-20">Dòng</th>
+<th class="px-4 font-label-caps text-label-caps text-on-surface-variant uppercase min-w-[200px]">Tên thuốc</th>
+<th class="px-4 font-label-caps text-label-caps text-on-surface-variant uppercase w-48">Trường dữ liệu</th>
+<th class="px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Lỗi</th>
+</tr>
+</thead>
+<tbody class="font-table-cell text-table-cell text-on-surface">
+<tr class="border-b border-outline-variant h-table-row-height hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 text-on-surface-variant">5</td>
+<td class="px-4 font-medium">Panadol 500mg</td>
+<td class="px-4">Số đăng ký</td>
+<td class="px-4 text-error flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="error">error</span>
+                                            Định dạng không hợp lệ
+                                        </td>
+</tr>
+<tr class="border-b border-outline-variant h-table-row-height hover:bg-surface-container-lowest transition-colors bg-error-container/10">
+<td class="px-4 text-on-surface-variant">12</td>
+<td class="px-4 font-medium">Augmentin 1g</td>
+<td class="px-4">Ngày hết hạn (FEFO)</td>
+<td class="px-4 text-error flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="error">error</span>
+                                            Ngày phải lớn hơn hiện tại
+                                        </td>
+</tr>
+<tr class="border-b border-outline-variant h-table-row-height hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 text-on-surface-variant">24</td>
+<td class="px-4 font-medium">Paracetamol Kabi 10mg/ml</td>
+<td class="px-4">Quy cách</td>
+<td class="px-4 text-error flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="error">error</span>
+                                            Thiếu thông tin đơn vị
+                                        </td>
+</tr>
+<!-- Valid row example to show contrast -->
+<tr class="h-table-row-height hover:bg-surface-container-lowest transition-colors opacity-60">
+<td class="px-4 text-on-surface-variant">25</td>
+<td class="px-4">Amoxicillin 500mg</td>
+<td class="px-4 text-on-surface-variant">-</td>
+<td class="px-4 text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle">check_circle</span>
+                                            Hợp lệ
+                                        </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Side Panel (Instructions/Summary) -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 shadow-sm flex flex-col gap-4 sticky top-[88px]">
+<h3 class="font-section-title text-section-title text-on-surface border-b border-outline-variant pb-3">Tóm tắt tiến trình</h3>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Tổng số dòng</span>
+<span class="font-medium text-on-surface">150</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Dòng hợp lệ</span>
+<span class="font-medium text-primary">147</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant">Dòng lỗi</span>
+<span class="font-medium text-error">3</span>
+</div>
+</div>
+<div class="mt-4 bg-surface-container-low p-4 rounded-lg border border-outline-variant">
+<h4 class="font-label-caps text-label-caps uppercase text-on-surface mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="info">info</span>
+                            Hướng dẫn
+                        </h4>
+<ul class="text-caption font-caption text-on-surface-variant space-y-2 list-disc pl-4">
+<li>Các trường đánh dấu (*) trong file mẫu là bắt buộc.</li>
+<li>Định dạng ngày tháng phải là DD/MM/YYYY.</li>
+<li>Số đăng ký không được chứa ký tự đặc biệt ngoài dấu gạch ngang (-).</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="mt-auto pt-6 pb-8 border-t border-outline-variant flex justify-end gap-4">
+<button class="px-6 py-2.5 border border-outline-variant text-on-surface hover:bg-surface-container-low transition-colors rounded-lg font-label-caps text-label-caps uppercase">
+                    Hủy
+                </button>
+<!-- Disabled state as requested when errors exist -->
+<button class="px-6 py-2.5 bg-surface-dim text-outline opacity-60 cursor-not-allowed rounded-lg font-label-caps text-label-caps uppercase flex items-center gap-2" disabled="">
+<span class="material-symbols-outlined text-[18px]" data-icon="database">database</span>
+                    Import dữ liệu hợp lệ
+                </button>
+</div>
+</div>
+</main>
+</body></html>

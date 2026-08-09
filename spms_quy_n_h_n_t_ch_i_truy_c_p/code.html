@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Access Denied</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary-container": "#191c1e",
+                        "on-surface-variant": "#45464d",
+                        "primary-container": "#131b2e",
+                        "surface-container-high": "#dce9ff",
+                        "inverse-primary": "#bec6e0",
+                        "on-primary-fixed": "#131b2e",
+                        "on-secondary-fixed": "#001d31",
+                        "surface-container-low": "#eff4ff",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#7c839b",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed": "#cce5ff",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed-dim": "#93ccff",
+                        "surface": "#f8f9ff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-secondary-fixed-variant": "#004b73",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-container": "#818486",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-background": "#0b1c30",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#191c1e",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-container": "#5bb8fe",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f8f9ff",
+                        "surface-tint": "#565e74",
+                        "outline": "#76777d",
+                        "outline-variant": "#c6c6cd",
+                        "primary": "#000000",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#000000",
+                        "inverse-surface": "#213145",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "surface-variant": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "secondary": "#006398",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#00476e",
+                        "primary-fixed": "#dae2fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "row-height-standard": "48px",
+                        "container-padding": "24px",
+                        "unit": "4px",
+                        "row-height-dense": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "data-mono": ["JetBrains Mono"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "data-mono": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Base styles to ensure consistency with custom fonts if loaded externally */
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-headline-md, .font-headline-sm, .font-display-lg { font-family: 'Hanken Grotesk', sans-serif; }
+        .font-data-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        /* Material symbols utility for weights */
+        .material-symbols-outlined.fill-icon { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-background text-on-background m-0 p-0 overflow-hidden font-body-md text-body-md antialiased h-screen flex">
+<!-- 
+      =========================================
+      SIDENAVBAR (Enterprise)
+      =========================================
+    -->
+<aside class="bg-surface dark:bg-background w-[260px] h-screen fixed left-0 top-0 border-r border-outline-variant dark:border-outline flex flex-col h-full z-40">
+<!-- Header -->
+<div class="p-6 border-b border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container">local_pharmacy</span>
+</div>
+<div class="overflow-hidden">
+<div class="font-page-title text-page-title font-bold text-primary dark:text-primary-fixed truncate">SPMS Enterprise</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant truncate">Pharmacy Management</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto py-4 flex flex-col gap-1">
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Inventory</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">medication</span>
+<span class="font-body-md text-body-md">Drug Master</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">monitor_heart</span>
+<span class="font-body-md text-body-md">Dispensing</span>
+</a>
+<!-- Active Tab (Finance/Debt maps here semantically even if denied) -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed border-l-[3px] border-primary cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined fill-icon">payments</span>
+<span class="font-body-md text-body-md font-medium">Finance</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+</nav>
+<!-- Footer Links -->
+<div class="mt-auto border-t border-outline-variant py-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+</div>
+</aside>
+<!-- 
+      =========================================
+      TOPNAVBAR (Enterprise)
+      =========================================
+    -->
+<header class="bg-surface dark:bg-background h-[64px] fixed top-0 right-0 left-[260px] z-50 border-b border-outline-variant dark:border-outline flex justify-between items-center px-[24px] w-auto">
+<!-- Left: Branding/Search Context -->
+<div class="flex items-center gap-4">
+<div class="font-page-title text-page-title font-black text-primary">SPMS</div>
+<div class="h-6 w-px bg-outline-variant mx-2"></div>
+<!-- Contextual Breadcrumb -->
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span>Finance</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface font-medium">Công nợ Nhà cung cấp</span>
+</div>
+</div>
+<!-- Right: Actions & Profile -->
+<div class="flex items-center gap-6">
+<!-- Trailing Action -->
+<div class="hidden lg:flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded text-on-surface font-body-sm text-body-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[18px] text-primary">domain</span>
+                Main Hospital Branch
+            </div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-opacity cursor-pointer relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border border-surface"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-opacity cursor-pointer">
+<span class="material-symbols-outlined">apps</span>
+</button>
+</div>
+<!-- Profile -->
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant cursor-pointer">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant bg-surface-container-highest">
+<img alt="Administrator Portrait" class="w-full h-full object-cover" data-alt="A professional headshot of a healthcare administrator in a clean, brightly lit clinical environment, wearing a white shirt and subtle lanyard. High key lighting, sharp focus, modern corporate portrait style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN0NMjkMyKOLHrp95h64t2hfOAtL3cmN9CPeDD1UiV6aND527GOC0aSjRP4ZbIC5v7h29yfX354Du5207-begLd-Vn0A4h5VaPyeLEdPWPOxjicRTWt8-FBRfE0QKCeV2K9vZaDekdk8PlshR_3oZNv95yrUS23j4NlYxUbi8mLLmoS1-XR8gxYNhKWsCf4DhVMfoT_1rNgbRVG0zo9Ykmb9oGZdUU0h7hGAjKWBzv2SUKDv5NXF4UNw"/>
+</div>
+</div>
+</div>
+</header>
+<!-- 
+      =========================================
+      MAIN CANVAS - ACCESS DENIED STATE
+      =========================================
+    -->
+<main class="flex-1 ml-[260px] mt-[64px] bg-background min-h-[calc(100vh-64px)] p-container-padding flex flex-col relative">
+<!-- Subtle Grid Background for 'Ledger' feel even when empty -->
+<div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: linear-gradient(to right, #c6c6cd 1px, transparent 1px), linear-gradient(to bottom, #c6c6cd 1px, transparent 1px); background-size: 32px 32px;"></div>
+<!-- Error Card Container -->
+<div class="flex-1 flex items-center justify-center relative z-10">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-10 md:p-14 max-w-[640px] w-full text-center relative overflow-hidden shadow-sm flex flex-col items-center">
+<!-- Clinical Error Accent Line -->
+<div class="absolute top-0 left-0 w-full h-[4px] bg-error"></div>
+<!-- Status Icon -->
+<div class="w-20 h-20 bg-error-container rounded-full flex items-center justify-center mb-6 ring-4 ring-surface">
+<span class="material-symbols-outlined text-error fill-icon" style="font-size: 40px;">lock</span>
+</div>
+<!-- Primary Message -->
+<h1 class="font-headline-md text-headline-md text-on-surface mb-4">Bạn không có quyền thực hiện chức năng này.</h1>
+<!-- Secondary Context / Guidance -->
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 max-w-[480px]">
+                    Tài khoản của bạn hiện không được cấp phép để truy cập vào phân hệ <strong class="text-on-surface font-medium">Công nợ Nhà cung cấp</strong>. Thông tin tài chính và đối soát sổ cái yêu cầu quyền hạn cấp quản lý.
+                </p>
+<!-- Action Data / Next Steps (Bento-style structured info within error) -->
+<div class="bg-surface-container flex flex-col sm:flex-row gap-4 p-4 rounded text-left w-full mb-8 border border-outline-variant">
+<div class="flex-1 flex items-start gap-3">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5">info</span>
+<div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mb-1">Mã lỗi hệ thống</div>
+<div class="font-data-mono text-data-mono text-on-surface">ERR_AUTH_403_FINANCE</div>
+</div>
+</div>
+<div class="hidden sm:block w-px bg-outline-variant"></div>
+<div class="flex-1 flex items-start gap-3">
+<span class="material-symbols-outlined text-on-surface-variant mt-0.5">contact_support</span>
+<div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mb-1">Cần hỗ trợ?</div>
+<div class="font-body-sm text-body-sm text-on-surface">Liên hệ Quản trị viên HT</div>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="bg-primary text-on-primary font-body-md text-body-md px-6 h-10 rounded flex items-center gap-2 hover:bg-inverse-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                    Quay lại Dashboard
+                </button>
+</div>
+</div>
+</main>
+</body></html>

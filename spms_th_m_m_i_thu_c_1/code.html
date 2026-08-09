@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Thêm mới Thuốc</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#62df7d",
+                        "outline-variant": "#bdcaba",
+                        "primary-container": "#00873a",
+                        "inverse-surface": "#293040",
+                        "inverse-primary": "#62df7d",
+                        "outline": "#6e7b6c",
+                        "on-surface": "#141b2b",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "on-primary-fixed": "#002109",
+                        "surface": "#f9f9ff",
+                        "on-primary-container": "#f7fff2",
+                        "surface-dim": "#d3daef",
+                        "tertiary": "#a72d51",
+                        "on-error": "#ffffff",
+                        "primary": "#006b2c",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-tertiary-fixed": "#3f0016",
+                        "surface-container-highest": "#dce2f7",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffd9de",
+                        "error": "#ba1a1a",
+                        "surface-container": "#e9edff",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "on-secondary-fixed": "#00201d",
+                        "surface-tint": "#006e2d",
+                        "on-primary-fixed-variant": "#005320",
+                        "secondary": "#006a63",
+                        "tertiary-container": "#c74668",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "on-background": "#141b2b",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-variant": "#dce2f7",
+                        "primary-fixed": "#7ffc97",
+                        "on-secondary-container": "#006f67",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f1f3ff",
+                        "on-surface-variant": "#3e4a3d",
+                        "secondary-container": "#99efe5",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f9f9ff",
+                        "background": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "24px",
+                        "compact-padding": "8px",
+                        "table-row-height": "44px",
+                        "form-gap": "20px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "table-cell": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "section-title": ["Inter"],
+                        "body-md": ["Inter"],
+                        "caption": ["Inter"],
+                        "page-title": ["Inter"]
+                    },
+                    "fontSize": {
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .focus-ring {
+                @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface;
+            }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased h-screen overflow-hidden flex">
+<!-- SideNavBar -->
+<nav class="w-[260px] h-screen fixed left-0 top-0 bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col h-full py-4 z-50">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-page-title text-page-title font-bold">
+                S
+            </div>
+<div>
+<h1 class="text-page-title font-page-title text-primary dark:text-inverse-primary font-bold">SPMS</h1>
+<p class="font-caption text-caption text-on-surface-variant">Pharmacy System</p>
+</div>
+</div>
+<ul class="flex flex-col gap-1 px-3">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors duration-200 cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Tổng quan</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-secondary-container dark:bg-primary-container text-on-secondary-container dark:text-on-primary-container border-l-4 border-primary dark:border-primary-fixed-dim cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md font-medium">Hệ thống</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors duration-200 cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-body-md text-body-md">Kinh doanh</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors duration-200 cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Kho</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors duration-200 cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-body-md text-body-md">Tài chính</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest hover:bg-surface-container-high dark:hover:bg-inverse-surface transition-colors duration-200 cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-body-md text-body-md">Quản trị</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-[260px] flex flex-col h-screen">
+<!-- TopNavBar -->
+<header class="h-16 fixed top-0 right-0 left-[260px] z-40 bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex justify-between items-center px-6 h-full">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Hệ thống</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Danh mục thuốc</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-body-md text-body-md text-primary font-medium">Thêm mới</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer p-2 rounded-full hover:bg-surface-container-low" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer p-2 rounded-full hover:bg-surface-container-low" data-icon="settings">settings</span>
+</div>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer hover:bg-surface-container-low p-1.5 rounded-lg transition-colors">
+<div class="text-right">
+<p class="font-body-md text-body-md font-medium text-on-surface">Nguyễn Văn An</p>
+<p class="font-caption text-caption text-on-surface-variant">Quản lý</p>
+</div>
+<div class="w-9 h-9 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant">
+<img class="object-cover w-full h-full" data-alt="A small circular avatar placeholder image for a professional user profile, simple neutral background, modern clean style, soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6RdEq8AfRYOjkVegD1J9iVXGIIlg0gG-S3YYX2szqFSsHIzGuba3lyPUAvaqXmxTRG4SLPFV5lMd5BRA45ZTbq_ifnW5-QA-HBegUdlAsPuKECAuWpRwJJaua-hzishQacELGgkSadRKokZutMfUhYg74hfN1c42KFdE655_sMAtvkECW3Cgx6Bm2ZdsBxYE04RzDRed_PsvTQ0JDZeT0sDMgR3P8iRj2Gl9YHKAClTfagJ3StXMvlA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 overflow-y-auto mt-16 p-container-margin bg-background">
+<div class="max-w-[1024px] mx-auto">
+<!-- Page Header & Actions -->
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-page-title text-page-title text-on-surface">Thêm mới Thuốc</h2>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-lg font-body-md text-body-md font-medium text-on-surface bg-surface border border-outline-variant hover:bg-surface-container-low focus-ring transition-colors">
+                            Hủy
+                        </button>
+<button class="px-4 py-2 rounded-lg font-body-md text-body-md font-medium text-on-primary bg-primary hover:bg-surface-tint focus-ring transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                            Lưu thông tin
+                        </button>
+</div>
+</div>
+<!-- Form Layout -->
+<form class="space-y-6">
+<!-- Section: Thông tin cơ bản -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 shadow-sm">
+<h3 class="font-section-title text-section-title text-on-surface mb-5 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">info</span>
+                            Thông tin cơ bản
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-form-gap">
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Mã thuốc <span class="text-error">*</span></label>
+<input class="w-full h-10 px-3 rounded-lg border border-outline-variant bg-surface text-on-surface focus-ring font-body-md text-body-md placeholder:text-outline" placeholder="Nhập mã thuốc (vd: T001)" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Tên thuốc <span class="text-error">*</span></label>
+<input class="w-full h-10 px-3 rounded-lg border border-outline-variant bg-surface text-on-surface focus-ring font-body-md text-body-md placeholder:text-outline" placeholder="Nhập tên thuốc" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Hoạt chất</label>
+<input class="w-full h-10 px-3 rounded-lg border border-outline-variant bg-surface text-on-surface focus-ring font-body-md text-body-md placeholder:text-outline" placeholder="Nhập hoạt chất chính" type="text"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Nhóm thuốc <span class="text-error">*</span></label>
+<select class="w-full h-10 px-3 rounded-lg border border-outline-variant bg-surface text-on-surface focus-ring font-body-md text-body-md">
+<option disabled="" selected="" value="">Chọn nhóm thuốc</option>
+<option value="khang-sinh">Kháng sinh</option>
+<option value="giam-dau">Giảm đau - Hạ sốt</option>
+<option value="tieu-hoa">Tiêu hóa</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Section: Quy cách đóng gói -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 shadow-sm">
+<h3 class="font-section-title text-section-title text-on-surface mb-5 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+                            Quy cách đóng gói
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-form-gap">
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Đơn vị cơ bản (Bán lẻ) <span class="text-error">*</span></label>
+<select class="w-full h-10 px-3 rounded-lg border border-outline-variant bg-surface text-on-surface focus-ring font-body-md text-body-md">
+<option value="vien">Viên</option>
+<option value="vi">Vỉ</option>
+<option value="ong">Ống</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Đơn vị quy đổi (Nhập)</label>
+<select class="w-full h-10 px-3 rounded-lg border border-outline-variant bg-surface text-on-surface focus-ring font-body-md text-body-md">
+<option value="hop">Hộp</option>
+<option value="thung">Thùng</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Tỷ lệ quy đổi</label>
+<div class="relative">
+<input class="w-full h-10 px-3 pr-16 rounded-lg border border-outline-variant bg-surface text-on-surface focus-ring font-body-md text-body-md" placeholder="VD: 100" type="number"/>
+<div class="absolute inset-y-0 right-0 flex items-center px-3 border-l border-outline-variant bg-surface-container-low rounded-r-lg text-on-surface-variant font-caption text-caption">
+                                        Viên/Hộp
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Giá bán & Thuế -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 shadow-sm">
+<h3 class="font-section-title text-section-title text-on-surface mb-5 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">payments</span>
+                            Giá bán &amp; Thuế
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-form-gap">
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Giá nhập (ĐV cơ bản)</label>
+<div class="relative">
+<input class="w-full h-10 px-3 pr-12 rounded-lg border border-outline-variant bg-surface text-on-surface focus-ring font-body-md text-body-md" placeholder="0" type="number"/>
+<div class="absolute inset-y-0 right-0 flex items-center px-3 text-on-surface-variant font-caption text-caption">
+                                        đ
+                                    </div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">VAT (%)</label>
+<select class="w-full h-10 px-3 rounded-lg border border-outline-variant bg-surface text-on-surface focus-ring font-body-md text-body-md">
+<option value="0">0%</option>
+<option value="5">5%</option>
+<option value="8">8%</option>
+<option selected="" value="10">10%</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Lợi nhuận mong muốn (%)</label>
+<input class="w-full h-10 px-3 rounded-lg border border-outline-variant bg-surface text-on-surface focus-ring font-body-md text-body-md" placeholder="VD: 20" type="number"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Giá bán lẻ (Gợi ý)</label>
+<div class="relative">
+<input class="w-full h-10 px-3 pr-12 rounded-lg border border-outline-variant bg-surface-container-low text-on-surface focus-ring font-body-md text-body-md font-semibold text-primary" placeholder="0" readonly="" type="number"/>
+<div class="absolute inset-y-0 right-0 flex items-center px-3 text-on-surface-variant font-caption text-caption">
+                                        đ
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
+</main>
+</div>
+</body></html>

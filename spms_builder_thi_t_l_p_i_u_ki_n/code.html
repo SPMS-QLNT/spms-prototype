@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campaign Builder - Conditions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#6e7b6c",
+                        "tertiary-fixed": "#ffd9de",
+                        "error-container": "#ffdad6",
+                        "secondary": "#006a63",
+                        "primary-fixed": "#7ffc97",
+                        "on-primary-fixed-variant": "#005320",
+                        "inverse-on-surface": "#edf0ff",
+                        "inverse-primary": "#62df7d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#f7fff2",
+                        "primary-container": "#00873a",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "surface": "#f9f9ff",
+                        "primary-fixed-dim": "#62df7d",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-low": "#f1f3ff",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-dim": "#d3daef",
+                        "secondary-container": "#99efe5",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#3e4a3d",
+                        "surface-container": "#e9edff",
+                        "tertiary-container": "#c74668",
+                        "on-surface": "#141b2b",
+                        "tertiary": "#a72d51",
+                        "on-primary-fixed": "#002109",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#dce2f7",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#141b2b",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "on-secondary-fixed": "#00201d",
+                        "background": "#f9f9ff",
+                        "on-tertiary-fixed": "#3f0016",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#293040",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "on-secondary-container": "#006f67",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-variant": "#dce2f7",
+                        "outline-variant": "#bdcaba",
+                        "surface-tint": "#006e2d",
+                        "primary": "#006b2c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "table-row-height": "44px",
+                        "compact-padding": "8px",
+                        "form-gap": "20px",
+                        "gutter": "16px",
+                        "container-margin": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "page-title": ["Inter"],
+                        "table-cell": ["Inter"],
+                        "section-title": ["Inter"],
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for cleaner UI but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen py-gutter bg-surface-container-low border-r border-outline-variant fixed left-0 top-0 h-full w-[260px] z-20">
+<div class="px-container-margin pb-6 border-b border-outline-variant/50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined icon-fill">local_pharmacy</span>
+</div>
+<div>
+<h1 class="text-section-title font-section-title font-bold text-primary">Main Menu</h1>
+<p class="text-caption font-caption text-on-surface-variant">Enterprise Management</p>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto mt-4 flex flex-col gap-1">
+<!-- Active Tab: Dashboard (assumed closest fit for a campaign builder entry point) -->
+<div class="bg-secondary-container text-on-secondary-container border-l-4 border-primary px-4 py-3 flex items-center gap-3 cursor-pointer duration-200 ease-in-out">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-body-md font-body-md font-medium">Dashboard</span>
+</div>
+<div class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high cursor-pointer duration-200 ease-in-out transition-all">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="text-body-md font-body-md">Inventory</span>
+</div>
+<div class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high cursor-pointer duration-200 ease-in-out transition-all">
+<span class="material-symbols-outlined" data-icon="medication">medication</span>
+<span class="text-body-md font-body-md">Drug Master</span>
+</div>
+<div class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high cursor-pointer duration-200 ease-in-out transition-all">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-body-md font-body-md">Finance</span>
+</div>
+<div class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high cursor-pointer duration-200 ease-in-out transition-all">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-body-md font-body-md">Audit</span>
+</div>
+</div>
+<div class="px-container-margin mt-auto pt-4">
+<button class="w-full bg-primary text-on-primary py-2 px-4 rounded-lg flex items-center justify-center gap-2 font-medium hover:bg-surface-tint transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Add New Entry
+            </button>
+</div>
+<div class="mt-6 border-t border-outline-variant/50 pt-4 flex flex-col gap-1">
+<div class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high cursor-pointer duration-200 ease-in-out transition-all">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="text-body-md font-body-md">Support</span>
+</div>
+<div class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high cursor-pointer duration-200 ease-in-out transition-all">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="text-body-md font-body-md">Logout</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-[260px] h-screen bg-background">
+<!-- TopNavBar -->
+<header class="bg-surface-lowest flex justify-between items-center w-full px-container-margin h-table-row-height border-b border-outline-variant flat no shadows docked full-width top-0 z-10 shrink-0">
+<div class="flex items-center gap-4">
+<!-- Search on left as per JSON -->
+<div class="relative hidden sm:block w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-full pl-9 pr-4 py-1.5 text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-[20px]" data-icon="location_on">location_on</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+</button>
+<div class="w-px h-5 bg-outline-variant mx-2"></div>
+<button class="flex items-center gap-2 pl-2 hover:bg-surface-container-low rounded-full py-1 pr-3 transition-colors cursor-pointer active:opacity-80">
+<div class="w-6 h-6 rounded-full bg-tertiary-container overflow-hidden flex items-center justify-center text-on-tertiary-container text-xs font-bold">
+                        A
+                    </div>
+<span class="text-body-md font-body-md text-on-surface font-medium">User Profile</span>
+</button>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="flex-1 overflow-y-auto p-container-margin">
+<div class="max-w-5xl mx-auto flex flex-col h-full">
+<!-- Header & Stepper -->
+<div class="mb-8">
+<h2 class="text-page-title font-page-title text-on-surface mb-6">Campaign Builder</h2>
+<!-- Horizontal Stepper -->
+<div class="flex items-center w-full max-w-2xl">
+<div class="flex items-center gap-2 flex-1">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="text-body-md font-body-md text-on-surface-variant font-medium">Thông tin chung</span>
+</div>
+<div class="w-12 h-[2px] bg-primary"></div>
+<div class="flex items-center gap-2 flex-1 pl-4">
+<div class="w-6 h-6 rounded-full border-2 border-primary text-primary flex items-center justify-center font-bold text-xs">
+                                2
+                            </div>
+<span class="text-body-md font-body-md text-primary font-medium">Điều kiện</span>
+</div>
+<div class="w-12 h-[2px] bg-outline-variant"></div>
+<div class="flex items-center gap-2 flex-1 pl-4 opacity-50">
+<div class="w-6 h-6 rounded-full border-2 border-outline-variant text-on-surface-variant flex items-center justify-center font-bold text-xs">
+                                3
+                            </div>
+<span class="text-body-md font-body-md text-on-surface-variant">Phần thưởng</span>
+</div>
+</div>
+</div>
+<!-- Main Builder Area -->
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm flex flex-col overflow-hidden">
+<div class="p-6 border-b border-outline-variant/50 bg-surface flex justify-between items-center">
+<div>
+<h3 class="text-section-title font-section-title text-on-surface">Thiết lập điều kiện áp dụng</h3>
+<p class="text-caption font-caption text-on-surface-variant mt-1">Xác định các tiêu chí khách hàng hoặc đơn hàng cần thỏa mãn để tham gia chương trình.</p>
+</div>
+</div>
+<div class="p-6 bg-surface-bright flex-1 overflow-y-auto">
+<!-- Condition Group -->
+<div class="relative bg-surface rounded-lg border border-outline-variant p-form-gap mb-6">
+<!-- Visual Group Line -->
+<div class="absolute left-6 top-8 bottom-8 w-px bg-outline-variant/50 z-0"></div>
+<div class="relative z-10 flex flex-col gap-4">
+<!-- Rule 1: Product -->
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border border-outline-variant/50 shrink-0">
+<span class="material-symbols-outlined text-[14px]">medication</span>
+</div>
+<div class="flex-1 flex flex-wrap items-center gap-3 bg-surface-container-lowest p-3 rounded-lg border border-outline-variant shadow-sm">
+<div class="relative">
+<select class="appearance-none bg-surface-container-low border border-transparent rounded-md py-1.5 pl-3 pr-8 text-body-md font-medium text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer">
+<option selected="">Sản phẩm</option>
+<option>Nhóm thuốc</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-transparent border border-outline-variant rounded-md py-1.5 pl-3 pr-8 text-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer">
+<option selected="">Là</option>
+<option>Bao gồm</option>
+<option>Không là</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+<div class="flex-1 relative min-w-[200px]">
+<div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-md border border-outline-variant focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">search</span>
+<input class="bg-transparent border-none p-0 text-body-md text-on-surface w-full focus:ring-0" placeholder="Tìm kiếm sản phẩm..." type="text" value="Panadol 500mg"/>
+</div>
+</div>
+<button class="w-8 h-8 rounded hover:bg-error-container text-on-surface-variant hover:text-error transition-colors flex items-center justify-center ml-auto">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- AND Logical Operator -->
+<div class="flex items-center ml-2 my-1">
+<div class="px-3 py-1 rounded-full bg-primary-container text-on-primary-container text-label-caps font-label-caps shadow-sm">
+                                        AND
+                                    </div>
+</div>
+<!-- Rule 2: Quantity -->
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant border border-outline-variant/50 shrink-0">
+<span class="material-symbols-outlined text-[14px]">shopping_cart</span>
+</div>
+<div class="flex-1 flex flex-wrap items-center gap-3 bg-surface-container-lowest p-3 rounded-lg border border-outline-variant shadow-sm">
+<div class="relative">
+<select class="appearance-none bg-surface-container-low border border-transparent rounded-md py-1.5 pl-3 pr-8 text-body-md font-medium text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer">
+<option selected="">Mua số lượng</option>
+<option>Tổng hóa đơn</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-transparent border border-outline-variant rounded-md py-1.5 pl-3 pr-8 text-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none cursor-pointer">
+<option selected="">&gt;= (Lớn hơn hoặc bằng)</option>
+<option>&gt; (Lớn hơn)</option>
+<option>= (Bằng)</option>
+<option>&lt;= (Nhỏ hơn hoặc bằng)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+<div class="w-32 relative">
+<input class="w-full bg-transparent border border-outline-variant rounded-md py-1.5 px-3 text-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none text-right" type="number" value="3"/>
+</div>
+<span class="text-body-md text-on-surface-variant">đơn vị</span>
+<button class="w-8 h-8 rounded hover:bg-error-container text-on-surface-variant hover:text-error transition-colors flex items-center justify-center ml-auto">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+<!-- Add Rule Action -->
+<div class="flex items-center gap-3 mt-2 ml-9">
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2 rounded border border-dashed border-primary text-primary hover:bg-secondary-container hover:border-solid transition-all text-body-md font-medium">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                            Thêm điều kiện
+                                        </button>
+<!-- Simulated Dropdown for visual context -->
+<div class="absolute left-0 top-full mt-2 w-56 bg-surface-container-lowest border border-outline-variant rounded-lg shadow-lg opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity z-20">
+<div class="p-2 grid gap-1">
+<div class="text-label-caps font-label-caps text-on-surface-variant px-2 py-1">Hàng hóa &amp; Đơn hàng</div>
+<button class="flex items-center gap-3 w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded text-body-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">shopping_cart</span> Mua số lượng
+                                                </button>
+<button class="flex items-center gap-3 w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded text-body-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">receipt_long</span> Tổng hóa đơn
+                                                </button>
+<button class="flex items-center gap-3 w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded text-body-md text-on-surface bg-surface-container">
+<span class="material-symbols-outlined text-[16px] text-primary">medication</span> Sản phẩm
+                                                </button>
+<button class="flex items-center gap-3 w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded text-body-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">category</span> Nhóm thuốc
+                                                </button>
+<div class="h-px bg-outline-variant/50 my-1"></div>
+<div class="text-label-caps font-label-caps text-on-surface-variant px-2 py-1">Khách hàng &amp; Khác</div>
+<button class="flex items-center gap-3 w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded text-body-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">star</span> Hạng khách hàng
+                                                </button>
+<button class="flex items-center gap-3 w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded text-body-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">storefront</span> Khách sỉ
+                                                </button>
+<button class="flex items-center gap-3 w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded text-body-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">domain</span> Chi nhánh
+                                                </button>
+<button class="flex items-center gap-3 w-full text-left px-2 py-1.5 hover:bg-surface-container-low rounded text-body-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">schedule</span> Khung giờ
+                                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-4 border-t border-outline-variant bg-surface-container-lowest flex justify-between items-center mt-auto">
+<button class="px-6 py-2 rounded-lg text-primary font-medium hover:bg-secondary-container transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                            Hủy bỏ
+                        </button>
+<div class="flex items-center gap-3">
+<button class="px-6 py-2 rounded-lg bg-surface-container text-on-surface border border-outline-variant font-medium hover:bg-surface-container-highest transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                                Quay lại
+                            </button>
+<button class="px-6 py-2 rounded-lg bg-primary text-on-primary font-medium hover:bg-surface-tint shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 flex items-center gap-2">
+                                Tiếp theo
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

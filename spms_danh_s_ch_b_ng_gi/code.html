@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Danh sách bảng giá - PharmaCore Enterprise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d3daef",
+                        "primary-container": "#00873a",
+                        "surface-variant": "#dce2f7",
+                        "error-container": "#ffdad6",
+                        "primary": "#006b2c",
+                        "on-primary-container": "#f7fff2",
+                        "tertiary-container": "#c74668",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "on-tertiary-fixed": "#3f0016",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "surface-tint": "#006e2d",
+                        "inverse-primary": "#62df7d",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#dce2f7",
+                        "tertiary": "#a72d51",
+                        "surface": "#f9f9ff",
+                        "secondary-container": "#99efe5",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#edf0ff",
+                        "secondary": "#006a63",
+                        "outline": "#6e7b6c",
+                        "on-secondary-fixed": "#00201d",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#e9edff",
+                        "tertiary-fixed": "#ffd9de",
+                        "background": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#7ffc97",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#006f67",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f1f3ff",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-primary-fixed": "#002109",
+                        "outline-variant": "#bdcaba",
+                        "surface-bright": "#f9f9ff",
+                        "on-background": "#141b2b",
+                        "on-surface": "#141b2b",
+                        "surface-container-high": "#e1e8fd",
+                        "inverse-surface": "#293040",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-tertiary-container": "#fffbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "form-gap": "20px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "compact-padding": "8px",
+                        "table-row-height": "44px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "section-title": ["Inter"],
+                        "table-cell": ["Inter"],
+                        "caption": ["Inter"],
+                        "page-title": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="w-[260px] h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface flex flex-col py-container-margin z-40 hidden md:flex">
+<div class="px-gutter mb-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_pharmacy</span>
+</div>
+<div>
+<h1 class="font-section-title text-section-title text-primary">PharmaCore</h1>
+<p class="font-caption text-caption text-on-surface-variant">V2.4.0</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto px-compact-padding flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT bg-secondary-container text-on-secondary-container border-l-4 border-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-body-md text-body-md font-medium">Price Lists</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-body-md text-body-md">Medication Costs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-body-md text-body-md">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+</nav>
+<div class="mt-auto px-compact-padding flex flex-col gap-1 border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-[260px] h-screen overflow-hidden bg-background">
+<!-- TopNavBar -->
+<header class="w-full h-16 flex justify-between items-center px-gutter sticky top-0 z-50 border-b border-outline-variant bg-surface">
+<div class="flex items-center gap-4">
+<div class="md:hidden">
+<button class="text-on-surface-variant p-2 rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<div class="font-page-title text-page-title text-primary hidden md:block">
+                    PharmaCore Enterprise
+                </div>
+</div>
+<div class="flex-1 max-w-md mx-4 hidden sm:block">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-colors text-body-md font-body-md text-on-surface" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="hidden lg:flex items-center gap-2 mr-4 px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant text-caption font-caption cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span>Branch: Central Hospital</span>
+<span class="material-symbols-outlined text-[18px]">arrow_drop_down</span>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface"></span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="ml-2 w-9 h-9 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A highly detailed professional headshot of a corporate healthcare administrator. They are wearing a sharp charcoal blazer over a crisp white shirt, standing in a brightly lit, modern clinical office environment. The lighting is soft and flattering, creating a polished, high-key light-mode aesthetic consistent with enterprise software. The subject projects calm authority and competence, reflecting the corporate modernism style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiCVuj9rf1iqY4Pv1PQDz5CP-E_-FOofV3CQvV15LXeWHWpCroP_-v2TJ-pyauVXP9wCFURcnDZpxGeg5zqbuMxo387AzjModMiWEBHqbrEIDX1u0wSewXh2IL0oaeh_2hopOlPU-3fQG9qdE8-YTEFCMBdoIb2IPd9EojZVZdqFmzy23tB58LCRuME7ExN9YJ0vwY87wUanEhy00DGnv5qx3MLp-C3wA2xB8dla1AmQ2MGkHGP9hTew"/>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto p-gutter lg:p-container-margin">
+<!-- Header Section -->
+<div class="mb-6">
+<nav class="flex text-caption font-caption text-on-surface-variant mb-2">
+<ol class="flex items-center gap-2">
+<li><a class="hover:text-primary transition-colors" href="#">Kinh doanh</a></li>
+<li><span class="material-symbols-outlined text-[14px]">chevron_right</span></li>
+<li class="text-on-surface">Quản lý bảng giá</li>
+</ol>
+</nav>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<h2 class="font-page-title text-page-title text-on-background">Danh sách bảng giá</h2>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-DEFAULT font-body-md text-body-md font-medium hover:bg-surface-tint transition-colors flex items-center gap-2 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                        Thêm bảng giá
+                    </button>
+</div>
+</div>
+<!-- Filters & High-Density Table Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col">
+<!-- Filters Bar -->
+<div class="p-4 border-b border-outline-variant bg-surface flex flex-wrap gap-4 items-end">
+<div class="flex-1 min-w-[200px]">
+<label class="block font-caption text-caption text-on-surface-variant mb-1 uppercase tracking-wider">Tìm kiếm</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full pl-9 pr-3 py-2 bg-surface-container-low border border-outline-variant rounded-DEFAULT focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-body-md font-body-md h-9" placeholder="Mã, tên bảng giá..." type="text"/>
+</div>
+</div>
+<div class="w-full sm:w-auto min-w-[150px]">
+<label class="block font-caption text-caption text-on-surface-variant mb-1 uppercase tracking-wider">Loại giá</label>
+<select class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant rounded-DEFAULT focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-body-md font-body-md h-9">
+<option value="">Tất cả</option>
+<option value="RETAIL">RETAIL</option>
+<option value="WHOLESALE">WHOLESALE</option>
+<option value="VIP">VIP</option>
+</select>
+</div>
+<div class="w-full sm:w-auto min-w-[150px]">
+<label class="block font-caption text-caption text-on-surface-variant mb-1 uppercase tracking-wider">Trạng thái</label>
+<select class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant rounded-DEFAULT focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-body-md font-body-md h-9">
+<option value="">Tất cả</option>
+<option value="active">Active</option>
+<option value="pending">Pending</option>
+<option value="expired">Expired</option>
+</select>
+</div>
+<div class="w-full sm:w-auto min-w-[150px]">
+<label class="block font-caption text-caption text-on-surface-variant mb-1 uppercase tracking-wider">Chi nhánh</label>
+<select class="w-full px-3 py-2 bg-surface-container-low border border-outline-variant rounded-DEFAULT focus:ring-2 focus:ring-primary focus:border-primary transition-colors text-body-md font-body-md h-9">
+<option value="">Tất cả</option>
+<option value="central">Central Hospital</option>
+<option value="north">North Wing Pharmacy</option>
+</select>
+</div>
+<button class="h-9 px-4 rounded-DEFAULT border border-outline-variant text-on-surface font-body-md text-body-md hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                        Lọc thêm
+                    </button>
+</div>
+<!-- Table Wrapper -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="h-table-row-height px-4 font-label-caps text-label-caps text-on-surface-variant align-middle whitespace-nowrap">
+<div class="flex items-center">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</div>
+</th>
+<th class="h-table-row-height px-4 font-label-caps text-label-caps text-on-surface-variant align-middle whitespace-nowrap sticky left-0 bg-surface-container-low shadow-[1px_0_0_0_#bdcaba] z-10">Mã Bảng Giá</th>
+<th class="h-table-row-height px-4 font-label-caps text-label-caps text-on-surface-variant align-middle whitespace-nowrap">Tên Bảng Giá</th>
+<th class="h-table-row-height px-4 font-label-caps text-label-caps text-on-surface-variant align-middle whitespace-nowrap">Loại Giá</th>
+<th class="h-table-row-height px-4 font-label-caps text-label-caps text-on-surface-variant align-middle whitespace-nowrap">Phạm Vi</th>
+<th class="h-table-row-height px-4 font-label-caps text-label-caps text-on-surface-variant align-middle whitespace-nowrap">Ưu Tiên</th>
+<th class="h-table-row-height px-4 font-label-caps text-label-caps text-on-surface-variant align-middle whitespace-nowrap">Hiệu Lực Từ</th>
+<th class="h-table-row-height px-4 font-label-caps text-label-caps text-on-surface-variant align-middle whitespace-nowrap">Hiệu Lực Đến</th>
+<th class="h-table-row-height px-4 font-label-caps text-label-caps text-on-surface-variant align-middle whitespace-nowrap">Trạng Thái</th>
+<th class="h-table-row-height px-4 font-label-caps text-label-caps text-on-surface-variant align-middle whitespace-nowrap text-right">Thao Tác</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant bg-surface-container-lowest">
+<!-- Row 1 -->
+<tr class="hover:bg-surface transition-colors group">
+<td class="h-table-row-height px-4 font-table-cell text-table-cell align-middle">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell text-on-surface font-medium align-middle whitespace-nowrap sticky left-0 bg-surface-container-lowest group-hover:bg-surface shadow-[1px_0_0_0_#e5e7eb] z-10">
+                                    PL-2023-001
+                                </td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell text-on-surface align-middle min-w-[200px]">
+                                    Bảng giá bán lẻ tiêu chuẩn 2023
+                                </td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell align-middle">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface text-[11px] font-medium tracking-wide">RETAIL</span>
+</td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell text-on-surface-variant align-middle whitespace-nowrap">
+                                    Toàn hệ thống
+                                </td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell align-middle">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">arrow_upward</span>
+                                        High
+                                    </div>
+</td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell text-on-surface-variant align-middle whitespace-nowrap">
+                                    01/01/2023
+                                </td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell text-on-surface-variant align-middle whitespace-nowrap">
+                                    31/12/2023
+                                </td>
+<td class="h-table-row-height px-4 align-middle">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#dcfce7] text-[#16a34a] font-caption text-caption border border-[#bbf7d0]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#16a34a] mr-1.5"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="h-table-row-height px-4 align-middle text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-7 h-7 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-7 h-7 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Duplicate">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="w-7 h-7 rounded hover:bg-error-container text-error flex items-center justify-center transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface transition-colors group">
+<td class="h-table-row-height px-4 font-table-cell text-table-cell align-middle">
+<input class="rounded-[2px] border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell text-on-surface font-medium align-middle whitespace-nowrap sticky left-0 bg-surface-container-lowest group-hover:bg-surface shadow-[1px_0_0_0_#e5e7eb] z-10">
+                                    PL-2023-002
+                                </td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell text-on-surface align-middle min-w-[200px]">
+                                    Chương trình sỉ Q3
+                                </td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell align-middle">
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface text-[11px] font-medium tracking-wide">WHOLESALE</span>
+</td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell text-on-surface-variant align-middle whitespace-nowrap">
+                                    Chi nhánh (2)
+                                </td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell align-middle">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+                                        Medium
+                                    </div>
+</td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell text-on-surface-variant align-middle whitespace-nowrap">
+                                    01/07/2023
+                                </td>
+<td class="h-table-row-height px-4 font-table-cell text-table-cell text-on-surface-variant align-middle whitespace-nowrap">
+                                    30/09/2023
+                                </td>
+<td class="h-table-row-height px-4 align-middle">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#fef3c7] text-[#b45309] font-caption text-caption border border-[#fde68a]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#b45309] mr-1.5"></span>
+                                        Pending
+                                    </span>
+</td>
+<td class="h-table-row-height px-4 align-middle text-right whitespace-nowrap">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-7 h-7 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="w-7 h-7 rounded hover:bg-surface-container-high text-on-surface-variant flex items-center justify-center transition-colors" title="Duplicate">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+<button class="w-7 h-7 rounded hover:bg-error-container text-error flex items-center justify-center transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-4 py-3 border-t border-outline-variant bg-surface-container-lowest flex items-center justify-between text-body-md font-body-md text-on-surface-variant">
+<div>
+                        Hiển thị 1-10 trong số 45 kết quả
+                    </div>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded flex items-center justify-center hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center bg-primary-container text-on-primary-container font-medium">1</button>
+<button class="w-8 h-8 rounded flex items-center justify-center hover:bg-surface-container-low transition-colors">2</button>
+<button class="w-8 h-8 rounded flex items-center justify-center hover:bg-surface-container-low transition-colors">3</button>
+<span class="w-8 h-8 flex items-center justify-center">...</span>
+<button class="w-8 h-8 rounded flex items-center justify-center hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

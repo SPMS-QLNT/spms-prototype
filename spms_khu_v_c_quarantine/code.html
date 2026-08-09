@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Khu vực Quarantine - SPMS Admin</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f1f3ff",
+                        "primary-fixed": "#7ffc97",
+                        "surface-container-high": "#e1e8fd",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "on-tertiary-fixed": "#3f0016",
+                        "tertiary-container": "#c74668",
+                        "secondary": "#006a63",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "surface-container": "#e9edff",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-secondary-container": "#006f67",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "surface-dim": "#d3daef",
+                        "on-primary-container": "#f7fff2",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#dce2f7",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005320",
+                        "inverse-on-surface": "#edf0ff",
+                        "inverse-surface": "#293040",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#00873a",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "tertiary": "#a72d51",
+                        "background": "#f9f9ff",
+                        "primary": "#006b2c",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#006e2d",
+                        "on-surface": "#141b2b",
+                        "secondary-container": "#99efe5",
+                        "tertiary-fixed": "#ffd9de",
+                        "on-background": "#141b2b",
+                        "outline": "#6e7b6c",
+                        "on-primary-fixed": "#002109",
+                        "inverse-primary": "#62df7d",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#fffbff",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-secondary-fixed": "#00201d",
+                        "surface-container-highest": "#dce2f7",
+                        "outline-variant": "#bdcaba"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "table-row-height": "44px",
+                        "form-gap": "20px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "compact-padding": "8px"
+                    },
+                    "fontFamily": {
+                        "page-title": ["Inter"],
+                        "table-cell": ["Inter"],
+                        "caption": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "section-title": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[260px] border-r border-outline-variant bg-surface-container-low flex flex-col py-gutter z-20 hidden md:flex">
+<div class="px-gutter mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container shrink-0">
+<span class="material-symbols-outlined icon-fill" data-icon="local_hospital">local_hospital</span>
+</div>
+<div>
+<h1 class="font-section-title text-section-title font-semibold text-on-surface">SPMS Admin</h1>
+<p class="font-caption text-caption text-on-surface-variant">Clinical Precision</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1 px-2">
+<!-- Non-matching active state, using semantic fallback if applicable, otherwise inactive -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-body-md text-body-md">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="military_tech">military_tech</span>
+<span class="font-body-md text-body-md">Loyalty Tiers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-body-md text-body-md">Medical Records</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+</nav>
+<div class="mt-auto px-2 flex flex-col gap-1 border-t border-outline-variant pt-4 mx-2">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="flex-1 flex flex-col md:ml-[260px] min-w-0">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-container-margin h-table-row-height bg-surface border-b border-outline-variant z-10">
+<div class="flex items-center gap-4">
+<h2 class="text-page-title font-page-title font-bold text-primary">SPMS CRM</h2>
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" data-icon="search">search</span>
+<input class="pl-8 pr-3 py-1 bg-surface-container-low border border-outline-variant rounded text-table-cell font-table-cell focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-on-surface-variant hover:bg-surface-container-low px-2 py-1 rounded transition-colors font-caption text-caption">
+<span class="material-symbols-outlined text-[18px]" data-icon="domain">domain</span>
+                    Branch Selector
+                </button>
+<div class="flex items-center gap-2">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-1 rounded transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-1 rounded transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-1 rounded transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a pharmacist in a white lab coat, clean modern lighting, highly detailed clinical environment background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvnawXQoLolK8Mo2a1kGmSa-jJdko1T90xdozOjn1uIiBpSItk7gL4xboocCkt1C2BsykIL24J4s8a4IIgQT-mZW_jI-viYSHjjqNHraIJetzLSgwse2zOCOqdm_feQSOr_ZrjgI0YbRVdi_JQEe7bREhrtIcA7DhuwdFnd_XYVDloQCoTgzix4aPRkMDfhWB4_Dvcdef3hHQBFu41olw7hNC7IKcQHChHeorwQpKW3YtMnYB2Ef5gUg"/>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-container-margin overflow-y-auto bg-surface-bright">
+<!-- Header & Context Banner -->
+<div class="mb-form-gap">
+<div class="flex items-center gap-3 mb-4">
+<h1 class="font-page-title text-page-title text-on-surface">Khu vực Quarantine</h1>
+<span class="bg-error-container text-on-error-container font-label-caps text-label-caps px-2 py-0.5 rounded border border-error/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="warning">warning</span>
+                        QUARANTINE
+                    </span>
+</div>
+<div class="bg-error-container/30 border border-error-container rounded-lg p-compact-padding flex items-start gap-3">
+<span class="material-symbols-outlined text-on-error-container mt-0.5" data-icon="info">info</span>
+<div>
+<p class="font-caption text-caption text-on-surface font-semibold">Stock Pending Inspection</p>
+<p class="font-table-cell text-table-cell text-on-surface-variant mt-1">Items listed below are physically isolated and unavailable for dispensing until clinically verified.</p>
+</div>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface rounded-lg border border-outline-variant overflow-hidden shadow-sm">
+<!-- Table Controls (Filters/Search) -->
+<div class="p-compact-padding border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<div class="flex gap-2">
+<input class="px-3 py-1.5 border border-outline-variant rounded font-table-cell text-table-cell focus:ring-2 focus:ring-primary focus:border-transparent outline-none w-64" placeholder="Filter by Lô or Mã phiếu..." type="text"/>
+</div>
+<button class="font-caption text-caption flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+                        Advanced Filters
+                    </button>
+</div>
+<!-- Scrollable Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="sticky left-0 bg-surface-container-low py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase border-r border-outline-variant w-32 z-10 shadow-[2px_0_4px_rgba(0,0,0,0.02)]">Mã phiếu</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Khách hàng</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Thuốc</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Lô</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-right">SL</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Ngày tiếp nhận</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Trạng thái kiểm định</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-right">Hành động</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container-lowest h-table-row-height px-4 font-table-cell text-table-cell text-on-surface font-medium border-r border-outline-variant z-10 shadow-[2px_0_4px_rgba(0,0,0,0.02)]">
+                                    INSP-2401-A
+                                </td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface whitespace-nowrap">Bệnh viện Đa khoa Vạn Hạnh</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface">
+<div class="flex flex-col">
+<span>Amoxicillin 500mg</span>
+<span class="text-[10px] text-on-surface-variant">Capsules</span>
+</div>
+</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface font-mono">B-849201</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface text-right">
+                                    500 <span class="text-on-surface-variant text-[11px] ml-0.5">hộp</span>
+</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface text-on-surface-variant">24/10/2023 08:30</td>
+<td class="px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-caption text-[11px] border border-error/10">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                        Chờ kiểm định
+                                    </span>
+</td>
+<td class="px-4 text-right">
+<button class="bg-primary hover:bg-surface-tint text-on-primary px-3 py-1.5 rounded font-caption text-caption transition-colors inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="science">science</span>
+                                        Kiểm định
+                                    </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container-lowest h-table-row-height px-4 font-table-cell text-table-cell text-on-surface font-medium border-r border-outline-variant z-10 shadow-[2px_0_4px_rgba(0,0,0,0.02)]">
+                                    INSP-2401-B
+                                </td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface whitespace-nowrap">Phòng khám Răng Hàm Mặt SG</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface">
+<div class="flex flex-col">
+<span>Lidocaine 2% Injection</span>
+<span class="text-[10px] text-on-surface-variant">Ampoules, 2ml</span>
+</div>
+</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface font-mono">L-99234</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface text-right">
+                                    150 <span class="text-on-surface-variant text-[11px] ml-0.5">ống</span>
+</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface text-on-surface-variant">24/10/2023 09:15</td>
+<td class="px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-caption text-[11px] border border-error/10">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                        Chờ kiểm định
+                                    </span>
+</td>
+<td class="px-4 text-right">
+<button class="bg-primary hover:bg-surface-tint text-on-primary px-3 py-1.5 rounded font-caption text-caption transition-colors inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="science">science</span>
+                                        Kiểm định
+                                    </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container-lowest h-table-row-height px-4 font-table-cell text-table-cell text-on-surface font-medium border-r border-outline-variant z-10 shadow-[2px_0_4px_rgba(0,0,0,0.02)]">
+                                    INSP-2402-A
+                                </td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface whitespace-nowrap">Khoa Nội Tiết - BV Chợ Rẫy</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface">
+<div class="flex flex-col">
+<span>Insulin Glargine 100 IU/ml</span>
+<span class="text-[10px] text-on-surface-variant">Vials, 10ml (COLD CHAIN)</span>
+</div>
+</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface font-mono">IG-44102</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface text-right">
+                                    2,000 <span class="text-on-surface-variant text-[11px] ml-0.5">lọ</span>
+</td>
+<td class="px-4 font-table-cell text-table-cell text-on-surface text-on-surface-variant">25/10/2023 14:00</td>
+<td class="px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-caption text-[11px] border border-error/10">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                        Chờ kiểm định
+                                    </span>
+</td>
+<td class="px-4 text-right">
+<button class="bg-primary hover:bg-surface-tint text-on-primary px-3 py-1.5 rounded font-caption text-caption transition-colors inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="science">science</span>
+                                        Kiểm định
+                                    </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-4 py-3 border-t border-outline-variant bg-surface-container-lowest flex items-center justify-between">
+<span class="font-caption text-caption text-on-surface-variant">Showing 1 to 3 of 12 quarantined batches</span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-1 px-2 rounded bg-primary-container text-on-primary-container font-caption text-caption">1</button>
+<button class="p-1 px-2 rounded text-on-surface hover:bg-surface-container-low font-caption text-caption">2</button>
+<button class="p-1 px-2 rounded text-on-surface hover:bg-surface-container-low font-caption text-caption">3</button>
+<button class="p-1 rounded text-on-surface-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

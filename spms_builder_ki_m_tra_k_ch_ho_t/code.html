@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campaign Builder - Step 5</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "outline": "#6e7b6c",
+                      "tertiary-fixed": "#ffd9de",
+                      "error-container": "#ffdad6",
+                      "secondary": "#006a63",
+                      "primary-fixed": "#7ffc97",
+                      "on-primary-fixed-variant": "#005320",
+                      "inverse-on-surface": "#edf0ff",
+                      "inverse-primary": "#62df7d",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-container": "#f7fff2",
+                      "primary-container": "#00873a",
+                      "secondary-fixed-dim": "#80d5cb",
+                      "surface": "#f9f9ff",
+                      "primary-fixed-dim": "#62df7d",
+                      "surface-bright": "#f9f9ff",
+                      "surface-container-low": "#f1f3ff",
+                      "on-tertiary-container": "#fffbff",
+                      "surface-dim": "#d3daef",
+                      "secondary-container": "#99efe5",
+                      "on-secondary-fixed-variant": "#00504a",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#3e4a3d",
+                      "surface-container": "#e9edff",
+                      "tertiary-container": "#c74668",
+                      "on-surface": "#141b2b",
+                      "tertiary": "#a72d51",
+                      "on-primary-fixed": "#002109",
+                      "on-error-container": "#93000a",
+                      "surface-container-highest": "#dce2f7",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-background": "#141b2b",
+                      "on-tertiary-fixed-variant": "#8a143c",
+                      "on-secondary-fixed": "#00201d",
+                      "background": "#f9f9ff",
+                      "on-tertiary-fixed": "#3f0016",
+                      "on-tertiary": "#ffffff",
+                      "inverse-surface": "#293040",
+                      "secondary-fixed": "#9cf2e8",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#ffb2bf",
+                      "on-secondary-container": "#006f67",
+                      "surface-container-high": "#e1e8fd",
+                      "surface-variant": "#dce2f7",
+                      "outline-variant": "#bdcaba",
+                      "surface-tint": "#006e2d",
+                      "primary": "#006b2c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "table-row-height": "44px",
+                      "compact-padding": "8px",
+                      "form-gap": "20px",
+                      "gutter": "16px",
+                      "container-margin": "24px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Inter"],
+                      "page-title": ["Inter"],
+                      "table-cell": ["Inter"],
+                      "section-title": ["Inter"],
+                      "caption": ["Inter"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-caps": ["11px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "page-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "table-cell": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "section-title": ["18px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+          font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex justify-center py-10 antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Main Container - Wizard Workflow suppresses Global Nav -->
+<main class="w-full max-w-[1024px] px-container-margin flex flex-col gap-8">
+<!-- Header & Stepper -->
+<header class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<div>
+<h1 class="font-page-title text-page-title text-on-surface">Tạo Chiến Dịch Khuyến Mãi</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Thiết lập các quy tắc giảm giá và điều kiện áp dụng.</p>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Workflow Stepper (Horizontal) -->
+<nav aria-label="Progress">
+<ol class="flex items-center" role="list">
+<!-- Step 1 -->
+<li class="relative pr-8 sm:pr-20">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-0.5 w-full bg-primary"></div>
+</div>
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary hover:bg-primary/90" href="#">
+<span class="material-symbols-outlined text-on-primary text-sm font-bold">check</span>
+<span class="sr-only">Thông tin chung</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-caption text-caption text-on-surface-variant whitespace-nowrap">Chung</span>
+</li>
+<!-- Step 2 -->
+<li class="relative pr-8 sm:pr-20">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-0.5 w-full bg-primary"></div>
+</div>
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary hover:bg-primary/90" href="#">
+<span class="material-symbols-outlined text-on-primary text-sm font-bold">check</span>
+<span class="sr-only">Điều kiện</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-caption text-caption text-on-surface-variant whitespace-nowrap">Điều kiện</span>
+</li>
+<!-- Step 3 -->
+<li class="relative pr-8 sm:pr-20">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-0.5 w-full bg-primary"></div>
+</div>
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary hover:bg-primary/90" href="#">
+<span class="material-symbols-outlined text-on-primary text-sm font-bold">check</span>
+<span class="sr-only">Phần thưởng</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-caption text-caption text-on-surface-variant whitespace-nowrap">Thưởng</span>
+</li>
+<!-- Step 4 -->
+<li class="relative pr-8 sm:pr-20">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="h-0.5 w-full bg-outline-variant"></div>
+</div>
+<a class="relative flex h-8 w-8 items-center justify-center rounded-full bg-primary hover:bg-primary/90" href="#">
+<span class="material-symbols-outlined text-on-primary text-sm font-bold">check</span>
+<span class="sr-only">Phạm vi</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-caption text-caption text-on-surface-variant whitespace-nowrap">Phạm vi</span>
+</li>
+<!-- Step 5 (Active) -->
+<li class="relative">
+<a aria-current="step" class="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-surface-container-lowest" href="#">
+<span class="h-2.5 w-2.5 rounded-full bg-primary"></span>
+<span class="sr-only">Kiểm tra</span>
+</a>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-caption text-caption text-primary font-bold whitespace-nowrap">Kiểm tra</span>
+</li>
+</ol>
+</nav>
+</header>
+<!-- Main Content Area -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm flex flex-col pt-6 mt-4">
+<div class="px-8 pb-6 flex flex-col gap-6 border-b border-outline-variant">
+<h2 class="font-section-title text-section-title text-on-surface">Bước 5: Kiểm tra &amp; Kích hoạt</h2>
+<!-- Human-readable Summary Box -->
+<div class="bg-surface-container border-l-4 border-primary p-6 rounded-r-lg flex items-start gap-4">
+<div class="mt-1 flex-shrink-0 bg-primary-container text-on-primary-container w-10 h-10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined fill">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-body-md text-body-md font-semibold text-on-surface mb-2">Tóm tắt chiến dịch</h3>
+<p class="font-page-title text-section-title text-primary font-medium leading-relaxed">
+                            "Nếu khách hàng <span class="font-bold text-on-surface bg-surface-container-highest px-2 py-0.5 rounded">GOLD</span> mua từ <span class="font-bold text-on-surface bg-surface-container-highest px-2 py-0.5 rounded">3 hộp Panadol</span> tại <span class="font-bold text-on-surface bg-surface-container-highest px-2 py-0.5 rounded">Chi nhánh Hà Nội</span> trong thời gian <span class="font-bold text-on-surface bg-surface-container-highest px-2 py-0.5 rounded">01/08/2026 - 31/08/2026</span> thì <span class="font-bold text-on-surface bg-surface-container-highest px-2 py-0.5 rounded text-secondary">giảm 10%</span>."
+                        </p>
+</div>
+</div>
+<!-- Conflict Warning Section -->
+<div class="bg-error-container/50 border border-error/30 p-5 rounded-lg flex gap-4">
+<span class="material-symbols-outlined text-error mt-0.5">warning</span>
+<div class="flex-1">
+<h3 class="font-body-md text-body-md font-bold text-on-error-container">Cảnh báo Xung đột luật (Conflicts)</h3>
+<p class="font-body-md text-body-md text-on-error-container/80 mt-1">
+                            Quy tắc này có khả năng trùng lặp với chiến dịch <a class="underline font-medium" href="#">"Tri ân mùa hè 2026"</a> đang hoạt động tại Chi nhánh Hà Nội. Khách hàng thỏa mãn cả hai sẽ được áp dụng mức giảm giá cao nhất (15%).
+                        </p>
+</div>
+</div>
+</div>
+<!-- Bento Grid Summary Settings -->
+<div class="px-8 py-8 bg-surface/50">
+<h3 class="font-body-md text-body-md font-semibold text-on-surface mb-4">Chi tiết cấu hình</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Card 1: Thông tin cơ bản -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5">
+<div class="flex items-center gap-2 text-on-surface-variant mb-4 pb-3 border-b border-outline-variant/50">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span class="font-caption text-caption text-on-surface uppercase tracking-wider">Thông tin chung</span>
+</div>
+<dl class="flex flex-col gap-3">
+<div class="flex justify-between">
+<dt class="font-body-md text-body-md text-on-surface-variant">Tên chiến dịch</dt>
+<dd class="font-body-md text-body-md font-medium text-on-surface text-right">Giảm giá nhóm giảm đau</dd>
+</div>
+<div class="flex justify-between">
+<dt class="font-body-md text-body-md text-on-surface-variant">Mã Code (Tùy chọn)</dt>
+<dd class="font-body-md text-body-md font-medium text-on-surface text-right">PANA10</dd>
+</div>
+<div class="flex justify-between">
+<dt class="font-body-md text-body-md text-on-surface-variant">Thời gian áp dụng</dt>
+<dd class="font-body-md text-body-md font-medium text-on-surface text-right">01/08/2026 - 31/08/2026</dd>
+</div>
+</dl>
+</div>
+<!-- Card 2: Điều kiện -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5">
+<div class="flex items-center gap-2 text-on-surface-variant mb-4 pb-3 border-b border-outline-variant/50">
+<span class="material-symbols-outlined text-[18px]">rule</span>
+<span class="font-caption text-caption text-on-surface uppercase tracking-wider">Điều kiện áp dụng</span>
+</div>
+<dl class="flex flex-col gap-3">
+<div class="flex justify-between">
+<dt class="font-body-md text-body-md text-on-surface-variant">Nhóm khách hàng</dt>
+<dd class="font-body-md text-body-md font-medium text-on-surface text-right bg-tertiary-container/10 text-tertiary px-2 py-0.5 rounded">Hạng GOLD</dd>
+</div>
+<div class="flex justify-between items-start">
+<dt class="font-body-md text-body-md text-on-surface-variant">Sản phẩm yêu cầu</dt>
+<dd class="font-body-md text-body-md font-medium text-on-surface text-right">Panadol Extra (Viên nén)<br/><span class="text-xs font-normal text-on-surface-variant">Số lượng tối thiểu: 3 Hộp</span></dd>
+</div>
+<div class="flex justify-between">
+<dt class="font-body-md text-body-md text-on-surface-variant">Phạm vi áp dụng</dt>
+<dd class="font-body-md text-body-md font-medium text-on-surface text-right">Chi nhánh Hà Nội</dd>
+</div>
+</dl>
+</div>
+<!-- Card 3: Phần thưởng (Full width span on desktop) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 md:col-span-2">
+<div class="flex items-center gap-2 text-on-surface-variant mb-4 pb-3 border-b border-outline-variant/50">
+<span class="material-symbols-outlined text-[18px]">redeem</span>
+<span class="font-caption text-caption text-on-surface uppercase tracking-wider">Thiết lập phần thưởng</span>
+</div>
+<div class="flex flex-col md:flex-row gap-6 md:gap-12">
+<dl class="flex-1 flex flex-col gap-3">
+<div class="flex justify-between">
+<dt class="font-body-md text-body-md text-on-surface-variant">Loại giảm giá</dt>
+<dd class="font-body-md text-body-md font-medium text-on-surface text-right">Giảm theo % trên tổng hóa đơn</dd>
+</div>
+<div class="flex justify-between">
+<dt class="font-body-md text-body-md text-on-surface-variant">Mức giảm</dt>
+<dd class="font-section-title text-section-title font-bold text-primary text-right">10%</dd>
+</div>
+</dl>
+<div class="hidden md:block w-px bg-outline-variant/50"></div>
+<dl class="flex-1 flex flex-col gap-3">
+<div class="flex justify-between">
+<dt class="font-body-md text-body-md text-on-surface-variant">Giảm tối đa</dt>
+<dd class="font-body-md text-body-md font-medium text-on-surface text-right">Không giới hạn</dd>
+</div>
+<div class="flex justify-between">
+<dt class="font-body-md text-body-md text-on-surface-variant">Áp dụng lũy tiến</dt>
+<dd class="font-body-md text-body-md font-medium text-on-surface text-right">Không</dd>
+</div>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<!-- Wizard Footer Actions -->
+<div class="px-8 py-5 border-t border-outline-variant flex items-center justify-between rounded-b-xl bg-surface-container-lowest">
+<button class="flex items-center gap-2 px-4 py-2 text-primary hover:bg-surface-container-low rounded-lg transition-colors group" type="button">
+<span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="font-label-caps text-label-caps uppercase">Quay lại</span>
+</button>
+<div class="flex items-center gap-3">
+<button class="px-6 py-2.5 rounded-lg border border-outline text-on-surface hover:bg-surface-container-low transition-colors font-label-caps text-label-caps uppercase tracking-wider" type="button">
+                        Lưu nháp
+                    </button>
+<button class="px-6 py-2.5 rounded-lg bg-primary text-on-primary shadow-sm hover:bg-primary/90 hover:shadow-md transition-all font-label-caps text-label-caps uppercase tracking-wider flex items-center gap-2 focus:ring-2 focus:ring-primary focus:ring-offset-2" type="button">
+<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+                        Kích hoạt
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Danh sách phiếu xuất - SPMS Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#62df7d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#c74668",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#dce2f7",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "surface-dim": "#d3daef",
+                        "outline": "#6e7b6c",
+                        "primary": "#006b2c",
+                        "on-secondary-fixed": "#00201d",
+                        "tertiary": "#a72d51",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "surface-tint": "#006e2d",
+                        "tertiary-fixed": "#ffd9de",
+                        "secondary-fixed": "#9cf2e8",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#bdcaba",
+                        "on-error-container": "#93000a",
+                        "on-background": "#141b2b",
+                        "inverse-surface": "#293040",
+                        "on-surface": "#141b2b",
+                        "surface-container": "#e9edff",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#dce2f7",
+                        "surface": "#f9f9ff",
+                        "primary-fixed": "#7ffc97",
+                        "surface-container-low": "#f1f3ff",
+                        "on-primary-fixed": "#002109",
+                        "secondary-container": "#99efe5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e1e8fd",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-tertiary-fixed": "#3f0016",
+                        "surface-bright": "#f9f9ff",
+                        "on-surface-variant": "#3e4a3d",
+                        "secondary": "#006a63",
+                        "on-primary-container": "#f7fff2",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary-container": "#006f67",
+                        "primary-container": "#00873a",
+                        "background": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "table-row-height": "44px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "form-gap": "20px",
+                        "compact-padding": "8px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "body-md": ["Inter"],
+                        "table-cell": ["Inter"],
+                        "page-title": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "section-title": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-screen py-container-margin px-compact-padding bg-surface border-r border-outline-variant fixed left-0 top-0 w-[260px] z-50">
+<div class="flex items-center gap-3 px-4 mb-8">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold">
+<span class="material-symbols-outlined">medication</span>
+</div>
+<div>
+<h1 class="font-page-title text-page-title text-primary">SPMS Admin</h1>
+<p class="font-caption text-caption text-on-surface-variant">Pharma Inventory</p>
+</div>
+</div>
+<div class="mb-6 px-2">
+<button class="w-full py-3 px-4 bg-primary text-on-primary rounded flex items-center justify-center gap-2 font-bold hover:bg-surface-tint transition-colors">
+<span class="material-symbols-outlined">add</span>
+                New Export
+            </button>
+</div>
+<ul class="flex flex-col gap-1 flex-1 overflow-y-auto">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-lowest transition-colors cursor-pointer active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded bg-surface-container-low text-primary border-l-4 border-primary font-bold cursor-pointer active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Export Vouchers</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-lowest transition-colors cursor-pointer active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">warehouse</span>
+<span class="font-body-md text-body-md">Inventory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-lowest transition-colors cursor-pointer active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container-lowest transition-colors cursor-pointer active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-0 md:ml-[260px] flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-container-margin h-16 bg-surface border-b border-outline-variant z-40 shrink-0">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex items-center gap-2 text-on-surface-variant font-caption text-caption">
+<span>Kho</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span>Xuất kho</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">Danh sách phiếu xuất</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none text-body-md font-body-md w-64" placeholder="Search..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto p-container-margin bg-surface-container-low">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- Page Header & Actions -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<div>
+<h2 class="font-section-title text-section-title text-on-background">Danh sách phiếu xuất</h2>
+<p class="font-caption text-caption text-on-surface-variant mt-1">Quản lý và theo dõi các phiếu xuất kho thuốc và vật tư y tế.</p>
+</div>
+<button class="py-2 px-4 bg-primary text-on-primary rounded flex items-center gap-2 font-body-md text-body-md hover:bg-surface-tint transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                        Tạo phiếu xuất
+                    </button>
+</div>
+<!-- Filters -->
+<div class="bg-surface p-4 rounded border border-outline-variant shadow-sm flex flex-wrap gap-4 items-end">
+<div class="flex-1 min-w-[200px]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Mã phiếu</label>
+<input class="w-full py-2 px-3 border border-outline-variant rounded bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none text-body-md font-body-md" placeholder="VD: PX-2023..." type="text"/>
+</div>
+<div class="flex-1 min-w-[150px]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Loại xuất</label>
+<select class="w-full py-2 px-3 border border-outline-variant rounded bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none text-body-md font-body-md">
+<option>Tất cả</option>
+<option>Xuất trả NCC</option>
+<option>Xuất hủy</option>
+<option>Điều chỉnh</option>
+</select>
+</div>
+<div class="flex-1 min-w-[150px]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Trạng thái</label>
+<select class="w-full py-2 px-3 border border-outline-variant rounded bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none text-body-md font-body-md">
+<option>Tất cả</option>
+<option>Nháp</option>
+<option>Chờ duyệt</option>
+<option>Đã duyệt</option>
+<option>Đã hủy</option>
+</select>
+</div>
+<div class="flex-1 min-w-[200px]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Khoảng thời gian</label>
+<div class="flex gap-2">
+<input class="w-full py-2 px-3 border border-outline-variant rounded bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none text-body-md font-body-md" type="date"/>
+<input class="w-full py-2 px-3 border border-outline-variant rounded bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none text-body-md font-body-md" type="date"/>
+</div>
+</div>
+<button class="py-2 px-4 border border-outline text-on-surface-variant rounded flex items-center gap-2 hover:bg-surface-container-low transition-colors h-[38px]">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                        Lọc
+                    </button>
+</div>
+<!-- Data Table -->
+<div class="bg-surface rounded border border-outline-variant shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase w-12">
+<input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/>
+</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Mã phiếu</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Ngày xuất</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Loại xuất</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Chi nhánh</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-right">Tổng MH</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-right">Tổng tiền</th>
+<th class="py-3 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Trạng thái</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant font-table-cell text-table-cell text-on-surface">
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer h-[44px]">
+<td class="py-2 px-4"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="py-2 px-4 font-medium">PX-2310-001</td>
+<td class="py-2 px-4 text-on-surface-variant">24/10/2023</td>
+<td class="py-2 px-4">Xuất trả NCC</td>
+<td class="py-2 px-4">CN Hồ Chí Minh</td>
+<td class="py-2 px-4 text-right">15</td>
+<td class="py-2 px-4 text-right font-medium">12,500,000 ₫</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-primary-container text-on-primary-container">Đã duyệt</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer h-[44px]">
+<td class="py-2 px-4"><input class="rounded border-outline-variant text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="py-2 px-4 font-medium">PX-2310-002</td>
+<td class="py-2 px-4 text-on-surface-variant">23/10/2023</td>
+<td class="py-2 px-4">Xuất hủy</td>
+<td class="py-2 px-4">CN Hà Nội</td>
+<td class="py-2 px-4 text-right">3</td>
+<td class="py-2 px-4 text-right font-medium">450,000 ₫</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-surface-variant text-on-surface-variant">Nháp</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

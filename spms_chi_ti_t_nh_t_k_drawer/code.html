@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS Audit Detail Drawer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#e5eeff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#bec6e0",
+                        "primary-fixed": "#dae2fd",
+                        "on-tertiary-fixed": "#191c1e",
+                        "surface-container-highest": "#d3e4fe",
+                        "secondary-fixed": "#cce5ff",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "surface-container-low": "#eff4ff",
+                        "surface": "#f8f9ff",
+                        "on-surface": "#0b1c30",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary-fixed": "#131b2e",
+                        "on-primary-container": "#7c839b",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-tint": "#565e74",
+                        "on-background": "#0b1c30",
+                        "outline-variant": "#c6c6cd",
+                        "on-surface-variant": "#45464d",
+                        "secondary-fixed-dim": "#93ccff",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#004b73",
+                        "background": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary": "#000000",
+                        "on-secondary-container": "#00476e",
+                        "on-secondary-fixed": "#001d31",
+                        "secondary-container": "#5bb8fe",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "on-tertiary-container": "#818486",
+                        "tertiary-container": "#191c1e",
+                        "primary": "#000000",
+                        "primary-container": "#131b2e",
+                        "on-primary": "#ffffff",
+                        "outline": "#76777d",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "secondary": "#006398",
+                        "diff-removed-bg": "#ffeced",
+                        "diff-removed-text": "#c41c1c",
+                        "diff-added-bg": "#edfcf2",
+                        "diff-added-text": "#16a34a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "row-height-dense": "32px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "row-height-standard": "48px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "data-mono": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "data-mono": ["12px", { "lineHeight": "16px", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface h-screen overflow-hidden flex relative font-body-md text-body-md">
+<!-- Mock Background Content (Audit Log List) -->
+<div class="flex-1 flex flex-col h-full opacity-30 pointer-events-none p-6">
+<div class="h-16 w-full mb-6 border-b border-outline-variant flex items-center justify-between">
+<div class="font-headline-md text-headline-md">Nhật ký kiểm toán</div>
+</div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-DEFAULT p-4">
+<div class="h-row-height-dense w-full bg-surface-container-low mb-2 rounded-DEFAULT"></div>
+<div class="h-row-height-dense w-full bg-surface-container-low mb-2 rounded-DEFAULT"></div>
+<div class="h-row-height-dense w-full bg-surface-container-low mb-2 rounded-DEFAULT"></div>
+</div>
+</div>
+<!-- Overlay Backdrop -->
+<div class="absolute inset-0 bg-on-surface/20 z-40 transition-opacity duration-300 backdrop-blur-[2px]"></div>
+<!-- Drawer Right Panel -->
+<div class="absolute top-0 right-0 h-full w-full max-w-[560px] bg-surface-container-lowest z-50 flex flex-col shadow-[0_8px_32px_rgba(0,0,0,0.08)] transform transition-transform duration-300 translate-x-0 border-l border-outline-variant">
+<!-- Header -->
+<div class="h-16 px-6 flex items-center justify-between border-b border-outline-variant bg-surface shrink-0">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface m-0">Chi tiết nhật ký</h2>
+<span class="font-data-mono text-data-mono text-on-surface-variant block mt-1">ID: LOG-102938</span>
+</div>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-6 space-y-8 bg-surface-bright">
+<!-- Section 1: Thông tin chung -->
+<section>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-4 border-b border-outline-variant pb-2">Thông tin chung</h3>
+<div class="grid grid-cols-2 gap-y-6 gap-x-4">
+<!-- Actor -->
+<div class="col-span-2 md:col-span-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant block mb-1">Actor</span>
+<div class="flex items-center gap-3 bg-surface p-2 rounded-DEFAULT border border-outline-variant/50">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A small, professional avatar portrait of a male healthcare logistics manager in his 30s. He has short dark hair, wearing a white clinical coat over a light blue collared shirt. Soft, neutral lighting, bright modern aesthetic, solid light gray background. High quality, realistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjK0uzqZlANEdlKTU4JflPOH69P_3pwwgEE_n-_S0IREZTmCAm_-NaJ3X6RYMyA0MjepE_RdUvL9M1IwRo1qPq5r9BKd66inzzSuDw5qBQZXKn5BLisIloL6XGz2av2Kpxpr_Hw7flgi99q_LduUhE89sg7IirZjb_RBbg4JaEpa-A7uwEock2g58DzG1_4w25w0TXo7uXRlWZnCyF-CV0SSVckb4373o2mhhtCavwY3ueiqWIYJzUEQ"/>
+<div>
+<div class="font-body-md text-body-md font-semibold text-on-surface">Nguyễn Văn An</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Quản lý kho</div>
+</div>
+</div>
+</div>
+<!-- Timestamp -->
+<div class="col-span-2 md:col-span-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant block mb-1">Thời gian (Timestamp)</span>
+<div class="flex items-center gap-2 h-12">
+<span class="material-symbols-outlined text-outline" style="font-size: 18px;">schedule</span>
+<span class="font-data-mono text-data-mono text-on-surface">2024-05-24 14:32:45.092</span>
+</div>
+</div>
+<!-- Branch -->
+<div class="col-span-2 md:col-span-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant block mb-1">Chi nhánh (Branch)</span>
+<div class="font-body-md text-body-md text-on-surface h-8 flex items-center">
+                            Nhà thuốc Trung tâm - Hà Nội
+                        </div>
+</div>
+<!-- IP & User Agent -->
+<div class="col-span-2 md:col-span-1">
+<span class="font-body-sm text-body-sm text-on-surface-variant block mb-1">Mạng &amp; Thiết bị</span>
+<div class="font-data-mono text-data-mono text-on-surface text-xs h-8 flex flex-col justify-center">
+<div>192.168.1.105</div>
+<div class="text-on-surface-variant truncate w-full" title="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36">Chrome 124.0.0 (Win64)</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Hành động -->
+<section>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-4 border-b border-outline-variant pb-2">Hành động</h3>
+<div class="flex flex-wrap gap-4">
+<div class="bg-surface border border-outline-variant rounded-DEFAULT px-4 py-3 flex-1 min-w-[140px]">
+<span class="font-body-sm text-body-sm text-on-surface-variant block mb-1">Module</span>
+<span class="font-data-mono text-data-mono font-bold text-on-surface">INVENTORY_CTRL</span>
+</div>
+<div class="bg-surface border border-outline-variant rounded-DEFAULT px-4 py-3 flex-1 min-w-[140px]">
+<span class="font-body-sm text-body-sm text-on-surface-variant block mb-1">Action</span>
+<span class="font-data-mono text-data-mono font-bold text-error">FEFO_OVERRIDE</span>
+</div>
+<div class="bg-surface border border-outline-variant rounded-DEFAULT px-4 py-3 flex-1 min-w-[140px]">
+<span class="font-body-sm text-body-sm text-on-surface-variant block mb-1">Record ID</span>
+<span class="font-data-mono text-data-mono text-secondary">LOT-99201-A</span>
+</div>
+</div>
+</section>
+<!-- Section 3: JSON Diff Visualization -->
+<section class="flex-1 flex flex-col min-h-[300px]">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-4 border-b border-outline-variant pb-2">Chi tiết thay đổi (JSON Diff)</h3>
+<div class="bg-[#1e1e1e] rounded-DEFAULT border border-outline overflow-hidden flex flex-col shadow-inner">
+<!-- Diff Header -->
+<div class="grid grid-cols-2 bg-[#2d2d2d] border-b border-[#404040]">
+<div class="py-2 px-4 border-r border-[#404040] font-label-caps text-label-caps text-on-surface-variant uppercase text-[#a0a0a0]">Dữ liệu trước (Before)</div>
+<div class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-[#a0a0a0]">Dữ liệu sau (After)</div>
+</div>
+<!-- Code View Side-by-Side -->
+<div class="flex-1 grid grid-cols-2 font-data-mono text-data-mono text-sm overflow-x-auto text-[#d4d4d4] leading-relaxed">
+<!-- LEFT SIDE (Before) -->
+<div class="p-4 border-r border-[#404040] whitespace-pre overflow-x-auto">
+<span class="text-[#9cdcfe]">"id"</span>: <span class="text-[#ce9178]">"LOT-99201-A"</span>,
+<span class="text-[#9cdcfe]">"product_code"</span>: <span class="text-[#ce9178]">"PRD-PARA-500"</span>,
+<span class="text-[#9cdcfe]">"quantity"</span>: <span class="text-[#b5cea8]">1250</span>,
+<div class="bg-[#4b1818] px-1 -mx-1"><span class="text-[#9cdcfe]">"status"</span>: <span class="text-[#ce9178]">"Active"</span>,</div><div class="bg-[#4b1818] px-1 -mx-1"><span class="text-[#9cdcfe]">"expiry_date"</span>: <span class="text-[#ce9178]">"2024-12-31"</span>,</div><span class="text-[#9cdcfe]">"location"</span>: <span class="text-[#ce9178]">"A1-Shelf-3"</span>,
+<span class="text-[#9cdcfe]">"last_verified_by"</span>: <span class="text-[#ce9178]">"SYS_AUTO"</span>
+</div>
+<!-- RIGHT SIDE (After) -->
+<div class="p-4 whitespace-pre overflow-x-auto">
+<span class="text-[#9cdcfe]">"id"</span>: <span class="text-[#ce9178]">"LOT-99201-A"</span>,
+<span class="text-[#9cdcfe]">"product_code"</span>: <span class="text-[#ce9178]">"PRD-PARA-500"</span>,
+<span class="text-[#9cdcfe]">"quantity"</span>: <span class="text-[#b5cea8]">1250</span>,
+<div class="bg-[#0f4a25] px-1 -mx-1"><span class="text-[#9cdcfe]">"status"</span>: <span class="text-[#ce9178]">"Locked"</span>,</div><div class="bg-[#0f4a25] px-1 -mx-1"><span class="text-[#9cdcfe]">"expiry_date"</span>: <span class="text-[#ce9178]">"2024-05-01"</span>,</div><span class="text-[#9cdcfe]">"location"</span>: <span class="text-[#ce9178]">"A1-Shelf-3"</span>,
+<div class="bg-[#0f4a25] px-1 -mx-1"><span class="text-[#9cdcfe]">"last_verified_by"</span>: <span class="text-[#ce9178]">"EMP-492"</span>,</div><div class="bg-[#0f4a25] px-1 -mx-1"><span class="text-[#9cdcfe]">"override_reason"</span>: <span class="text-[#ce9178]">"Damaged batch discovered during spot check."</span></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<div class="p-6 border-t border-outline-variant bg-surface flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm max-w-[280px]">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span>Nhật ký kiểm toán không thể chỉnh sửa hoặc xóa.</span>
+</div>
+<button class="h-10 px-6 bg-surface-container-lowest border border-outline text-on-surface font-body-md text-body-md font-medium rounded-DEFAULT hover:bg-surface-container-low transition-colors w-full sm:w-auto">
+                Đóng
+            </button>
+</div>
+</div>
+</body></html>

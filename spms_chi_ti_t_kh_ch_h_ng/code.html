@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Chi tiết Khách hàng</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e1e8fd",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "on-primary-container": "#f7fff2",
+                        "surface-container-highest": "#dce2f7",
+                        "inverse-surface": "#293040",
+                        "inverse-on-surface": "#edf0ff",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "secondary-fixed": "#9cf2e8",
+                        "tertiary-fixed": "#ffd9de",
+                        "tertiary-container": "#c74668",
+                        "inverse-primary": "#62df7d",
+                        "outline-variant": "#bdcaba",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#7ffc97",
+                        "on-surface": "#141b2b",
+                        "on-secondary-container": "#006f67",
+                        "surface-container-low": "#f1f3ff",
+                        "surface": "#f9f9ff",
+                        "surface-bright": "#f9f9ff",
+                        "secondary-container": "#99efe5",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#dce2f7",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "surface-dim": "#d3daef",
+                        "surface-tint": "#006e2d",
+                        "secondary": "#006a63",
+                        "primary-container": "#00873a",
+                        "on-primary-fixed": "#002109",
+                        "on-tertiary-fixed": "#3f0016",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary-fixed": "#00201d",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e9edff",
+                        "background": "#f9f9ff",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#a72d51",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "primary": "#006b2c",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-background": "#141b2b",
+                        "outline": "#6e7b6c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "form-gap": "20px",
+                        "table-row-height": "44px",
+                        "compact-padding": "8px",
+                        "gutter": "16px",
+                        "container-margin": "24px"
+                    },
+                    "fontFamily": {
+                        "caption": ["Inter"],
+                        "section-title": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "page-title": ["Inter"],
+                        "table-cell": ["Inter"]
+                    },
+                    "fontSize": {
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex overflow-hidden">
+<!-- SideNavBar Component -->
+<nav class="fixed left-0 top-0 h-full w-[260px] flex flex-col py-gutter bg-surface-container-low dark:bg-surface-dim border-r border-outline-variant dark:border-outline z-20 transition-transform duration-200 ease-in-out md:translate-x-0 -translate-x-full" id="sidenav">
+<div class="px-gutter mb-8 flex items-center gap-3">
+<img class="w-10 h-10 rounded-DEFAULT object-cover" data-alt="A minimalist and modern pharmacy logo icon, emphasizing clinical precision, clean lines, predominantly white and deep green colors, flat design suitable for an enterprise dashboard sidebar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwLck9vaj4z-xWkCC79lKhAK4tDKKK-mOMtzCv8cLXeFdFd9WYtWMxiIXvYZuPI5aiaaVPtudjYqsVFh58X5iyynUMN-fKd7A_AqlEUerqU54IlRUA96oxjm1Apb7YPKTb9HjpJLcpF7Wr5AYSwN2DLQSl97B44U474EHlHTIwH9PIA2N9OCulvz2dG7TkJOmvc8mb7aXNxTPkp8jHKSxMLE-VeCP5DjY2YcFqyhl4V6REBjY1yvx9EA"/>
+<div>
+<h1 class="font-section-title text-section-title font-semibold text-on-surface dark:text-inverse-on-surface">SPMS Admin</h1>
+<p class="font-caption text-caption text-on-surface-variant">Clinical Precision</p>
+</div>
+</div>
+<ul class="flex-1 flex flex-col gap-1 px-compact-padding overflow-y-auto">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT bg-secondary-container text-on-secondary-container border-l-4 border-primary font-semibold hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Customers</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-body-md text-body-md">Loyalty Tiers</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-body-md text-body-md">Medical Records</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+</li>
+</ul>
+<ul class="mt-auto px-compact-padding flex flex-col gap-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-DEFAULT text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-[260px] h-screen overflow-hidden">
+<!-- TopNavBar Component -->
+<header class="flex justify-between items-center w-full px-container-margin h-[64px] bg-surface dark:bg-inverse-surface docked full-width top-0 border-b border-outline-variant dark:border-outline z-10 shrink-0">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors" onclick="document.getElementById('sidenav').classList.toggle('-translate-x-full')">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="text-page-title font-page-title font-bold text-primary dark:text-primary-fixed">SPMS CRM</span>
+</div>
+<div class="flex items-center gap-2">
+<!-- Search bar on left logic omitted for brevity as not explicitly detailed in prompt but noted in JSON, focusing on core requirements -->
+<div class="hidden sm:flex items-center bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface placeholder:text-on-surface-variant w-48" placeholder="Tìm kiếm..." type="text"/>
+</div>
+<!-- Trailing Secondary Action -->
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-outline-variant hover:bg-surface-container-low transition-colors ml-4">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">location_on</span>
+<span class="font-body-md text-body-md text-on-surface">Branch Selector</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">arrow_drop_down</span>
+</button>
+<div class="flex items-center gap-1 ml-4 border-l border-outline-variant pl-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors relative cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">help</span>
+</button>
+<img class="w-8 h-8 rounded-full ml-2 object-cover border border-outline-variant cursor-pointer active:opacity-80" data-alt="A professional headshot of a pharmacist in a clinical setting, soft natural lighting, white lab coat, clean and modern aesthetic, circular crop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1CDuT6iFebadwJ-zlUwBxALO97-mvgkKmkROdmj9v6ICvDJzb42tPRBMh6ZCD-rs46-HQHNTTubhKpm3a1P-HRc9m45YJ6E7XkNx2-qgM8XXZg4pknUK4CgYCkUnBCj-fuUrzrX5B85RfVkuGgDMH1YymVG45zCgRpPs_VTTNHLqZkx92Q_R5YqK5BMtXLbUfrRL3K16zIN1n9z-QMj45FFX8M1nHA6POrZNxf_syO4WbVJpB2KuG9Q"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto bg-background p-container-margin">
+<!-- Breadcrumb -->
+<div class="flex items-center gap-2 text-on-surface-variant font-caption text-caption mb-4">
+<a class="hover:text-primary transition-colors" href="#">Khách hàng</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface">Chi tiết Khách hàng</span>
+</div>
+<!-- Customer Header Card -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 mb-container-margin flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 rounded-full bg-surface-container-highest flex items-center justify-center text-page-title font-page-title font-bold text-on-surface border border-outline-variant">
+                        NA
+                    </div>
+<div>
+<h2 class="font-page-title text-page-title text-on-surface flex items-center gap-3">
+                            Nguyễn Văn An
+                            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#fef08a] text-[#854d0e] font-label-caps text-label-caps border border-[#fde047]">
+<span class="material-symbols-outlined text-[14px] fill">stars</span>
+                                Hạng GOLD
+                            </span>
+</h2>
+<div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 mt-2 text-on-surface-variant font-body-md text-body-md">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">phone_iphone</span>
+                                0901 234 567
+                            </span>
+<span class="hidden sm:inline w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">account_balance_wallet</span>
+<strong>3,500 Điểm</strong> khả dụng
+                            </span>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded-lg bg-surface border border-outline-variant text-on-surface font-body-md text-body-md font-medium hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                        Chỉnh sửa
+                    </button>
+<button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-body-md text-body-md font-medium hover:bg-primary/90 transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                        Tạo đơn hàng
+                    </button>
+</div>
+</div>
+<!-- Tabs Navigation -->
+<div class="border-b border-outline-variant mb-6">
+<nav class="flex gap-8" id="customer-tabs">
+<button class="pb-3 font-body-md text-body-md font-semibold text-primary border-b-2 border-primary transition-colors flex items-center gap-2" onclick="switchTab(this, 'tab-profile')">
+<span class="material-symbols-outlined text-[18px]">person</span>
+                        Hồ sơ
+                    </button>
+<button class="pb-3 font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors flex items-center gap-2" onclick="switchTab(this, 'tab-loyalty')">
+<span class="material-symbols-outlined text-[18px]">loyalty</span>
+                        Loyalty
+                    </button>
+<button class="pb-3 font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors flex items-center gap-2" onclick="switchTab(this, 'tab-medical')">
+<span class="material-symbols-outlined text-[18px]">ecg</span>
+                        Hồ sơ y tế
+                        <span class="material-symbols-outlined text-[14px] text-error ml-1">lock</span>
+</button>
+<button class="pb-3 font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors flex items-center gap-2" onclick="switchTab(this, 'tab-history')">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                        Lịch sử
+                    </button>
+</nav>
+</div>
+<!-- Tab Content: Profile -->
+<div class="tab-content active" id="tab-profile">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-container-margin">
+<!-- Thông tin cá nhân -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6">
+<h3 class="font-section-title text-section-title text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">badge</span>
+                            Thông tin cá nhân
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-form-gap">
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Họ và tên</label>
+<p class="font-body-md text-body-md text-on-surface">Nguyễn Văn An</p>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Giới tính</label>
+<p class="font-body-md text-body-md text-on-surface">Nam</p>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Ngày sinh</label>
+<p class="font-body-md text-body-md text-on-surface">15/08/1985</p>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Số thẻ CCCD/CMND</label>
+<p class="font-body-md text-body-md text-on-surface">079085123456</p>
+</div>
+</div>
+</div>
+<!-- Thông tin liên hệ -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6">
+<h3 class="font-section-title text-section-title text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">contact_mail</span>
+                            Thông tin liên hệ
+                        </h3>
+<div class="grid grid-cols-1 gap-form-gap">
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Số điện thoại chính</label>
+<p class="font-body-md text-body-md text-on-surface font-medium">0901 234 567</p>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Email</label>
+<p class="font-body-md text-body-md text-on-surface">an.nguyen@example.com</p>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-caption text-caption text-on-surface-variant">Địa chỉ mặc định</label>
+<p class="font-body-md text-body-md text-on-surface">123 Đường Lê Lợi, Phường Bến Thành, Quận 1, TP. Hồ Chí Minh</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab Content: Loyalty -->
+<div class="tab-content" id="tab-loyalty">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-container-margin mb-container-margin">
+<!-- Point Balance Card -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-[48px] text-[#eab308] mb-4">stars</span>
+<h4 class="font-caption text-caption text-on-surface-variant mb-1">Điểm hiện tại</h4>
+<p class="text-[36px] leading-[44px] font-bold text-on-surface tracking-tight">3,500</p>
+<button class="mt-4 px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container font-body-md text-body-md font-medium hover:bg-secondary-fixed transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background flex items-center gap-2" onclick="document.getElementById('adjust-points-modal').classList.remove('hidden')">
+<span class="material-symbols-outlined text-[18px]">edit_square</span>
+                            Điều chỉnh điểm
+                        </button>
+</div>
+<!-- Tier Info Card -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 lg:col-span-2 flex flex-col justify-between">
+<div>
+<h3 class="font-section-title text-section-title text-on-surface mb-2">Hạng thành viên: <span class="text-[#854d0e]">GOLD</span></h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Duy trì hạng Gold đến: 31/12/2024</p>
+</div>
+<div class="mt-6">
+<div class="flex justify-between font-caption text-caption text-on-surface-variant mb-2">
+<span>3,500 điểm</span>
+<span>Cần 1,500 điểm để lên hạng PLATINUM</span>
+<span>5,000 điểm</span>
+</div>
+<div class="w-full bg-surface-container-high rounded-full h-2.5">
+<div class="bg-primary h-2.5 rounded-full" style="width: 70%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Point Ledger Table -->
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant bg-surface-container-lowest flex justify-between items-center">
+<h3 class="font-section-title text-section-title text-on-surface">Lịch sử tích/tiêu điểm</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant h-table-row-height">
+<th class="px-6 py-2 font-caption text-caption text-on-surface-variant whitespace-nowrap">Thời gian</th>
+<th class="px-6 py-2 font-caption text-caption text-on-surface-variant whitespace-nowrap">Giao dịch</th>
+<th class="px-6 py-2 font-caption text-caption text-on-surface-variant whitespace-nowrap text-right">+/- Điểm</th>
+<th class="px-6 py-2 font-caption text-caption text-on-surface-variant">Lý do</th>
+<th class="px-6 py-2 font-caption text-caption text-on-surface-variant whitespace-nowrap text-right">Số dư</th>
+</tr>
+</thead>
+<tbody class="font-table-cell text-table-cell text-on-surface">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors h-table-row-height">
+<td class="px-6 py-2 whitespace-nowrap text-on-surface-variant">10/10/2023 14:30</td>
+<td class="px-6 py-2 whitespace-nowrap"><a class="text-primary hover:underline" href="#">INV-2023-10-001</a></td>
+<td class="px-6 py-2 whitespace-nowrap text-right text-primary-container font-medium">+150</td>
+<td class="px-6 py-2">Mua hàng hóa đơn &gt; 1tr</td>
+<td class="px-6 py-2 whitespace-nowrap text-right font-medium">3,500</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors h-table-row-height">
+<td class="px-6 py-2 whitespace-nowrap text-on-surface-variant">05/09/2023 09:15</td>
+<td class="px-6 py-2 whitespace-nowrap"><a class="text-primary hover:underline" href="#">INV-2023-09-042</a></td>
+<td class="px-6 py-2 whitespace-nowrap text-right text-error font-medium">-500</td>
+<td class="px-6 py-2">Đổi voucher giảm giá 50k</td>
+<td class="px-6 py-2 whitespace-nowrap text-right font-medium">3,350</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors h-table-row-height">
+<td class="px-6 py-2 whitespace-nowrap text-on-surface-variant">01/08/2023 11:00</td>
+<td class="px-6 py-2 whitespace-nowrap text-on-surface-variant italic">Thủ công</td>
+<td class="px-6 py-2 whitespace-nowrap text-right text-primary-container font-medium">+200</td>
+<td class="px-6 py-2">Tặng điểm sinh nhật</td>
+<td class="px-6 py-2 whitespace-nowrap text-right font-medium">3,850</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Tab Content: Medical Profile -->
+<div class="tab-content" id="tab-medical">
+<!-- Sensitive Warning Banner -->
+<div class="bg-error-container border border-[#ffb4ab] rounded-xl p-4 mb-container-margin flex items-start gap-4">
+<span class="material-symbols-outlined text-on-error-container mt-0.5">warning</span>
+<div>
+<h4 class="font-section-title text-section-title text-on-error-container mb-1">Cảnh báo thông tin nhạy cảm</h4>
+<p class="font-body-md text-body-md text-on-error-container/80">Khu vực này chứa dữ liệu y tế cá nhân. Việc truy cập được ghi log và chỉ dành cho nhân sự có thẩm quyền theo quy định bảo mật.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-container-margin">
+<!-- Dị ứng -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-error"></div>
+<h3 class="font-section-title text-section-title text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-error">coronavirus</span>
+                            Dị ứng &amp; Tác dụng phụ
+                        </h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3 p-3 bg-surface-container-low rounded-lg border border-outline-variant border-dashed">
+<span class="material-symbols-outlined text-error text-[20px] mt-0.5">pill</span>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Penicillin</p>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5">Phát ban đỏ, mẩn ngứa (Ghi nhận: 2018)</p>
+</div>
+</li>
+<li class="flex items-start gap-3 p-3 bg-surface-container-low rounded-lg border border-outline-variant border-dashed">
+<span class="material-symbols-outlined text-error text-[20px] mt-0.5">set_meal</span>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Hải sản</p>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5">Dị ứng nhẹ, buồn nôn</p>
+</div>
+</li>
+</ul>
+<button class="mt-4 w-full py-2 border border-outline-variant rounded-lg text-primary font-body-md text-body-md font-medium hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span> Thêm ghi chú dị ứng
+                        </button>
+</div>
+<!-- Bệnh mạn tính -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary"></div>
+<h3 class="font-section-title text-section-title text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">monitor_heart</span>
+                            Bệnh mạn tính
+                        </h3>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container rounded-full font-body-md text-body-md flex items-center gap-1 border border-[#ffb3c6]">
+                                Tăng huyết áp
+                            </span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface rounded-full font-body-md text-body-md border border-outline-variant">
+                                Dạ dày (Viêm loét)
+                            </span>
+</div>
+<button class="w-full py-2 border border-outline-variant rounded-lg text-primary font-body-md text-body-md font-medium hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit</span> Cập nhật bệnh lý
+                        </button>
+</div>
+<!-- Lưu ý sử dụng thuốc -->
+<div class="bg-surface rounded-xl border border-outline-variant p-6 md:col-span-2">
+<h3 class="font-section-title text-section-title text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">prescriptions</span>
+                            Lưu ý sử dụng &amp; Chỉ định đặc biệt
+                        </h3>
+<div class="p-4 bg-surface-container-low rounded-lg border border-outline-variant">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+                                Khách hàng thường xuyên sử dụng các loại thuốc hạ huyết áp (nhóm ACE inhibitor). Cần thận trọng khi kê đơn các loại thuốc giảm đau NSAIDs do tiền sử viêm dạ dày. Ưu tiên tư vấn các sản phẩm hỗ trợ tiêu hóa khi sử dụng kháng sinh.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab Content: History -->
+<div class="tab-content" id="tab-history">
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant bg-surface-container-lowest flex justify-between items-center">
+<h3 class="font-section-title text-section-title text-on-surface">Lịch sử mua hàng gần đây</h3>
+<button class="text-primary font-body-md text-body-md hover:underline">Xem tất cả</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant h-table-row-height">
+<th class="px-6 py-2 font-caption text-caption text-on-surface-variant whitespace-nowrap">Mã đơn</th>
+<th class="px-6 py-2 font-caption text-caption text-on-surface-variant whitespace-nowrap">Ngày mua</th>
+<th class="px-6 py-2 font-caption text-caption text-on-surface-variant whitespace-nowrap">Chi nhánh</th>
+<th class="px-6 py-2 font-caption text-caption text-on-surface-variant whitespace-nowrap">Sản phẩm chính</th>
+<th class="px-6 py-2 font-caption text-caption text-on-surface-variant whitespace-nowrap text-right">Tổng tiền</th>
+</tr>
+</thead>
+<tbody class="font-table-cell text-table-cell text-on-surface">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-3 whitespace-nowrap"><a class="text-primary font-medium hover:underline" href="#">ORD-9921</a></td>
+<td class="px-6 py-3 whitespace-nowrap text-on-surface-variant">10/10/2023</td>
+<td class="px-6 py-3 text-on-surface-variant">CN Quận 1</td>
+<td class="px-6 py-3 truncate max-w-[200px]">Panadol Extra, Vitamin C 1000mg, Khẩu trang y tế</td>
+<td class="px-6 py-3 whitespace-nowrap text-right font-medium">350,000 ₫</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-3 whitespace-nowrap"><a class="text-primary font-medium hover:underline" href="#">ORD-8542</a></td>
+<td class="px-6 py-3 whitespace-nowrap text-on-surface-variant">15/09/2023</td>
+<td class="px-6 py-3 text-on-surface-variant">CN Quận 3</td>
+<td class="px-6 py-3 truncate max-w-[200px]">Thuốc nhỏ mắt V-Rohto, Bông tẩy trang</td>
+<td class="px-6 py-3 whitespace-nowrap text-right font-medium">125,000 ₫</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Modal: Adjust Points -->
+<div class="fixed inset-0 z-50 hidden" id="adjust-points-modal">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-on-surface/40 backdrop-blur-sm" onclick="document.getElementById('adjust-points-modal').classList.add('hidden')"></div>
+<!-- Modal Content -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-surface rounded-xl shadow-lg border border-outline-variant flex flex-col">
+<div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest rounded-t-xl">
+<h2 class="font-section-title text-section-title text-on-surface font-semibold">Điều chỉnh điểm</h2>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-1 rounded-full transition-colors" onclick="document.getElementById('adjust-points-modal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div>
+<label class="block font-caption text-caption text-on-surface-variant mb-1">Loại điều chỉnh</label>
+<div class="grid grid-cols-2 gap-2">
+<label class="flex items-center gap-2 p-3 border border-primary rounded-lg bg-primary-container/10 cursor-pointer">
+<input checked="" class="text-primary focus:ring-primary border-outline" name="adj_type" type="radio"/>
+<span class="font-body-md text-body-md text-on-surface font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[18px] text-primary">add_circle</span> Cộng điểm</span>
+</label>
+<label class="flex items-center gap-2 p-3 border border-outline-variant rounded-lg hover:bg-surface-container-low cursor-pointer">
+<input class="text-primary focus:ring-primary border-outline" name="adj_type" type="radio"/>
+<span class="font-body-md text-body-md text-on-surface font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[18px] text-error">remove_circle</span> Trừ điểm</span>
+</label>
+</div>
+</div>
+<div>
+<label class="block font-caption text-caption text-on-surface-variant mb-1">Số điểm</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Nhập số điểm..." type="number"/>
+</div>
+<div>
+<label class="block font-caption text-caption text-on-surface-variant mb-1">Lý do điều chỉnh</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none h-24" placeholder="Nhập lý do chi tiết..."></textarea>
+</div>
+</div>
+<div class="px-6 py-4 border-t border-outline-variant bg-surface-container-lowest rounded-b-xl flex justify-end gap-3">
+<button class="px-4 py-2 rounded-lg font-body-md text-body-md font-medium text-on-surface-variant hover:bg-surface-container-low transition-colors" onclick="document.getElementById('adjust-points-modal').classList.add('hidden')">Hủy</button>
+<button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-body-md text-body-md font-medium hover:bg-primary/90 transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2">Lưu thay đổi</button>
+</div>
+</div>
+</div>
+<script>
+        function switchTab(btn, tabId) {
+            // Reset buttons
+            const buttons = document.querySelectorAll('#customer-tabs button');
+            buttons.forEach(b => {
+                b.className = 'pb-3 font-body-md text-body-md text-on-surface-variant hover:text-on-surface border-b-2 border-transparent transition-colors flex items-center gap-2';
+            });
+            
+            // Set active button
+            btn.className = 'pb-3 font-body-md text-body-md font-semibold text-primary border-b-2 border-primary transition-colors flex items-center gap-2';
+
+            // Hide all content
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => c.classList.remove('active'));
+
+            // Show selected content
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</body></html>

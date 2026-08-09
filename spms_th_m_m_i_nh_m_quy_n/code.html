@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Thêm mới nhóm quyền</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#006a63",
+                      "inverse-surface": "#293040",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#00504a",
+                      "surface-container": "#e9edff",
+                      "surface-container-high": "#e1e8fd",
+                      "on-tertiary-fixed": "#3f0016",
+                      "surface": "#f9f9ff",
+                      "secondary-fixed-dim": "#80d5cb",
+                      "primary-fixed": "#7ffc97",
+                      "surface-bright": "#f9f9ff",
+                      "background": "#f9f9ff",
+                      "surface-container-low": "#f1f3ff",
+                      "on-tertiary-fixed-variant": "#8a143c",
+                      "outline-variant": "#bdcaba",
+                      "on-secondary-container": "#006f67",
+                      "secondary-container": "#99efe5",
+                      "primary-fixed-dim": "#62df7d",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#6e7b6c",
+                      "on-primary-fixed-variant": "#005320",
+                      "primary": "#006b2c",
+                      "tertiary-container": "#c74668",
+                      "tertiary": "#a72d51",
+                      "surface-container-highest": "#dce2f7",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#ffd9de",
+                      "surface-tint": "#006e2d",
+                      "on-primary-fixed": "#002109",
+                      "error-container": "#ffdad6",
+                      "surface-variant": "#dce2f7",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#141b2b",
+                      "on-surface": "#141b2b",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#ffb2bf",
+                      "surface-dim": "#d3daef",
+                      "secondary-fixed": "#9cf2e8",
+                      "on-error-container": "#93000a",
+                      "on-surface-variant": "#3e4a3d",
+                      "on-tertiary-container": "#fffbff",
+                      "on-primary-container": "#f7fff2",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed": "#00201d",
+                      "inverse-primary": "#62df7d",
+                      "primary-container": "#00873a",
+                      "inverse-on-surface": "#edf0ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "table-row-height": "44px",
+                      "compact-padding": "8px",
+                      "container-margin": "24px",
+                      "gutter": "16px",
+                      "form-gap": "20px"
+              },
+              "fontFamily": {
+                      "table-cell": [
+                              "Inter"
+                      ],
+                      "section-title": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "page-title": [
+                              "Inter"
+                      ],
+                      "caption": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "table-cell": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "section-title": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "12px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "page-title": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row overflow-x-hidden font-body-md text-body-md">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center w-full px-container-margin h-table-row-height bg-surface-lowest text-primary border-b border-outline-variant fixed top-0 left-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined cursor-pointer" onclick="document.getElementById('mobile-drawer').classList.toggle('-translate-x-full')">menu</span>
+<span class="text-page-title font-page-title font-bold text-primary">SPMS</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-container-low transition-colors rounded-full p-1" data-icon="search">search</span>
+<span class="material-symbols-outlined cursor-pointer hover:bg-surface-container-low transition-colors rounded-full p-1" data-icon="notifications">notifications</span>
+<img alt="Administrator Avatar" class="w-8 h-8 rounded-full object-cover border border-outline-variant cursor-pointer" data-alt="A small, professional headshot of an administrator in a clinical setting, soft lighting, neutral background, high-key white-label aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkwyNEOvIhg8wUuR_Wd27r4wMj0YocLuQFfJqmLIospO_pmXuVu2j99llqS66MZmuJNo1F6UqfRaZWsNx948j9YpthGC4CXTLAJenQTovHr-gza-q3c_xsW--V9T90FBezlOGoO_zWKYOTU3ob07pXFUAYyGvQovRd2HrkaMvtdp_Ph8ujwvE2WQjVc6U28ZD2_0-ymlxonk9R7NEIG7RhQK91JlXvW7Vng_dok2syp6RwAtaLnpAj3Q"/>
+</div>
+</header>
+<!-- SideNavBar (Desktop & Mobile Drawer) -->
+<nav class="fixed inset-y-0 left-0 z-40 w-[260px] transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out flex flex-col h-screen py-gutter bg-surface-container-low border-r border-outline-variant text-primary pt-16 md:pt-4" id="mobile-drawer">
+<div class="px-container-margin mb-6 hidden md:block">
+<span class="text-section-title font-section-title font-bold text-primary">SPMS</span>
+<div class="text-caption font-caption text-on-surface-variant mt-1">Enterprise Management</div>
+</div>
+<div class="flex-1 overflow-y-auto w-full">
+<div class="flex flex-col gap-1 w-full">
+<!-- Dashboard -->
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high transition-all cursor-pointer w-full" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-body-md font-body-md">Dashboard</span>
+</a>
+<!-- Inventory -->
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high transition-all cursor-pointer w-full" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="text-body-md font-body-md">Inventory</span>
+</a>
+<!-- Drug Master -->
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high transition-all cursor-pointer w-full" href="#">
+<span class="material-symbols-outlined" data-icon="medication">medication</span>
+<span class="text-body-md font-body-md">Drug Master</span>
+</a>
+<!-- Finance -->
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high transition-all cursor-pointer w-full" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-body-md font-body-md">Finance</span>
+</a>
+<!-- System Settings (Active via Semantic mapping from user intent) -->
+<a class="bg-secondary-container text-on-secondary-container border-l-4 border-primary px-4 py-3 flex items-center gap-3 transition-all cursor-pointer w-full" href="#">
+<span class="material-symbols-outlined icon-filled" data-icon="settings">settings</span>
+<span class="text-body-md font-body-md font-medium">Hệ thống</span>
+</a>
+<!-- Audit -->
+<a class="text-on-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high transition-all cursor-pointer w-full" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-body-md font-body-md">Audit</span>
+</a>
+</div>
+</div>
+<div class="mt-auto flex flex-col gap-1 w-full border-t border-outline-variant pt-2 px-2">
+<button class="w-full bg-primary text-on-primary py-2 px-4 rounded font-body-md text-body-md hover:bg-primary-container transition-colors mb-4 mx-2 text-left flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> Add New Entry
+            </button>
+<a class="text-on-surface-variant px-4 py-2 flex items-center gap-3 hover:bg-surface-container-high transition-all cursor-pointer w-full text-sm" href="#">
+<span class="material-symbols-outlined text-base" data-icon="help">help</span>
+<span class="text-caption font-caption">Support</span>
+</a>
+<a class="text-on-surface-variant px-4 py-2 flex items-center gap-3 hover:bg-surface-container-high transition-all cursor-pointer w-full text-sm" href="#">
+<span class="material-symbols-outlined text-base" data-icon="logout">logout</span>
+<span class="text-caption font-caption">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[260px] flex flex-col min-h-screen pt-14 md:pt-0">
+<!-- Top App Bar (Desktop Only) -->
+<header class="hidden md:flex justify-between items-center w-full px-container-margin h-table-row-height bg-surface-lowest text-primary border-b border-outline-variant sticky top-0 z-30">
+<div class="flex items-center gap-4 flex-1">
+<!-- Search bar injected as per standard layout -->
+<div class="relative max-w-md w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full pl-9 pr-4 py-1 text-table-cell font-table-cell text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-auto">
+<span class="material-symbols-outlined cursor-pointer text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full p-1" data-icon="location_on">location_on</span>
+<span class="material-symbols-outlined cursor-pointer text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full p-1" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer text-on-surface-variant hover:bg-surface-container-low transition-colors rounded-full p-1" data-icon="settings">settings</span>
+<div class="flex items-center gap-2 cursor-pointer ml-2 border-l border-outline-variant pl-4">
+<img alt="Administrator Avatar" class="w-7 h-7 rounded-full object-cover border border-outline-variant" data-alt="A small, professional headshot of an administrator in a clinical setting, soft lighting, neutral background, high-key white-label aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEvyxd4Nyfd75nMgHjii6C-RUR2BdZeOwyObKH15aDjRdvXMye0HZHSpjZXuobsdTbg4FqoVJRDuNZOqe-VvWDHhYi5_T5s-DYD1nnfShlAa-KGtwlIIpQcwXKwSwz1A3V8uMsch7CucOSFscQhNl-jQ8hA7ds12nDwr54kJwvRbo9yVwOwp4FXdJzaGuW9ll8-5ead2dl1mRj740MO1ykUqbzLhcps1c10RiQlI1nRzahv2rITwPfJw"/>
+<span class="text-label-caps font-label-caps text-on-surface hidden lg:block">User Profile</span>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-container-margin max-w-5xl mx-auto w-full">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="flex text-caption font-caption text-on-surface-variant mb-4">
+<ol class="inline-flex items-center space-x-1 md:space-x-3">
+<li class="inline-flex items-center">
+<a class="hover:text-primary transition-colors flex items-center" href="#">
+                            Hệ thống
+                        </a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-sm mx-1">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Nhóm quyền</a>
+</div>
+</li>
+<li aria-current="page">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-sm mx-1">chevron_right</span>
+<span class="text-on-surface font-medium">Thêm mới</span>
+</div>
+</li>
+</ol>
+</nav>
+<!-- Header -->
+<div class="flex items-center justify-between mb-6 pb-4 border-b border-outline-variant">
+<h1 class="text-page-title font-page-title text-on-background">Thêm mới nhóm quyền</h1>
+</div>
+<!-- Form Card -->
+<div class="bg-surface rounded-lg border border-outline-variant p-6 shadow-sm">
+<form class="grid grid-cols-1 md:grid-cols-2 gap-form-gap">
+<!-- Column 1 -->
+<div class="space-y-4">
+<!-- Mã nhóm quyền -->
+<div class="flex flex-col">
+<label class="text-label-caps font-label-caps text-on-surface-variant mb-1" for="role-code">Mã nhóm quyền <span class="text-error">*</span></label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded p-2 text-table-cell font-table-cell text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-lowest transition-all" id="role-code" name="role-code" placeholder="Nhập mã nhóm quyền" required="" type="text"/>
+<p class="text-[10px] text-on-surface-variant mt-1">Để trống hệ thống sẽ tự sinh</p>
+</div>
+<!-- Tên nhóm quyền -->
+<div class="flex flex-col">
+<label class="text-label-caps font-label-caps text-on-surface-variant mb-1" for="role-name">Tên nhóm quyền <span class="text-error">*</span></label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded p-2 text-table-cell font-table-cell text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-lowest transition-all" id="role-name" name="role-name" placeholder="Nhập tên nhóm quyền" required="" type="text"/>
+</div>
+</div>
+<!-- Column 2 -->
+<div class="space-y-4">
+<!-- Trạng thái (Toggle) -->
+<div class="flex flex-col h-[70px] justify-center">
+<label class="text-label-caps font-label-caps text-on-surface-variant mb-2">Trạng thái</label>
+<label class="inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="relative w-11 h-6 bg-surface-variant rounded-full peer peer-focus:ring-2 peer-focus:ring-primary peer-focus:ring-offset-2 peer-focus:ring-offset-surface-container-lowest peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-outline-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+<span class="ms-3 text-body-md font-body-md text-on-surface">Đang hoạt động</span>
+</label>
+</div>
+<!-- Mô tả -->
+<div class="flex flex-col">
+<label class="text-label-caps font-label-caps text-on-surface-variant mb-1" for="description">Mô tả</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded p-2 text-table-cell font-table-cell text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface-container-lowest transition-all resize-none" id="description" name="description" placeholder="Nhập mô tả" rows="3"></textarea>
+</div>
+</div>
+</form>
+</div>
+<!-- Action Buttons Footer -->
+<div class="flex items-center justify-end gap-3 mt-6 pt-4 border-t border-outline-variant">
+<button class="px-6 py-2 border border-outline text-on-surface font-body-md text-body-md rounded hover:bg-surface-container-high transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background" type="button">
+                    Hủy
+                </button>
+<button class="px-6 py-2 bg-primary text-on-primary font-body-md text-body-md rounded hover:bg-primary-container transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background flex items-center gap-2 shadow-sm" type="button">
+<span class="material-symbols-outlined text-sm">save</span>
+                    Lưu thông tin
+                </button>
+</div>
+</div>
+</main>
+<script>
+        // Overlay for mobile drawer
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.createElement('div');
+            overlay.className = 'fixed inset-0 bg-on-background/50 z-30 hidden md:hidden transition-opacity';
+            overlay.id = 'drawer-overlay';
+            document.body.appendChild(overlay);
+
+            const drawer = document.getElementById('mobile-drawer');
+            const toggleBtns = document.querySelectorAll('[onclick*="mobile-drawer"]');
+
+            const toggleDrawer = () => {
+                const isOpen = !drawer.classList.contains('-translate-x-full');
+                if (isOpen) {
+                    overlay.classList.add('hidden');
+                } else {
+                    overlay.classList.remove('hidden');
+                }
+            };
+
+            toggleBtns.forEach(btn => {
+                btn.addEventListener('click', toggleDrawer);
+            });
+
+            overlay.addEventListener('click', () => {
+                drawer.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            });
+        });
+    </script>
+</body></html>

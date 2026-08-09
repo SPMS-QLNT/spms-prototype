@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PharmaCore - Edit Price List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#d3daef",
+                        "primary-container": "#00873a",
+                        "surface-variant": "#dce2f7",
+                        "error-container": "#ffdad6",
+                        "primary": "#006b2c",
+                        "on-primary-container": "#f7fff2",
+                        "tertiary-container": "#c74668",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "on-tertiary-fixed": "#3f0016",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "surface-tint": "#006e2d",
+                        "inverse-primary": "#62df7d",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#dce2f7",
+                        "tertiary": "#a72d51",
+                        "surface": "#f9f9ff",
+                        "secondary-container": "#99efe5",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#edf0ff",
+                        "secondary": "#006a63",
+                        "outline": "#6e7b6c",
+                        "on-secondary-fixed": "#00201d",
+                        "on-secondary": "#ffffff",
+                        "surface-container": "#e9edff",
+                        "tertiary-fixed": "#ffd9de",
+                        "background": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#7ffc97",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#006f67",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f1f3ff",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-primary-fixed": "#002109",
+                        "outline-variant": "#bdcaba",
+                        "surface-bright": "#f9f9ff",
+                        "on-background": "#141b2b",
+                        "on-surface": "#141b2b",
+                        "surface-container-high": "#e1e8fd",
+                        "inverse-surface": "#293040",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-tertiary-container": "#fffbff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "form-gap": "20px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "compact-padding": "8px",
+                        "table-row-height": "44px"
+                    },
+                    fontFamily: {
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "section-title": ["Inter"],
+                        "table-cell": ["Inter"],
+                        "caption": ["Inter"],
+                        "page-title": ["Inter"]
+                    },
+                    fontSize: {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md text-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="w-[260px] h-screen fixed left-0 top-0 bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col h-full py-container-margin z-40 hidden md:flex transition-all duration-200 ease-in-out">
+<div class="px-container-margin mb-8 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined fill">local_pharmacy</span>
+</div>
+<div>
+<h1 class="font-section-title text-section-title text-primary">PharmaCore</h1>
+<p class="font-caption text-caption text-on-surface-variant">V2.4.0</p>
+</div>
+</div>
+<ul class="flex-1 px-3 space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Inventory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-secondary-fixed border-l-4 border-primary transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-medium">Price Lists</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">medical_services</span>
+<span>Medication Costs</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span>Orders</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Reports</span>
+</a>
+</li>
+</ul>
+<div class="px-3 mt-auto pt-4 border-t border-outline-variant dark:border-outline">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-0 md:ml-[260px] flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="w-full h-16 bg-surface dark:bg-surface-container border-b border-outline-variant dark:border-outline flex justify-between items-center px-gutter sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface-variant p-2 -ml-2 rounded-full hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-page-title text-page-title text-primary dark:text-primary-fixed-dim md:hidden">PharmaCore Enterprise</div>
+<!-- Search -->
+<div class="hidden md:flex items-center bg-surface-container-high rounded-full px-4 py-1.5 w-[320px] border border-outline-variant focus-within:border-primary focus-within:ring-2 focus-within:ring-primary focus-within:ring-opacity-20 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]">search</span>
+<input class="bg-transparent border-none outline-none w-full text-body-md text-on-surface placeholder:text-on-surface-variant/70 focus:ring-0" placeholder="Search medicines, lists..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant text-caption font-caption text-on-surface">
+<span class="material-symbols-outlined text-[18px]">location_city</span>
+<span>Branch: Central Hospital</span>
+<span class="material-symbols-outlined text-[18px] ml-1 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-full hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors text-on-surface-variant cursor-pointer active:opacity-80 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors text-on-surface-variant cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden border border-outline-variant ml-2 flex-shrink-0 cursor-pointer">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate pharmacy administrator in a brightly lit modern office setting, wearing smart business attire, looking approachable yet authoritative, with a clean clinical background, emphasizing modern corporate professionalism and bright light-mode aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjiUTtUIsmpm0Q0frjTIUnNElMmqnoBXwjHN7lbjX2MqmNWZs2BALbbEi3tWHaCFuF5BaT2r2u7fEA4sQaCfI85wEMqU27N0_lNszbadOR_Jnu6bKw83dIuxRDiwDu9dFqk01Sp-RS58ohTEqtwyZZmkkT30r5Zv2_QjZoDMr7cpXrZ8kBLd_nIPw3OorTEvdBjwi5QjYAkSPk3KBiuuml_WrLedOfTpSE86M9U391tCaV71UH3wC-Cg"/>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto bg-background p-container-margin">
+<div class="max-w-5xl mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<div class="flex items-center gap-2 text-on-surface-variant font-caption text-caption mb-1">
+<span>Price Lists</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-medium">Create New List</span>
+</div>
+<h2 class="font-page-title text-page-title text-on-surface">Create Price List</h2>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 rounded border border-outline-variant text-on-surface font-caption text-caption hover:bg-surface-container-low transition-colors">Hủy</button>
+<button class="px-4 py-2 rounded bg-primary text-on-primary font-caption text-caption font-medium hover:bg-surface-tint transition-colors shadow-sm">Lưu nháp</button>
+</div>
+</div>
+<!-- Stepper -->
+<div class="mb-8 w-full">
+<div class="flex items-center justify-between relative">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-0.5 bg-surface-variant -z-10"></div>
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-3/4 h-0.5 bg-primary -z-10"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center border-2 border-surface">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<span class="font-caption text-caption text-on-surface font-medium whitespace-nowrap">1. Thông tin</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center border-2 border-surface">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<span class="font-caption text-caption text-on-surface font-medium whitespace-nowrap">2. Danh sách giá</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center border-2 border-surface">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<span class="font-caption text-caption text-on-surface font-medium whitespace-nowrap">3. Phạm vi</span>
+</div>
+<!-- Step 4 (Current) -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest text-primary flex items-center justify-center border-2 border-primary shadow-sm ring-2 ring-primary/20 ring-offset-2 ring-offset-background">
+<span class="font-medium text-[14px]">4</span>
+</div>
+<span class="font-caption text-caption text-primary font-bold whitespace-nowrap">4. Làm tròn giá</span>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-col items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-lowest text-on-surface-variant flex items-center justify-center border-2 border-outline-variant">
+<span class="font-medium text-[14px]">5</span>
+</div>
+<span class="font-caption text-caption text-on-surface-variant whitespace-nowrap">5. Kiểm tra</span>
+</div>
+</div>
+</div>
+<!-- Form Content (Step 4 Focus) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden mb-6">
+<div class="p-6 border-b border-outline-variant bg-surface-container-lowest/50">
+<h3 class="font-section-title text-section-title text-on-surface">Quy tắc làm tròn giá</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Cấu hình cách hệ thống tự động làm tròn giá bán sau khi áp dụng các công thức tính toán hoặc thuế.</p>
+</div>
+<div class="p-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Configuration Panel -->
+<div class="lg:col-span-2 space-y-8">
+<!-- Rule Options -->
+<div class="space-y-4">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block">Phương pháp làm tròn</label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Option 1 -->
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="rounding_rule" type="radio" value="none"/>
+<div class="p-4 rounded-lg border border-outline-variant bg-surface-container-lowest peer-checked:border-primary peer-checked:bg-primary-container/10 peer-checked:ring-1 peer-checked:ring-primary transition-all text-center h-full flex flex-col justify-center items-center gap-2 hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary">block</span>
+<span class="font-caption text-caption text-on-surface font-medium">Không làm tròn (NONE)</span>
+</div>
+</label>
+<!-- Option 2 (Selected) -->
+<label class="relative cursor-pointer group">
+<input checked="" class="peer sr-only" name="rounding_rule" type="radio" value="nearest"/>
+<div class="p-4 rounded-lg border border-primary bg-primary-container/10 ring-1 ring-primary transition-all text-center h-full flex flex-col justify-center items-center gap-2">
+<span class="material-symbols-outlined text-primary">hdr_strong</span>
+<span class="font-caption text-caption text-primary font-medium">Gần nhất (NEAREST)</span>
+</div>
+</label>
+<!-- Option 3 -->
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="rounding_rule" type="radio" value="up"/>
+<div class="p-4 rounded-lg border border-outline-variant bg-surface-container-lowest peer-checked:border-primary peer-checked:bg-primary-container/10 peer-checked:ring-1 peer-checked:ring-primary transition-all text-center h-full flex flex-col justify-center items-center gap-2 hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary">north</span>
+<span class="font-caption text-caption text-on-surface font-medium">Làm tròn lên (UP)</span>
+</div>
+</label>
+<!-- Option 4 -->
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="rounding_rule" type="radio" value="down"/>
+<div class="p-4 rounded-lg border border-outline-variant bg-surface-container-lowest peer-checked:border-primary peer-checked:bg-primary-container/10 peer-checked:ring-1 peer-checked:ring-primary transition-all text-center h-full flex flex-col justify-center items-center gap-2 hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-on-surface-variant peer-checked:text-primary">south</span>
+<span class="font-caption text-caption text-on-surface font-medium">Làm tròn xuống (DOWN)</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Step Values -->
+<div class="space-y-4">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider block">Bước làm tròn (VND)</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<label class="cursor-pointer">
+<input class="peer sr-only" name="rounding_step" type="radio" value="100"/>
+<div class="py-2.5 px-4 text-center rounded border border-outline-variant font-caption text-caption font-medium text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition-colors hover:bg-surface-container-low peer-checked:hover:bg-surface-tint">
+                                            100 ₫
+                                        </div>
+</label>
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="rounding_step" type="radio" value="500"/>
+<div class="py-2.5 px-4 text-center rounded border border-primary bg-primary text-on-primary font-caption text-caption font-medium transition-colors hover:bg-surface-tint shadow-sm">
+                                            500 ₫
+                                        </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="rounding_step" type="radio" value="1000"/>
+<div class="py-2.5 px-4 text-center rounded border border-outline-variant font-caption text-caption font-medium text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition-colors hover:bg-surface-container-low peer-checked:hover:bg-surface-tint">
+                                            1,000 ₫
+                                        </div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="rounding_step" type="radio" value="5000"/>
+<div class="py-2.5 px-4 text-center rounded border border-outline-variant font-caption text-caption font-medium text-on-surface peer-checked:bg-primary peer-checked:text-on-primary peer-checked:border-primary transition-colors hover:bg-surface-container-low peer-checked:hover:bg-surface-tint">
+                                            5,000 ₫
+                                        </div>
+</label>
+</div>
+</div>
+</div>
+<!-- Preview Section (Glassmorphism inspired) -->
+<div class="lg:col-span-1">
+<div class="bg-gradient-to-br from-surface-container-low to-surface-container rounded-xl border border-outline-variant/50 p-5 h-full relative overflow-hidden shadow-inner">
+<!-- Abstract decorative element -->
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/5 rounded-full blur-xl"></div>
+<div class="absolute -left-6 -bottom-6 w-32 h-32 bg-secondary/5 rounded-full blur-xl"></div>
+<h4 class="font-caption text-caption text-on-surface-variant font-semibold mb-4 uppercase tracking-wider relative z-10 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                                    Preview
+                                </h4>
+<div class="space-y-4 relative z-10">
+<div class="bg-surface-container-lowest/80 backdrop-blur-sm rounded-lg p-3 border border-outline-variant/50">
+<span class="block font-caption text-caption text-on-surface-variant mb-1">Giá gốc (Tính toán)</span>
+<span class="block font-body-md text-body-md font-mono text-on-surface line-through decoration-error/50">52,430 ₫</span>
+</div>
+<div class="flex justify-center text-primary">
+<span class="material-symbols-outlined">arrow_downward</span>
+</div>
+<div class="bg-primary/10 rounded-lg p-3 border border-primary/20 text-center">
+<span class="block font-caption text-caption text-primary font-medium">Quy tắc: UP / 500</span>
+</div>
+<div class="flex justify-center text-primary">
+<span class="material-symbols-outlined">arrow_downward</span>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-4 border-2 border-primary shadow-sm flex flex-col items-center justify-center">
+<span class="block font-caption text-caption text-on-surface-variant mb-1">Giá bán chính thức</span>
+<span class="block font-section-title text-section-title text-primary font-bold tracking-tight">52,500 ₫</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex justify-between items-center mt-8 border-t border-outline-variant pt-6">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-outline text-on-surface font-caption text-caption font-medium hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                        Quay lại Bước 3
+                    </button>
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary text-on-primary font-caption text-caption font-medium hover:bg-surface-tint transition-colors shadow-sm ring-2 ring-transparent focus:ring-primary/50">
+                        Tiếp theo: Kiểm tra
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FEFO Allocation Preview - SPMS</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#dce2f7",
+                    "secondary": "#006a63",
+                    "tertiary-fixed-dim": "#ffb2bf",
+                    "surface-tint": "#006e2d",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#f7fff2",
+                    "on-tertiary-fixed": "#3f0016",
+                    "on-error-container": "#93000a",
+                    "background": "#f9f9ff",
+                    "on-tertiary-container": "#fffbff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#002109",
+                    "surface-dim": "#d3daef",
+                    "outline-variant": "#bdcaba",
+                    "surface-container-high": "#e1e8fd",
+                    "inverse-surface": "#293040",
+                    "secondary-container": "#99efe5",
+                    "inverse-on-surface": "#edf0ff",
+                    "surface-variant": "#dce2f7",
+                    "tertiary-fixed": "#ffd9de",
+                    "surface": "#f9f9ff",
+                    "on-primary-fixed-variant": "#005320",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#00873a",
+                    "on-secondary-container": "#006f67",
+                    "outline": "#6e7b6c",
+                    "secondary-fixed-dim": "#80d5cb",
+                    "on-secondary-fixed": "#00201d",
+                    "inverse-primary": "#62df7d",
+                    "on-secondary-fixed-variant": "#00504a",
+                    "on-tertiary-fixed-variant": "#8a143c",
+                    "on-background": "#141b2b",
+                    "on-surface-variant": "#3e4a3d",
+                    "on-surface": "#141b2b",
+                    "primary-fixed": "#7ffc97",
+                    "tertiary-container": "#c74668",
+                    "primary": "#006b2c",
+                    "primary-fixed-dim": "#62df7d",
+                    "secondary-fixed": "#9cf2e8",
+                    "surface-container": "#e9edff",
+                    "tertiary": "#a72d51",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f1f3ff",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f9f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "compact-padding": "8px",
+                    "form-gap": "20px",
+                    "table-row-height": "44px",
+                    "container-margin": "24px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "caption": ["Inter"],
+                    "page-title": ["Inter"],
+                    "table-cell": ["Inter"],
+                    "body-md": ["Inter"],
+                    "section-title": ["Inter"],
+                    "label-caps": ["Inter"]
+            },
+            "fontSize": {
+                    "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "page-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "table-cell": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "section-title": ["18px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-caps": ["11px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+          font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="flex h-screen w-full bg-background font-body-md text-on-surface overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<!-- Applying style_component_shape, style_bg_color, style_shell_layout, style_interactions -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-surface-container-low flex flex-col h-full border-r border-outline-variant transition-all duration-200 ease-in-out z-20 hidden md:flex">
+<!-- Header area -->
+<div class="flex items-center gap-3 px-6 py-5 border-b border-outline-variant">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary text-sm" data-icon="local_hospital">local_hospital</span>
+</div>
+<div class="flex flex-col">
+<!-- Applying style_brand_logo -->
+<span class="font-page-title text-page-title text-primary tracking-tight leading-none truncate">Pharmacy MS</span>
+<span class="font-caption text-caption text-on-surface-variant mt-1">FEFO Engine Active</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto py-4 flex flex-col gap-1 px-3">
+<!-- 0: Tổng quan -->
+<a class="text-on-surface-variant flex items-center gap-compact-padding py-3 px-4 rounded-lg hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Tổng quan</span>
+</a>
+<!-- 1: Danh sách tồn kho -->
+<a class="text-on-surface-variant flex items-center gap-compact-padding py-3 px-4 rounded-lg hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Danh sách tồn kho</span>
+</a>
+<!-- 2: Quản lý lô (ACTIVE MATCH based on FEFO preview context) -->
+<!-- Applying style_active_navigation -->
+<a class="bg-secondary-container text-on-secondary-container border-l-4 border-primary font-bold flex items-center gap-compact-padding py-3 px-4 rounded-r-lg" href="#">
+<span class="material-symbols-outlined" data-icon="layers" data-weight="fill">layers</span>
+<span class="font-body-md text-body-md">Quản lý lô</span>
+</a>
+<!-- 3: Thiết lập FEFO -->
+<a class="text-on-surface-variant flex items-center gap-compact-padding py-3 px-4 rounded-lg hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="low_priority">low_priority</span>
+<span class="font-body-md text-body-md">Thiết lập FEFO</span>
+</a>
+<!-- 4: Báo cáo -->
+<a class="text-on-surface-variant flex items-center gap-compact-padding py-3 px-4 rounded-lg hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-body-md text-body-md">Báo cáo</span>
+</a>
+</nav>
+<!-- CTA Widget -->
+<div class="px-6 py-4 mx-3 mb-2 bg-error-container/30 rounded-xl border border-error-container/50">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined text-sm" data-icon="warning">warning</span>
+<span class="font-caption text-caption font-semibold">Cảnh báo hết hạn</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mt-1">Hết hạn: 12 Lô</p>
+</div>
+<!-- Footer Tab -->
+<div class="p-3 border-t border-outline-variant">
+<a class="text-on-surface-variant flex items-center gap-compact-padding py-3 px-4 rounded-lg hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-body-md">Hỗ trợ</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="flex-1 flex flex-col md:ml-[260px] h-screen overflow-hidden bg-background">
+<!-- TopNavBar (Shared Component) -->
+<!-- Applying style_component_shape, style_bg_color, style_shell_layout, style_separation_logic -->
+<header class="docked full-width top-0 bg-surface border-b border-outline-variant flex justify-between items-center w-full px-container-margin h-16 z-10 shrink-0">
+<!-- Left: Search/Brand (Mobile) -->
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="hidden md:flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-section-title text-section-title">SPMS Inventory</span>
+</div>
+</div>
+<!-- Middle: Navigation Links -->
+<nav class="hidden md:flex items-center gap-8 h-full">
+<!-- Applying style_inactive_navigation -->
+<a class="text-on-surface-variant font-body-md text-body-md h-full flex items-center hover:bg-surface-container-high px-3 transition-colors" href="#">Tồn kho</a>
+<!-- Applying style_active_navigation -->
+<a class="text-primary border-b-2 border-primary pb-1 h-full flex items-center px-3 font-semibold" href="#">Lô hàng</a>
+<!-- Applying style_inactive_navigation -->
+<a class="text-on-surface-variant font-body-md text-body-md h-full flex items-center hover:bg-surface-container-high px-3 transition-colors" href="#">Điều chỉnh</a>
+</nav>
+<!-- Right: Actions & Profile -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high p-2 rounded-full transition-colors hidden sm:block">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A macro photograph of an administrator badge ID profile picture, showing a professional silhouette icon in deep forest green against a light gray medical background, modern clinical aesthetic, high key lighting, crisp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-D9k2c-B3-j3CSvd7jnFMwORYYeYNRzws8DhDSi3dL9iNbRA-BaeIwXfXWaetd2vUEQCArA6dU5FiwHaNgk1ogZSNnpJLWjIS8rwaPbikhOoVGIMQzQKnFN_OuejlZ73ey5FeC3HiZsTbUTKLe5RGgAoe2gRQLzAqqPP-M8iiExArWw5cXQFyqFxpe9UjA7J8fiDct69ZPbaumwlcpsXHd88_-v8zzRsrbHprjC5jHTiJoumX2PVsiQ"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="flex-1 overflow-y-auto p-container-margin">
+<!-- Header Section -->
+<div class="flex flex-col gap-2 mb-form-gap">
+<div class="flex items-center gap-2 text-on-surface-variant font-caption text-caption">
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_back">arrow_back</span>
+<span class="cursor-pointer hover:underline">Quay lại yêu cầu</span>
+</div>
+<h1 class="font-page-title text-page-title text-on-surface tracking-tight">Xem trước phân bổ FEFO</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Hệ thống đã tự động chọn các lô hàng có hạn sử dụng gần nhất theo nguyên tắc First-Expiry-First-Out.</p>
+</div>
+<!-- Context Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-form-gap">
+<!-- Medication Details Card (Span 2) -->
+<div class="col-span-1 md:col-span-2 bg-surface rounded-xl border border-outline-variant p-5 flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-9xl" data-icon="medication">medication</span>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-primary-container tracking-wider uppercase mb-1 block">Thuốc yêu cầu</span>
+<h2 class="font-section-title text-section-title text-on-surface">Panadol 500mg</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Paracetamol dạng viên nén, quy cách hộp 10 vỉ x 10 viên.</p>
+</div>
+<div class="mt-4 flex gap-4">
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="barcode">barcode</span>
+<span class="font-caption text-caption">Mã: MED-PND-001</span>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="inventory">inventory</span>
+<span class="font-caption text-caption">Tồn tổng: 450 viên</span>
+</div>
+</div>
+</div>
+<!-- Requested Quantity Card -->
+<div class="col-span-1 bg-surface rounded-xl border border-outline-variant p-5 flex flex-col justify-center items-center text-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant tracking-wider uppercase mb-2">Số lượng cần xuất</span>
+<div class="flex items-baseline gap-1">
+<span class="font-page-title text-4xl font-bold text-primary">170</span>
+<span class="font-body-md text-body-md text-on-surface-variant">viên</span>
+</div>
+</div>
+</div>
+<!-- Allocation Table Section -->
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden mb-form-gap shadow-sm">
+<div class="px-5 py-4 border-b border-outline-variant bg-surface-container-lowest flex justify-between items-center">
+<h3 class="font-section-title text-section-title text-on-surface">Chi tiết lô được phân bổ</h3>
+<span class="font-caption text-caption text-on-surface-variant px-2 py-1 bg-surface-container rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="info">info</span>
+                        Ưu tiên hạn sử dụng gần nhất
+                    </span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low border-b border-outline-variant font-caption text-caption text-on-surface-variant">
+<tr>
+<th class="px-5 py-3 font-semibold uppercase tracking-wider w-[20%]">Lô hàng (Lot)</th>
+<th class="px-5 py-3 font-semibold uppercase tracking-wider w-[20%]">Ngày hết hạn</th>
+<th class="px-5 py-3 font-semibold uppercase tracking-wider text-right w-[15%]">Tồn kho hiện tại</th>
+<th class="px-5 py-3 font-semibold uppercase tracking-wider text-right w-[15%]">Sẽ phân bổ</th>
+<th class="px-5 py-3 font-semibold uppercase tracking-wider w-[30%]">Trạng thái FEFO</th>
+</tr>
+</thead>
+<tbody class="font-table-cell text-table-cell text-on-surface bg-surface">
+<!-- Row 1: LOT-A -->
+<tr class="h-table-row-height hover:bg-surface-container-highest transition-colors border-b border-outline-variant/50">
+<td class="px-5 align-middle font-medium">LOT-A</td>
+<td class="px-5 align-middle">
+<div class="flex items-center gap-1.5 text-primary"> <!-- Traffic light logic: Green for >90 days -->
+<span class="material-symbols-outlined text-[16px]" data-icon="event_available">event_available</span>
+                                        10/09/2026
+                                    </div>
+</td>
+<td class="px-5 align-middle text-right text-on-surface-variant">100</td>
+<td class="px-5 align-middle text-right font-semibold text-primary">
+                                    100
+                                </td>
+<td class="px-5 align-middle">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-caps text-label-caps tracking-wider border border-primary/20">
+<span class="material-symbols-outlined text-[12px]" data-icon="check">check</span>
+                                        FEFO #1
+                                    </span>
+</td>
+</tr>
+<!-- Row 2: LOT-B -->
+<tr class="h-table-row-height hover:bg-surface-container-highest transition-colors">
+<td class="px-5 align-middle font-medium">LOT-B</td>
+<td class="px-5 align-middle">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="event_available">event_available</span>
+                                        20/10/2026
+                                    </div>
+</td>
+<td class="px-5 align-middle text-right text-on-surface-variant">150</td>
+<td class="px-5 align-middle text-right font-semibold text-primary">
+                                    70
+                                </td>
+<td class="px-5 align-middle">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-caps text-label-caps tracking-wider border border-outline-variant">
+<span class="material-symbols-outlined text-[12px]" data-icon="format_list_numbered">format_list_numbered</span>
+                                        FEFO #2
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Summary & Actions Panel -->
+<div class="bg-surface rounded-xl border-2 border-primary/20 p-5 flex flex-col md:flex-row justify-between items-center gap-4 shadow-sm relative overflow-hidden">
+<!-- Decorative background accent -->
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-primary"></div>
+<!-- Summary Text -->
+<div class="flex items-center gap-4 pl-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<h4 class="font-section-title text-section-title text-on-surface">Đã phân bổ đủ yêu cầu</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Tổng cộng <strong class="text-on-surface">170 / 170</strong> viên từ 2 lô hàng.</p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-3 w-full md:w-auto mt-4 md:mt-0">
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-lg border border-outline text-on-surface bg-transparent hover:bg-surface-container-high transition-colors font-body-md text-body-md font-medium text-center">
+                        Thay đổi (Override)
+                    </button>
+<button class="flex-1 md:flex-none px-6 py-2.5 rounded-lg bg-primary text-on-primary hover:bg-primary-fixed-dim transition-colors font-body-md text-body-md font-medium shadow-sm flex justify-center items-center gap-2">
+<span>Xác nhận</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

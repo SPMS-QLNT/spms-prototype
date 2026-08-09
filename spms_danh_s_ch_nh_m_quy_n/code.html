@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Danh sách nhóm quyền</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#006a63",
+                        "inverse-surface": "#293040",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "surface-container": "#e9edff",
+                        "surface-container-high": "#e1e8fd",
+                        "on-tertiary-fixed": "#3f0016",
+                        "surface": "#f9f9ff",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "primary-fixed": "#7ffc97",
+                        "surface-bright": "#f9f9ff",
+                        "background": "#f9f9ff",
+                        "surface-container-low": "#f1f3ff",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "outline-variant": "#bdcaba",
+                        "on-secondary-container": "#006f67",
+                        "secondary-container": "#99efe5",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#6e7b6c",
+                        "on-primary-fixed-variant": "#005320",
+                        "primary": "#006b2c",
+                        "tertiary-container": "#c74668",
+                        "tertiary": "#a72d51",
+                        "surface-container-highest": "#dce2f7",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffd9de",
+                        "surface-tint": "#006e2d",
+                        "on-primary-fixed": "#002109",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#dce2f7",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#141b2b",
+                        "on-surface": "#141b2b",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "surface-dim": "#d3daef",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-tertiary-container": "#fffbff",
+                        "on-primary-container": "#f7fff2",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#00201d",
+                        "inverse-primary": "#62df7d",
+                        "primary-container": "#00873a",
+                        "inverse-on-surface": "#edf0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "table-row-height": "44px",
+                        "compact-padding": "8px",
+                        "container-margin": "24px",
+                        "gutter": "16px",
+                        "form-gap": "20px"
+                    },
+                    "fontFamily": {
+                        "table-cell": ["Inter"],
+                        "section-title": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "page-title": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen overflow-hidden flex flex-col md:flex-row">
+<!-- SideNavBar -->
+<nav class="hidden md:flex bg-surface-container-low dark:bg-surface-container-highest text-primary dark:text-primary-fixed fixed left-0 top-0 h-full w-[260px] border-r border-outline-variant dark:border-outline flex-col py-gutter z-20">
+<div class="px-container-margin mb-6">
+<h1 class="text-section-title font-section-title font-bold text-primary dark:text-primary-fixed">Main Menu</h1>
+<p class="text-caption font-caption text-on-surface-variant">Enterprise Management</p>
+</div>
+<div class="flex-1 overflow-y-auto space-y-1">
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-body-md font-body-md">Dashboard</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="text-body-md font-body-md">Inventory</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="medication">medication</span>
+<span class="text-body-md font-body-md">Drug Master</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-body-md font-body-md">Finance</span>
+</a>
+<a class="bg-secondary-container dark:bg-on-primary-fixed-variant text-on-secondary-container dark:text-primary-fixed border-l-4 border-primary px-4 py-3 flex items-center gap-3 cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-body-md font-body-md">Audit</span>
+</a>
+</div>
+<div class="mt-auto px-4 py-2 space-y-1 border-t border-outline-variant pt-4">
+<button class="w-full bg-primary text-on-primary rounded py-2 px-4 flex items-center justify-center gap-2 mb-4 hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-sm">add</span> Add New Entry
+            </button>
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="text-body-md font-body-md">Support</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="text-body-md font-body-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-[260px] h-full overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex justify-between items-center w-full px-container-margin h-table-row-height z-10 shrink-0">
+<div class="flex items-center gap-4">
+<span class="text-page-title font-page-title font-bold text-primary dark:text-primary-fixed">SPMS</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="pl-8 pr-3 py-1 bg-surface-container-low border border-outline-variant rounded text-table-cell font-table-cell focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 focus:ring-offset-surface" placeholder="Search..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors p-1 rounded cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors p-1 rounded cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low transition-colors p-1 rounded cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="flex items-center gap-2 cursor-pointer active:opacity-80 pl-2 border-l border-outline-variant">
+<img alt="Administrator Avatar" class="w-6 h-6 rounded-full bg-surface-container object-cover" data-alt="A small, professional headshot of an administrator in a clinical setting, clean background, soft lighting, 64x64 resolution, ensuring a sterile corporate modernism aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbDvSaaoqZX9kynKMqNOaFAd5j7ziRJ2VgFKf5KE-YsIcfhMFBw318cPlKRfb72r6eaHWKlsQvuCDiL3x7Mw31-raTuLA4L7otWwM1BUWIZkrqg3xAZ_rzOpy5hO_FzvypamVn_06hcybG5etabbZOndmqctg8bqw1GcMWjnrW4TJVN0xYtaHc7xjtZTkrOdDop8mrxZz2q9zzZAPASyhRMCqmDchybkIEtrtp4y6Tl08RoTJ8BcfY1Q"/>
+<span class="text-label-caps font-label-caps text-on-surface hidden sm:block">User Profile</span>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto bg-background p-container-margin">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-caption font-caption text-on-surface-variant mb-4">
+<a class="hover:text-primary transition-colors" href="#">Hệ thống</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface">Nhóm quyền</span>
+</div>
+<!-- Page Header & Actions -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<h2 class="text-page-title font-page-title text-on-surface">Danh sách nhóm quyền</h2>
+<button class="bg-primary text-on-primary px-4 py-2 rounded text-body-md font-body-md font-medium hover:bg-primary-container transition-colors shadow-sm flex items-center gap-2 w-fit">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Thêm nhóm quyền
+                </button>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface rounded-lg border border-outline-variant p-4 mb-6 flex flex-col md:flex-row gap-4 items-end shadow-sm">
+<div class="flex-1 w-full relative">
+<label class="block text-label-caps font-label-caps text-on-surface-variant mb-1">TÌM KIẾM</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full pl-9 pr-3 py-2 bg-surface-lowest border border-outline-variant rounded text-body-md font-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 focus:ring-offset-surface" placeholder="Tìm theo tên nhóm quyền..." type="text"/>
+</div>
+</div>
+<div class="w-full md:w-48">
+<label class="block text-label-caps font-label-caps text-on-surface-variant mb-1">TRẠNG THÁI</label>
+<select class="w-full px-3 py-2 bg-surface-lowest border border-outline-variant rounded text-body-md font-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 focus:ring-offset-surface appearance-none">
+<option value="all">Tất cả trạng thái</option>
+<option value="active">Active</option>
+<option value="locked">Locked</option>
+</select>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-lowest rounded-lg border border-outline-variant shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="p-compact-padding px-4 text-label-caps font-label-caps text-on-surface-variant w-24">MÃ</th>
+<th class="p-compact-padding px-4 text-label-caps font-label-caps text-on-surface-variant">TÊN NHÓM QUYỀN</th>
+<th class="p-compact-padding px-4 text-label-caps font-label-caps text-on-surface-variant">MÔ TẢ</th>
+<th class="p-compact-padding px-4 text-label-caps font-label-caps text-on-surface-variant w-24 text-center">SỐ USER</th>
+<th class="p-compact-padding px-4 text-label-caps font-label-caps text-on-surface-variant w-32">TRẠNG THÁI</th>
+<th class="p-compact-padding px-4 text-label-caps font-label-caps text-on-surface-variant w-40">CẬP NHẬT</th>
+<th class="p-compact-padding px-4 text-label-caps font-label-caps text-on-surface-variant w-32 text-right">THAO TÁC</th>
+</tr>
+</thead>
+<tbody class="text-table-cell font-table-cell text-on-surface">
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors h-table-row-height group">
+<td class="p-compact-padding px-4 font-medium text-primary">Q-001</td>
+<td class="p-compact-padding px-4 font-medium">Admin</td>
+<td class="p-compact-padding px-4 text-on-surface-variant truncate max-w-[200px]">Toàn quyền truy cập hệ thống quản trị</td>
+<td class="p-compact-padding px-4 text-center">3</td>
+<td class="p-compact-padding px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary-container/10 text-primary border border-primary/20 text-[11px] font-medium tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="p-compact-padding px-4 text-on-surface-variant">10/10/2023</td>
+<td class="p-compact-padding px-4 text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded transition-colors" title="Xem chi tiết"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded transition-colors" title="Sửa"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1 text-on-surface-variant hover:text-secondary hover:bg-surface-container rounded transition-colors" title="Phân quyền"><span class="material-symbols-outlined text-[18px]">key</span></button>
+<button class="p-1 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded transition-colors" title="Khóa"><span class="material-symbols-outlined text-[18px]">lock</span></button>
+</div>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors h-table-row-height group">
+<td class="p-compact-padding px-4 font-medium text-primary">Q-002</td>
+<td class="p-compact-padding px-4 font-medium">Quản lý kho</td>
+<td class="p-compact-padding px-4 text-on-surface-variant truncate max-w-[200px]">Quản lý xuất nhập tồn, kiểm kê kho</td>
+<td class="p-compact-padding px-4 text-center">5</td>
+<td class="p-compact-padding px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-primary-container/10 text-primary border border-primary/20 text-[11px] font-medium tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="p-compact-padding px-4 text-on-surface-variant">12/10/2023</td>
+<td class="p-compact-padding px-4 text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded transition-colors" title="Xem chi tiết"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded transition-colors" title="Sửa"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1 text-on-surface-variant hover:text-secondary hover:bg-surface-container rounded transition-colors" title="Phân quyền"><span class="material-symbols-outlined text-[18px]">key</span></button>
+<button class="p-1 text-on-surface-variant hover:text-error hover:bg-error-container/50 rounded transition-colors" title="Khóa"><span class="material-symbols-outlined text-[18px]">lock</span></button>
+</div>
+</td>
+</tr>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors h-table-row-height group bg-surface-container-lowest/50">
+<td class="p-compact-padding px-4 font-medium text-on-surface-variant">Q-003</td>
+<td class="p-compact-padding px-4 font-medium text-on-surface-variant">Nhân viên bán hàng</td>
+<td class="p-compact-padding px-4 text-on-surface-variant/70 truncate max-w-[200px]">Tạo đơn hàng, xuất hóa đơn bán lẻ</td>
+<td class="p-compact-padding px-4 text-center text-on-surface-variant">12</td>
+<td class="p-compact-padding px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-variant text-on-surface-variant border border-outline-variant text-[11px] font-medium tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                                        Locked
+                                    </span>
+</td>
+<td class="p-compact-padding px-4 text-on-surface-variant">01/11/2023</td>
+<td class="p-compact-padding px-4 text-right">
+<div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded transition-colors" title="Xem chi tiết"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded transition-colors" title="Sửa"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1 text-on-surface-variant hover:text-secondary hover:bg-surface-container rounded transition-colors" title="Phân quyền"><span class="material-symbols-outlined text-[18px]">key</span></button>
+<button class="p-1 text-on-surface-variant hover:text-primary hover:bg-primary-container/10 rounded transition-colors" title="Mở khóa"><span class="material-symbols-outlined text-[18px]">lock_open</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-surface-lowest px-4 py-3 border-t border-outline-variant flex items-center justify-between sm:px-6">
+<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+<div>
+<p class="text-caption font-caption text-on-surface-variant">
+                                Hiển thị <span class="font-medium text-on-surface">1</span> đến <span class="font-medium text-on-surface">3</span> của <span class="font-medium text-on-surface">3</span> kết quả
+                            </p>
+</div>
+<div>
+<nav aria-label="Pagination" class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+<a class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-outline-variant bg-surface-lowest text-sm font-medium text-on-surface-variant hover:bg-surface-container" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</a>
+<a aria-current="page" class="z-10 bg-primary-container/10 border-primary text-primary relative inline-flex items-center px-4 py-2 border text-sm font-medium" href="#"> 1 </a>
+<a class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-outline-variant bg-surface-lowest text-sm font-medium text-on-surface-variant hover:bg-surface-container" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

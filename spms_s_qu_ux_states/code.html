@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Sổ Quỹ (Loading & Empty States)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f8f9ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "background": "#f8f9ff",
+                        "secondary-container": "#5bb8fe",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-secondary-container": "#00476e",
+                        "surface": "#f8f9ff",
+                        "primary": "#000000",
+                        "surface-container-high": "#dce9ff",
+                        "surface-container": "#e5eeff",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "secondary": "#006398",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#000000",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "error": "#ba1a1a",
+                        "on-background": "#0b1c30",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#45464d",
+                        "outline-variant": "#c6c6cd",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-primary": "#bec6e0",
+                        "tertiary-container": "#191c1e",
+                        "primary-container": "#131b2e",
+                        "on-tertiary-container": "#818486",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-fixed-dim": "#93ccff",
+                        "primary-fixed": "#dae2fd",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#001d31",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-primary-fixed": "#131b2e",
+                        "on-primary-container": "#7c839b",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-fixed": "#191c1e",
+                        "on-secondary-fixed-variant": "#004b73",
+                        "secondary-fixed": "#cce5ff",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "error-container": "#ffdad6",
+                        "outline": "#76777d",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#565e74"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "row-height-standard": "48px",
+                        "unit": "4px",
+                        "container-padding": "24px",
+                        "gutter": "16px",
+                        "row-height-dense": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "data-mono": ["JetBrains Mono"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "data-mono": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, #f8f9ff 4%, #e5eeff 25%, #f8f9ff 36%);
+            background-size: 1000px 100%;
+        }
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen flex overflow-hidden">
+<!-- SideNavBar (Shared Component JSON Integration) -->
+<nav class="w-[260px] h-screen fixed left-0 top-0 border-r border-outline-variant bg-surface flex flex-col z-40">
+<div class="px-container-padding py-6 border-b border-outline-variant">
+<h1 class="font-display-lg text-display-lg font-bold text-primary">SPMS Enterprise</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Pharmacy Management</p>
+</div>
+<div class="flex-1 py-4 flex flex-col gap-1 px-2">
+<!-- Inactive Navigation Links -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded" href="#">
+<span class="material-symbols-outlined" data-icon="medication">medication</span>
+<span>Drug Master</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded" href="#">
+<span class="material-symbols-outlined" data-icon="monitor_heart">monitor_heart</span>
+<span>Dispensing</span>
+</a>
+<!-- Active Navigation Link: Finance / Cashbook -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container border-l-[3px] border-primary rounded-r" href="#">
+<span class="material-symbols-outlined" data-icon="payments" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-medium">Finance</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</a>
+</div>
+<div class="p-4 border-t border-outline-variant mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low transition-colors rounded" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span>Support</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar (Shared Component JSON Integration) -->
+<header class="h-[64px] fixed top-0 right-0 left-[260px] z-30 bg-surface border-b border-outline-variant flex justify-between items-center px-container-padding">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer mr-4" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md placeholder:text-on-surface-variant outline-none w-64" placeholder="Tìm kiếm chứng từ..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label-caps text-label-caps font-bold text-primary mr-2 uppercase">Main Hospital Branch</span>
+<button class="text-on-surface-variant hover:text-primary transition-opacity cursor-pointer">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-opacity cursor-pointer">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden ml-2 border border-outline-variant">
+<!-- Profile Avatar -->
+<img class="w-full h-full object-cover" data-alt="A small, professional headshot of an administrative healthcare worker. The portrait is brightly lit, modern, and conveys a clinical precision aesthetic. It features a person in formal or semi-formal attire against a clean, neutral white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu0xl17JNb-SmBVaytfob49YSg1xPrNICPLom3LyYIVx9seamSgNoS8UExSjpo2LMTzDt4Gw8470BW7nTVEbUPcDe4lBAJ5pTOQAc4hFSjgPqu4ltvwnaW10YU6YtXEhJfcZA7R4nZGKKInWSvShexlY_R_U6ZbiiO3C2lwstSC172j5W80HnZmY56v_asQOmRCXdtsL-u8LogqWdFCICriVypJywM3s3ZIDNGN17-Wzvi3SRmjj1fvw"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[260px] mt-[64px] flex-1 overflow-y-auto bg-surface p-container-padding">
+<!-- Page Header -->
+<div class="flex justify-between items-center mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Sổ Quỹ (Cashbook)</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Quản lý thu chi và biến động số dư</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-lowest border border-outline-variant text-on-surface px-4 py-2 rounded font-body-sm text-body-sm hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+                    Xuất Báo Cáo
+                </button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded font-body-sm text-body-sm hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                    Tạo Phiếu Thu/Chi
+                </button>
+</div>
+</div>
+<!-- Summary Cards -->
+<div class="grid grid-cols-3 gap-gutter mb-6">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Tổng Thu (Kỳ này)</h3>
+<p class="font-headline-md text-headline-md text-on-surface">1,250,000,000 ₫</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Tổng Chi (Kỳ này)</h3>
+<p class="font-headline-md text-headline-md text-on-surface">450,200,000 ₫</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Tồn Quỹ Hiện Tại</h3>
+<p class="font-headline-md text-headline-md text-primary font-bold">8,500,450,000 ₫</p>
+</div>
+</div>
+<!-- Filters Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-t-lg p-4 flex gap-4 items-end">
+<div class="flex-1">
+<label class="block font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Thời Gian</label>
+<select class="w-full bg-surface border border-outline-variant rounded px-3 py-2 font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-0 outline-none">
+<option>Tháng này (Tháng 10/2023)</option>
+<option>Tháng trước</option>
+<option>Tùy chọn...</option>
+</select>
+</div>
+<div class="flex-1">
+<label class="block font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Loại Phiếu</label>
+<select class="w-full bg-surface border border-outline-variant rounded px-3 py-2 font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-0 outline-none">
+<option>Tất cả</option>
+<option>Phiếu Thu</option>
+<option>Phiếu Chi</option>
+</select>
+</div>
+<div class="flex-[2]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Tìm kiếm nội dung</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2 text-on-surface-variant text-[18px]" data-icon="search">search</span>
+<input class="w-full bg-surface border border-outline-variant rounded pl-10 pr-3 py-2 font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-0 outline-none" placeholder="Nhập mã chứng từ, tên người nộp/nhận..." type="text"/>
+</div>
+</div>
+<div>
+<button class="bg-surface-container-low border border-outline-variant text-on-surface px-4 py-2 rounded font-body-sm text-body-sm hover:bg-surface-container-high transition-colors h-[38px]">
+                    Lọc
+                </button>
+</div>
+</div>
+<!-- STATE 1: LOADING SKELETON TABLE -->
+<!-- Note: This section is displayed to represent the loading state -->
+<div class="bg-surface-container-lowest border-x border-b border-outline-variant rounded-b-lg overflow-hidden mb-12">
+<div class="w-full text-left bg-surface-bright border-b border-outline-variant grid grid-cols-12 px-4 py-3">
+<div class="col-span-2 font-label-caps text-label-caps text-on-surface-variant uppercase">Ngày/Giờ</div>
+<div class="col-span-2 font-label-caps text-label-caps text-on-surface-variant uppercase">Mã CT</div>
+<div class="col-span-3 font-label-caps text-label-caps text-on-surface-variant uppercase">Nội Dung</div>
+<div class="col-span-2 font-label-caps text-label-caps text-on-surface-variant uppercase text-right">Thu (₫)</div>
+<div class="col-span-2 font-label-caps text-label-caps text-on-surface-variant uppercase text-right">Chi (₫)</div>
+<div class="col-span-1 font-label-caps text-label-caps text-on-surface-variant uppercase text-center">TT</div>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Loading Row 1 -->
+<div class="grid grid-cols-12 px-4 h-row-height-dense items-center">
+<div class="col-span-2"><div class="h-4 w-24 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2"><div class="h-4 w-20 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-3"><div class="h-4 w-48 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2 flex justify-end"><div class="h-4 w-24 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2 flex justify-end"><div class="h-4 w-24 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-1 flex justify-center"><div class="h-4 w-12 bg-surface-variant rounded shimmer"></div></div>
+</div>
+<!-- Loading Row 2 -->
+<div class="grid grid-cols-12 px-4 h-row-height-dense items-center">
+<div class="col-span-2"><div class="h-4 w-20 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2"><div class="h-4 w-24 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-3"><div class="h-4 w-40 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2 flex justify-end"><div class="h-4 w-20 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2 flex justify-end"><div class="h-4 w-28 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-1 flex justify-center"><div class="h-4 w-12 bg-surface-variant rounded shimmer"></div></div>
+</div>
+<!-- Loading Row 3 -->
+<div class="grid grid-cols-12 px-4 h-row-height-dense items-center">
+<div class="col-span-2"><div class="h-4 w-28 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2"><div class="h-4 w-16 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-3"><div class="h-4 w-56 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2 flex justify-end"><div class="h-4 w-24 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2 flex justify-end"><div class="h-4 w-16 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-1 flex justify-center"><div class="h-4 w-12 bg-surface-variant rounded shimmer"></div></div>
+</div>
+<!-- Loading Row 4 -->
+<div class="grid grid-cols-12 px-4 h-row-height-dense items-center">
+<div class="col-span-2"><div class="h-4 w-24 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2"><div class="h-4 w-20 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-3"><div class="h-4 w-32 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2 flex justify-end"><div class="h-4 w-24 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2 flex justify-end"><div class="h-4 w-20 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-1 flex justify-center"><div class="h-4 w-12 bg-surface-variant rounded shimmer"></div></div>
+</div>
+<!-- Loading Row 5 -->
+<div class="grid grid-cols-12 px-4 h-row-height-dense items-center">
+<div class="col-span-2"><div class="h-4 w-20 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2"><div class="h-4 w-24 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-3"><div class="h-4 w-48 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2 flex justify-end"><div class="h-4 w-20 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-2 flex justify-end"><div class="h-4 w-24 bg-surface-variant rounded shimmer"></div></div>
+<div class="col-span-1 flex justify-center"><div class="h-4 w-12 bg-surface-variant rounded shimmer"></div></div>
+</div>
+</div>
+</div>
+<div class="w-full border-t border-outline-variant my-8"></div>
+<!-- STATE 2: EMPTY SEARCH RESULT -->
+<!-- Note: This section is displayed to represent the empty state after a search -->
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">Trạng thái: Không có dữ liệu (Empty State)</h3>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-t-lg p-4 flex gap-4 items-end">
+<!-- Simulated Active Search Filters -->
+<div class="flex-[3]">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2 text-on-surface-variant text-[18px]" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded pl-10 pr-3 py-2 font-body-sm text-body-sm text-on-surface outline-none cursor-not-allowed" readonly="" type="text" value="PT-2023-9999 (Invalid Code)"/>
+</div>
+</div>
+<div>
+<button class="bg-surface-container-low border border-outline-variant text-on-surface px-4 py-2 rounded font-body-sm text-body-sm hover:bg-surface-container-high transition-colors h-[38px] flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_alt_off">filter_alt_off</span>
+                    Xóa Bộ Lọc
+                </button>
+</div>
+</div>
+<div class="bg-surface-container-lowest border-x border-b border-outline-variant rounded-b-lg overflow-hidden flex flex-col items-center justify-center py-24 px-4 text-center">
+<div class="w-48 h-48 mb-6 relative">
+<!-- Thematic empty state illustration -->
+<img class="w-full h-full object-contain" data-alt="A clean, minimalist digital illustration in light mode depicting an empty ledger book or document with a magnifying glass hovering over it, indicating a failed search. The color palette uses soft blues, whites, and light grays consistent with a clinical precision aesthetic. No complex textures, just smooth vector-style shapes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAltm6F9g-HKxVkbyJ2KqDBRo-0s5lmVGRzkfOze_v3pypnQFz1ESEXOIKlbW5l4RtnhqDmn5Q5kjsFEnl2wTQeKuhDIqoUJvXJ7HLL_Zf4Z3N9wusxUQk8F0nvuianOwzQaGurpnFoANfzNTFbUIPgrwRwmeDYLCawUKckLTx8zmCXJLKq63jzvyXZKpHtkbmQXUDl8nqtC9iicw7jprcDRP8TrbL8txUstKQuHNNzTYKidHlxSakOzQ"/>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Không tìm thấy dữ liệu phù hợp</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+                Không có giao dịch thu chi nào khớp với tiêu chí tìm kiếm hiện tại. Vui lòng kiểm tra lại từ khóa hoặc thay đổi bộ lọc thời gian.
+            </p>
+<button class="mt-6 bg-surface-container border border-outline-variant text-on-surface px-6 py-2 rounded font-body-sm text-body-sm hover:bg-surface-container-high transition-colors">
+                Tải lại trang
+            </button>
+</div>
+</main>
+</body></html>

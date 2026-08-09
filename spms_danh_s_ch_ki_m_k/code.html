@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS | Inventory - Stock Take List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-secondary-container": "#006f67",
+                        "surface-container": "#e9edff",
+                        "outline-variant": "#bdcaba",
+                        "tertiary": "#a72d51",
+                        "surface-bright": "#f9f9ff",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-tertiary-fixed": "#3f0016",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#c74668",
+                        "surface-dim": "#d3daef",
+                        "inverse-primary": "#62df7d",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-tint": "#006e2d",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "inverse-on-surface": "#edf0ff",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#7ffc97",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-tertiary-container": "#fffbff",
+                        "tertiary-fixed": "#ffd9de",
+                        "on-primary-fixed": "#002109",
+                        "surface-container-low": "#f1f3ff",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "inverse-surface": "#293040",
+                        "primary-container": "#00873a",
+                        "outline": "#6e7b6c",
+                        "on-background": "#141b2b",
+                        "surface-variant": "#dce2f7",
+                        "on-primary-container": "#f7fff2",
+                        "primary-fixed-dim": "#62df7d",
+                        "surface-container-highest": "#dce2f7",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-surface": "#141b2b",
+                        "on-secondary-fixed": "#00201d",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "background": "#f9f9ff",
+                        "primary": "#006b2c",
+                        "secondary-container": "#99efe5",
+                        "secondary": "#006a63"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "table-row-height": "44px",
+                        "gutter": "16px",
+                        "form-gap": "20px",
+                        "container-margin": "24px",
+                        "compact-padding": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter", "sans-serif"],
+                        "caption": ["Inter", "sans-serif"],
+                        "page-title": ["Inter", "sans-serif"],
+                        "section-title": ["Inter", "sans-serif"],
+                        "label-caps": ["Inter", "sans-serif"],
+                        "table-cell": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Focus ring utility as per specs */
+        .focus-ring-primary:focus-within {
+            outline: none;
+            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #006b2c;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center w-full px-container-margin h-16 shrink-0 z-20 sticky top-0">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Toggle (hidden on md) -->
+<button class="md:hidden text-primary dark:text-primary-fixed p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="font-page-title text-page-title font-bold text-primary dark:text-primary-fixed cursor-pointer">
+                SPMS | Inventory
+            </div>
+</div>
+<!-- Search Bar (on_left in JSON, but placed centrally for better layout balance if needed, adhering to JSON intent) -->
+<div class="hidden md:flex flex-1 max-w-md mx-6">
+<div class="relative w-full focus-ring-primary rounded-lg transition-shadow">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="w-full h-10 pl-10 pr-4 bg-surface rounded-lg border border-outline-variant text-body-md font-body-md focus:border-primary focus:ring-0 placeholder:text-on-surface-variant/60" placeholder="Tìm kiếm mã phiếu, sản phẩm..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Notifications" class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Help" class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors cursor-pointer active:opacity-80 hidden sm:block">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<button aria-label="Settings" class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="ml-2 h-8 w-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-section-title text-section-title cursor-pointer overflow-hidden border border-outline-variant">
+<img alt="Pharmacist profile" class="w-full h-full object-cover" data-alt="A small, professional profile picture of a pharmacist in a white lab coat, clean modern clinical setting, bright lighting, high quality portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL5BLfl1BYBrXrccWXdCRC9fZyVzMEWvnMpdB7uM-WpUGF2VvysF07fv1SvI_mgzUuREyHhToIWLvlu-Vwj2DzJH8oRWhzt-wOxWcK17bqEvEwUP68eadtVAoBtUq4bHiGP1-io0hs9Gi2AAQGl7SIX605vrVPya94_IH4wkktvXQetdnlfaJ100YpE7ta09FwoKPtPCK6zYHpH57H10RUcdmWjcTom788pobttH7AZ6LXx16_bCfjDQ"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden h-[calc(100vh-64px)]">
+<!-- SideNavBar -->
+<aside class="bg-surface dark:bg-surface-dim border-r border-outline-variant hidden md:flex flex-col h-full py-compact-padding w-[260px] shrink-0 z-10 transition-all duration-200 ease-in-out">
+<!-- Branch Selector Header -->
+<div class="px-gutter mb-6 pt-2">
+<div class="flex items-center gap-3 p-3 bg-surface-container-lowest border border-outline-variant rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center shrink-0 overflow-hidden">
+<span class="material-symbols-outlined text-primary">local_hospital</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="font-body-md text-body-md font-semibold text-on-surface truncate">Main Branch HQ</div>
+<div class="font-caption text-caption text-on-surface-variant truncate">Pharma ID: 8842</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">unfold_more</span>
+</div>
+</div>
+<!-- Primary Navigation -->
+<nav class="flex-1 overflow-y-auto px-compact-padding">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="list_alt">list_alt</span>
+<span class="font-body-md text-body-md">Stock Requests</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="swap_horiz">swap_horiz</span>
+<span class="font-body-md text-body-md">New Transfer</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="fact_check">fact_check</span>
+<span class="font-body-md text-body-md">Pending Approvals</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Receiving</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Inventory Levels</span>
+</a>
+</li>
+<!-- Active State Added for Demo purpose based on user request (Inventory -> Stock Take) -->
+<li class="mt-4 pt-4 border-t border-outline-variant">
+<div class="px-3 pb-2 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Kho hàng</div>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[#F0FDF4] text-primary border-l-4 border-primary font-semibold transition-all duration-200 ease-in-out shadow-sm" href="#">
+<span class="material-symbols-outlined text-[20px] icon-fill" data-icon="checklist">checklist</span>
+<span class="font-body-md text-body-md">Kiểm kê (Stock Take)</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Bottom Action & Footer Nav -->
+<div class="px-compact-padding mt-auto pt-4 space-y-2">
+<button class="w-full flex items-center justify-center gap-2 py-2 px-4 bg-primary text-on-primary rounded-lg font-body-md text-body-md font-medium hover:bg-primary/90 transition-colors focus-ring-primary mb-4">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    New Transfer
+                </button>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-background p-4 md:p-container-margin">
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 text-on-surface-variant mb-6 font-caption text-caption">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>
+</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Kho</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Kiểm kê</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-medium">Danh sách kiểm kê</span>
+</nav>
+<!-- Page Header & CTA -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+<div>
+<h1 class="font-page-title text-page-title text-on-surface">Danh sách phiếu kiểm kê</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Quản lý và theo dõi quá trình kiểm kê kho định kỳ.</p>
+</div>
+<button class="shrink-0 flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg font-body-md text-body-md font-medium hover:bg-primary/90 transition-colors focus-ring-primary shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                    Tạo phiếu kiểm kê
+                </button>
+</div>
+<!-- Filters Section (Bento-style layout for filters) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-4 mb-6 shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-form-gap">
+<!-- Search -->
+<div class="md:col-span-1">
+<label class="block font-caption text-caption text-on-surface-variant mb-1.5 uppercase tracking-wider">Tìm kiếm</label>
+<div class="relative focus-ring-primary rounded-lg">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-3 bg-surface rounded-lg border border-outline-variant text-body-md font-body-md focus:border-primary focus:ring-0" placeholder="Mã phiếu kiểm kê..." type="text"/>
+</div>
+</div>
+<!-- Date Range -->
+<div class="md:col-span-1">
+<label class="block font-caption text-caption text-on-surface-variant mb-1.5 uppercase tracking-wider">Thời gian tạo</label>
+<div class="relative focus-ring-primary rounded-lg flex items-center">
+<input class="w-full h-10 px-3 bg-surface rounded-lg border border-outline-variant text-body-md font-body-md focus:border-primary focus:ring-0 text-on-surface" type="date" value="2023-10-01"/>
+<span class="mx-2 text-on-surface-variant">-</span>
+<input class="w-full h-10 px-3 bg-surface rounded-lg border border-outline-variant text-body-md font-body-md focus:border-primary focus:ring-0 text-on-surface" type="date" value="2023-10-31"/>
+</div>
+</div>
+<!-- Status Filter -->
+<div class="md:col-span-2 flex items-end gap-2">
+<div class="flex-1">
+<label class="block font-caption text-caption text-on-surface-variant mb-1.5 uppercase tracking-wider">Trạng thái</label>
+<div class="flex flex-wrap gap-2">
+<label class="flex items-center gap-2 px-3 py-2 bg-surface-container-high rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-variant transition-colors has-[:checked]:bg-[#DCFCE7] has-[:checked]:border-primary has-[:checked]:text-primary-container">
+<input checked="" class="text-primary focus:ring-primary rounded border-outline-variant w-4 h-4 hidden" type="checkbox"/>
+<span class="font-body-md text-body-md font-medium">Tất cả</span>
+</label>
+<label class="flex items-center gap-2 px-3 py-2 bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-variant transition-colors has-[:checked]:bg-[#DCFCE7] has-[:checked]:border-primary has-[:checked]:text-primary-container">
+<input class="text-primary focus:ring-primary rounded border-outline-variant w-4 h-4 hidden" type="checkbox"/>
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="font-body-md text-body-md">Nháp</span>
+</label>
+<label class="flex items-center gap-2 px-3 py-2 bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-variant transition-colors has-[:checked]:bg-[#DCFCE7] has-[:checked]:border-primary has-[:checked]:text-primary-container">
+<input class="text-primary focus:ring-primary rounded border-outline-variant w-4 h-4 hidden" type="checkbox"/>
+<div class="w-2 h-2 rounded-full bg-[#EAB308]"></div>
+<span class="font-body-md text-body-md">Chờ duyệt</span>
+</label>
+<label class="flex items-center gap-2 px-3 py-2 bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-variant transition-colors has-[:checked]:bg-[#DCFCE7] has-[:checked]:border-primary has-[:checked]:text-primary-container">
+<input class="text-primary focus:ring-primary rounded border-outline-variant w-4 h-4 hidden" type="checkbox"/>
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="font-body-md text-body-md">Đã duyệt</span>
+</label>
+<label class="flex items-center gap-2 px-3 py-2 bg-surface rounded-lg border border-outline-variant cursor-pointer hover:bg-surface-variant transition-colors has-[:checked]:bg-[#DCFCE7] has-[:checked]:border-primary has-[:checked]:text-primary-container">
+<input class="text-primary focus:ring-primary rounded border-outline-variant w-4 h-4 hidden" type="checkbox"/>
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="font-body-md text-body-md">Đã hủy</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[900px]">
+<thead>
+<tr class="bg-surface border-b border-outline-variant font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
+<th class="py-3 px-4 w-12 sticky left-0 bg-surface z-10 border-r border-outline-variant/50">
+<input class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer w-4 h-4" type="checkbox"/>
+</th>
+<th class="py-3 px-4 font-medium sticky left-12 bg-surface z-10 border-r border-outline-variant/50 w-32">Mã phiếu</th>
+<th class="py-3 px-4 font-medium">Ngày kiểm kê</th>
+<th class="py-3 px-4 font-medium">Khu vực</th>
+<th class="py-3 px-4 font-medium text-right">Tổng mặt hàng</th>
+<th class="py-3 px-4 font-medium text-right">Chênh lệch</th>
+<th class="py-3 px-4 font-medium">Trạng thái</th>
+<th class="py-3 px-4 font-medium">Người tạo</th>
+<th class="py-3 px-4 font-medium w-12 text-center"></th>
+</tr>
+</thead>
+<tbody class="font-table-cell text-table-cell divide-y divide-outline-variant/50">
+<!-- Row 1 -->
+<tr class="hover:bg-[#F0FDF4]/30 transition-colors group h-table-row-height bg-surface-container-lowest">
+<td class="py-2 px-4 sticky left-0 bg-inherit z-10 border-r border-outline-variant/50">
+<input class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer w-4 h-4" type="checkbox"/>
+</td>
+<td class="py-2 px-4 font-medium text-primary sticky left-12 bg-inherit z-10 border-r border-outline-variant/50 cursor-pointer hover:underline">KK-2310-004</td>
+<td class="py-2 px-4 text-on-surface">24/10/2023 08:30</td>
+<td class="py-2 px-4 text-on-surface">Kho thuốc kê đơn</td>
+<td class="py-2 px-4 text-right">145</td>
+<td class="py-2 px-4 text-right">
+<span class="inline-flex items-center gap-1 text-[#CA8A04] bg-[#FEF08A]/30 px-2 py-0.5 rounded text-xs font-medium border border-[#CA8A04]/20">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                        -2
+                                    </span>
+</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-[#FEF08A]/30 text-[#A16207] border border-[#FEF08A]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#EAB308]"></span> Chờ duyệt
+                                    </span>
+</td>
+<td class="py-2 px-4 text-on-surface-variant">Nguyễn Văn A</td>
+<td class="py-2 px-4 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#F0FDF4]/30 transition-colors group h-table-row-height bg-surface-container-lowest">
+<td class="py-2 px-4 sticky left-0 bg-inherit z-10 border-r border-outline-variant/50">
+<input class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer w-4 h-4" type="checkbox"/>
+</td>
+<td class="py-2 px-4 font-medium text-primary sticky left-12 bg-inherit z-10 border-r border-outline-variant/50 cursor-pointer hover:underline">KK-2310-003</td>
+<td class="py-2 px-4 text-on-surface">20/10/2023 14:15</td>
+<td class="py-2 px-4 text-on-surface">Tủ lạnh bảo quản (2-8°C)</td>
+<td class="py-2 px-4 text-right">42</td>
+<td class="py-2 px-4 text-right">
+<span class="text-on-surface-variant">0</span>
+</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-[#DCFCE7] text-primary border border-[#bbf7d0]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Đã duyệt
+                                    </span>
+</td>
+<td class="py-2 px-4 text-on-surface-variant">Trần Thị B</td>
+<td class="py-2 px-4 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-[#F0FDF4]/30 transition-colors group h-table-row-height bg-surface-container-lowest">
+<td class="py-2 px-4 sticky left-0 bg-inherit z-10 border-r border-outline-variant/50">
+<input class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer w-4 h-4" type="checkbox"/>
+</td>
+<td class="py-2 px-4 font-medium text-primary sticky left-12 bg-inherit z-10 border-r border-outline-variant/50 cursor-pointer hover:underline">KK-2310-002</td>
+<td class="py-2 px-4 text-on-surface">15/10/2023 09:00</td>
+<td class="py-2 px-4 text-on-surface">Kho TPCN &amp; Mỹ phẩm</td>
+<td class="py-2 px-4 text-right">310</td>
+<td class="py-2 px-4 text-right">
+<span class="inline-flex items-center gap-1 text-[#CA8A04] bg-[#FEF08A]/30 px-2 py-0.5 rounded text-xs font-medium border border-[#CA8A04]/20">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                        +5
+                                    </span>
+</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-[#DCFCE7] text-primary border border-[#bbf7d0]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Đã duyệt
+                                    </span>
+</td>
+<td class="py-2 px-4 text-on-surface-variant">Nguyễn Văn A</td>
+<td class="py-2 px-4 text-center">
+<button class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100 p-1 rounded hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-[#F0FDF4]/30 transition-colors group h-table-row-height bg-surface-container-lowest text-on-surface-variant/60">
+<td class="py-2 px-4 sticky left-0 bg-inherit z-10 border-r border-outline-variant/50">
+<input class="rounded border-outline-variant text-primary focus:ring-primary cursor-pointer w-4 h-4" disabled="" type="checkbox"/>
+</td>
+<td class="py-2 px-4 font-medium sticky left-12 bg-inherit z-10 border-r border-outline-variant/50 line-through">KK-2310-001</td>
+<td class="py-2 px-4">01/10/2023 10:20</td>
+<td class="py-2 px-4">Quầy bán lẻ (Tầng 1)</td>
+<td class="py-2 px-4 text-right">--</td>
+<td class="py-2 px-4 text-right">--</td>
+<td class="py-2 px-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-error-container text-on-error-container border border-[#fecdd3]">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Đã hủy
+                                    </span>
+</td>
+<td class="py-2 px-4">Lê Thị C</td>
+<td class="py-2 px-4 text-center">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="bg-surface border-t border-outline-variant p-3 flex items-center justify-between font-caption text-caption text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span>Hiển thị</span>
+<select class="bg-surface-container-lowest border border-outline-variant rounded px-2 py-1 focus:ring-primary focus:border-primary text-xs">
+<option>10</option>
+<option>20</option>
+<option>50</option>
+</select>
+<span>dòng / trang</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="mr-4">1-4 of 48</span>
+<button class="p-1 rounded hover:bg-surface-container-high disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container-high">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

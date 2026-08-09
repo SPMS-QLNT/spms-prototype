@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Permission Matrix</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "secondary": "#006a63",
+                            "inverse-surface": "#293040",
+                            "on-primary": "#ffffff",
+                            "on-secondary-fixed-variant": "#00504a",
+                            "surface-container": "#e9edff",
+                            "surface-container-high": "#e1e8fd",
+                            "on-tertiary-fixed": "#3f0016",
+                            "surface": "#f9f9ff",
+                            "secondary-fixed-dim": "#80d5cb",
+                            "primary-fixed": "#7ffc97",
+                            "surface-bright": "#f9f9ff",
+                            "background": "#f9f9ff",
+                            "surface-container-low": "#f1f3ff",
+                            "on-tertiary-fixed-variant": "#8a143c",
+                            "outline-variant": "#bdcaba",
+                            "on-secondary-container": "#006f67",
+                            "secondary-container": "#99efe5",
+                            "primary-fixed-dim": "#62df7d",
+                            "on-tertiary": "#ffffff",
+                            "outline": "#6e7b6c",
+                            "on-primary-fixed-variant": "#005320",
+                            "primary": "#006b2c",
+                            "tertiary-container": "#c74668",
+                            "tertiary": "#a72d51",
+                            "surface-container-highest": "#dce2f7",
+                            "on-error": "#ffffff",
+                            "tertiary-fixed": "#ffd9de",
+                            "surface-tint": "#006e2d",
+                            "on-primary-fixed": "#002109",
+                            "error-container": "#ffdad6",
+                            "surface-variant": "#dce2f7",
+                            "surface-container-lowest": "#ffffff",
+                            "on-background": "#141b2b",
+                            "on-surface": "#141b2b",
+                            "error": "#ba1a1a",
+                            "tertiary-fixed-dim": "#ffb2bf",
+                            "surface-dim": "#d3daef",
+                            "secondary-fixed": "#9cf2e8",
+                            "on-error-container": "#93000a",
+                            "on-surface-variant": "#3e4a3d",
+                            "on-tertiary-container": "#fffbff",
+                            "on-primary-container": "#f7fff2",
+                            "on-secondary": "#ffffff",
+                            "on-secondary-fixed": "#00201d",
+                            "inverse-primary": "#62df7d",
+                            "primary-container": "#00873a",
+                            "inverse-on-surface": "#edf0ff"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "table-row-height": "44px",
+                            "compact-padding": "8px",
+                            "container-margin": "24px",
+                            "gutter": "16px",
+                            "form-gap": "20px"
+                    },
+                    "fontFamily": {
+                            "table-cell": ["Inter"],
+                            "section-title": ["Inter"],
+                            "body-md": ["Inter"],
+                            "label-caps": ["Inter"],
+                            "page-title": ["Inter"],
+                            "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                            "table-cell": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                            "section-title": ["18px", {"lineHeight": "28px", "fontWeight": "600"}],
+                            "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                            "label-caps": ["11px", {"lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                            "page-title": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                            "caption": ["12px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #bdcaba; /* outline-variant */
+            border-radius: 4px;
+        }
+        
+        .sticky-col {
+            position: sticky;
+            left: 0;
+            background-color: white; /* Or matching surface color */
+            z-index: 10;
+        }
+        
+        /* Checkbox styling */
+        input[type="checkbox"] {
+            accent-color: #006b2c; /* primary color */
+            width: 1.125rem;
+            height: 1.125rem;
+            border-radius: 0.125rem; /* DEFAULT border-radius */
+            border-color: #6e7b6c; /* outline */
+        }
+        input[type="checkbox"]:focus {
+            outline: 2px solid #006b2c;
+            outline-offset: 2px;
+        }
+        
+        .tr-hover:hover {
+            background-color: #f1f3ff; /* surface-container-low */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface h-screen overflow-hidden flex flex-col font-body-md text-body-md">
+<!-- TopNavBar -->
+<header class="bg-surface-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline flex justify-between items-center w-full px-container-margin h-table-row-height shrink-0 z-50">
+<div class="flex items-center gap-4">
+<span class="text-page-title font-page-title font-bold text-primary dark:text-primary-fixed">SPMS</span>
+<!-- Search Bar on left -->
+<div class="relative ml-8 w-64 hidden md:block">
+<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full pl-8 pr-3 py-1 bg-surface-container-low border border-outline-variant rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-1.5 rounded-full transition-colors cursor-pointer active:opacity-80 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-1.5 rounded-full transition-colors cursor-pointer active:opacity-80 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-1.5 rounded-full transition-colors cursor-pointer active:opacity-80 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="flex items-center gap-2 ml-2 cursor-pointer border-l border-outline-variant pl-4">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-sm">
+                    AD
+                </div>
+<span class="text-sm font-medium hidden md:inline-block">User Profile</span>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-surface-container-low dark:bg-surface-container-highest border-r border-outline-variant dark:border-outline fixed left-0 top-table-row-height h-[calc(100vh-44px)] w-[260px] hidden md:flex flex-col py-gutter z-40 transition-transform transform -translate-x-full md:translate-x-0 md:static">
+<div class="px-container-margin mb-6">
+<h2 class="text-section-title font-section-title font-bold text-primary dark:text-primary-fixed">Main Menu</h2>
+<p class="text-caption font-caption text-on-surface-variant mt-1">Enterprise Management</p>
+<button class="mt-4 w-full bg-primary text-on-primary py-2 px-4 rounded font-medium hover:bg-surface-tint transition-colors flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-sm">add</span> Add New Entry
+                </button>
+</div>
+<nav class="flex-1 overflow-y-auto custom-scrollbar">
+<ul class="space-y-1">
+<li>
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-body-md font-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="text-body-md font-body-md">Inventory</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="medication">medication</span>
+<span class="text-body-md font-body-md">Drug Master</span>
+</a>
+</li>
+<!-- Active State for SYS/RBAC module -->
+<li>
+<a class="bg-secondary-container dark:bg-on-primary-fixed-variant text-on-secondary-container dark:text-primary-fixed border-l-4 border-primary px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-body-md font-body-md font-medium">Hệ thống</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-body-md font-body-md">Finance</span>
+</a>
+</li>
+<li>
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-3 flex items-center gap-3 hover:bg-surface-container-high hover:bg-surface-container-high dark:hover:bg-surface-dim transition-all cursor-pointer duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-body-md font-body-md">Audit</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-4">
+<ul class="space-y-1">
+<li>
+<a class="text-on-surface-variant dark:text-surface-variant px-4 py-2.5 flex items-center gap-3 hover:bg-surface-container-high transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="help">help</span>
+<span class="text-body-md font-body-md">Support</span>
+</a>
+</li>
+<li>
+<a class="text-error px-4 py-2.5 flex items-center gap-3 hover:bg-error-container transition-all cursor-pointer" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+<span class="text-body-md font-body-md">Logout</span>
+</a>
+</li>
+</ul>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 flex flex-col bg-surface overflow-hidden relative">
+<!-- Header Section (Breadcrumb & Title & Search) -->
+<div class="px-container-margin py-gutter border-b border-outline-variant bg-surface shrink-0 z-20">
+<div class="flex items-center gap-2 text-caption font-caption text-on-surface-variant mb-2">
+<span>Hệ thống</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span>Nhóm quyền</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-medium text-primary">Phân quyền</span>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-page-title font-page-title font-bold text-on-surface">Phân quyền: Quản lý kho</h1>
+</div>
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="Tìm kiếm quyền..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Permission Matrix Table Area -->
+<div class="flex-1 overflow-auto custom-scrollbar bg-surface relative">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead class="sticky top-0 bg-surface-container-low z-30 shadow-sm border-b border-outline-variant">
+<tr>
+<th class="sticky-col bg-surface-container-low p-compact-padding border-b border-outline-variant w-1/4 min-w-[250px]">
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Module / Quyền</span>
+</th>
+<th class="p-compact-padding border-b border-outline-variant text-center w-[8%]"><span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Xem</span></th>
+<th class="p-compact-padding border-b border-outline-variant text-center w-[8%]"><span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Tạo</span></th>
+<th class="p-compact-padding border-b border-outline-variant text-center w-[8%]"><span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Cập nhật</span></th>
+<th class="p-compact-padding border-b border-outline-variant text-center w-[8%]"><span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Duyệt</span></th>
+<th class="p-compact-padding border-b border-outline-variant text-center w-[8%]"><span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Từ chối</span></th>
+<th class="p-compact-padding border-b border-outline-variant text-center w-[8%]"><span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Khóa</span></th>
+<th class="p-compact-padding border-b border-outline-variant text-center w-[8%]"><span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Xuất dữ liệu</span></th>
+<th class="p-compact-padding border-b border-outline-variant text-left"><span class="text-label-caps font-label-caps text-on-surface-variant uppercase pl-2">Quyền đặc biệt</span></th>
+</tr>
+</thead>
+<tbody class="text-table-cell font-table-cell divide-y divide-outline-variant bg-surface">
+<!-- Module: IMPORT -->
+<tr class="bg-surface-container-high border-y border-outline-variant group">
+<td class="sticky-col bg-surface-container-high p-compact-padding font-semibold text-on-surface flex justify-between items-center h-table-row-height">
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-on-surface-variant cursor-pointer text-lg">expand_more</button>
+<span>IMPORT (Nhập kho)</span>
+</div>
+<div class="flex gap-2">
+<button class="text-caption font-caption text-primary hover:underline">Chọn tất cả</button>
+<span class="text-outline-variant">|</span>
+<button class="text-caption font-caption text-on-surface-variant hover:underline">Bỏ chọn</button>
+</div>
+</td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding bg-surface-container-high"></td>
+</tr>
+<tr class="tr-hover transition-colors h-table-row-height">
+<td class="sticky-col bg-surface pl-10 pr-compact-padding py-1 border-r border-outline-variant">Phiếu nhập hàng (PO)</td>
+<td class="text-center border-r border-outline-variant"><input checked="" type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input checked="" type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input checked="" type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input checked="" type="checkbox"/></td>
+<td class="pl-4">
+<div class="flex items-center gap-2">
+<input class="rounded" id="sp1" type="checkbox"/> <label class="text-caption" for="sp1">Nhập quá hạn mức</label>
+</div>
+</td>
+</tr>
+<tr class="tr-hover transition-colors h-table-row-height">
+<td class="sticky-col bg-surface pl-10 pr-compact-padding py-1 border-r border-outline-variant">Nhập trả lại (Return)</td>
+<td class="text-center border-r border-outline-variant"><input checked="" type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="pl-4"></td>
+</tr>
+<!-- Module: EXPORT -->
+<tr class="bg-surface-container-high border-y border-outline-variant group">
+<td class="sticky-col bg-surface-container-high p-compact-padding font-semibold text-on-surface flex justify-between items-center h-table-row-height">
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-on-surface-variant cursor-pointer text-lg">expand_more</button>
+<span>EXPORT (Xuất kho)</span>
+</div>
+<div class="flex gap-2">
+<button class="text-caption font-caption text-primary hover:underline">Chọn tất cả</button>
+<span class="text-outline-variant">|</span>
+<button class="text-caption font-caption text-on-surface-variant hover:underline">Bỏ chọn</button>
+</div>
+</td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding text-center bg-surface-container-high"></td>
+<td class="p-compact-padding bg-surface-container-high"></td>
+</tr>
+<tr class="tr-hover transition-colors h-table-row-height">
+<td class="sticky-col bg-surface pl-10 pr-compact-padding py-1 border-r border-outline-variant">Phiếu xuất bán</td>
+<td class="text-center border-r border-outline-variant"><input checked="" type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input checked="" type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="pl-4">
+<div class="flex flex-col gap-1 py-1">
+<div class="flex items-center gap-2"><input checked="" id="sp2" type="checkbox"/> <label class="text-caption" for="sp2">Bỏ qua FEFO</label></div>
+</div>
+</td>
+</tr>
+<tr class="tr-hover transition-colors h-table-row-height">
+<td class="sticky-col bg-surface pl-10 pr-compact-padding py-1 border-r border-outline-variant">Xuất hủy (Disposal)</td>
+<td class="text-center border-r border-outline-variant"><input checked="" type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="text-center border-r border-outline-variant"><input type="checkbox"/></td>
+<td class="pl-4"></td>
+</tr>
+<!-- Add empty rows to demonstrate scrolling if needed -->
+<tr class="h-[100px] bg-surface"><td colspan="9"></td></tr>
+</tbody>
+</table>
+</div>
+<!-- Sticky Footer Action Bar -->
+<div class="bg-surface border-t border-outline-variant p-container-margin flex justify-end gap-4 shrink-0 z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<button class="px-6 py-2 border border-outline rounded text-on-surface font-medium hover:bg-surface-container-low transition-colors">
+                    Hủy
+                </button>
+<button class="px-6 py-2 bg-primary text-on-primary rounded font-medium hover:bg-surface-tint transition-colors flex items-center gap-2 shadow-sm focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+<span class="material-symbols-outlined text-sm">save</span>
+                    Lưu phân quyền
+                </button>
+</div>
+</main>
+</div>
+</body></html>

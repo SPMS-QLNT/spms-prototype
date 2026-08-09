@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Đảo chiều biến động kho</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700&amp;family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#000000",
+                        "tertiary-fixed": "#e0e3e5",
+                        "outline": "#76777d",
+                        "on-surface-variant": "#45464d",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "secondary": "#006398",
+                        "on-primary-fixed": "#131b2e",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "secondary-container": "#5bb8fe",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "background": "#f8f9ff",
+                        "on-tertiary-container": "#818486",
+                        "surface-variant": "#d3e4fe",
+                        "primary-fixed-dim": "#bec6e0",
+                        "primary-container": "#131b2e",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#191c1e",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-primary": "#bec6e0",
+                        "on-primary-container": "#7c839b",
+                        "on-error": "#ffffff",
+                        "tertiary": "#000000",
+                        "secondary-fixed": "#cce5ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed-dim": "#93ccff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "outline-variant": "#c6c6cd",
+                        "on-secondary-fixed": "#001d31",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary-container": "#191c1e",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-container": "#00476e",
+                        "on-background": "#0b1c30",
+                        "on-secondary-fixed-variant": "#004b73",
+                        "on-surface": "#0b1c30",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dae2fd",
+                        "surface-container-high": "#dce9ff",
+                        "inverse-surface": "#213145",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#565e74",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "row-height-dense": "32px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "row-height-standard": "48px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "data-mono": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "data-mono": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex items-center justify-center p-4 md:p-8">
+<!-- Modal Container -->
+<div class="bg-surface-container-lowest w-full max-w-2xl border border-outline-variant rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden flex flex-col">
+<!-- Header -->
+<div class="px-6 py-5 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h1 class="font-headline-md text-headline-md text-primary">Đảo chiều biến động kho</h1>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+</div>
+<!-- Content -->
+<div class="p-6 flex-1 flex flex-col gap-6 bg-surface-container-lowest">
+<!-- Instruction Panel -->
+<div class="bg-surface-container-low p-4 rounded-lg border-l-2 border-secondary flex gap-4">
+<span class="material-symbols-outlined text-secondary mt-0.5">info</span>
+<p class="font-body-md text-body-md text-on-surface">Không thể xóa sổ cái. Hệ thống sẽ tạo một movement đảo ngược để cân bằng lại tồn kho.</p>
+</div>
+<!-- Original Movement Summary -->
+<div class="border border-outline-variant rounded-lg p-5 bg-surface-container-lowest">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase tracking-wider">Original Movement Summary</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-6">
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mb-1">Mã:</span>
+<span class="font-data-mono text-data-mono text-primary">MV-20231027-001</span>
+</div>
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mb-1">Loại:</span>
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm bg-emerald-50 text-emerald-700">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+<span class="font-label-caps text-label-caps uppercase">Nhập kho</span>
+</div>
+</div>
+<div class="md:col-span-2">
+<span class="font-body-sm text-body-sm text-on-surface-variant block mb-1">Thuốc:</span>
+<span class="font-body-md text-body-md text-primary font-medium">Paracetamol 500mg <span class="text-on-surface-variant font-normal">(Lô B23-091)</span></span>
+</div>
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mb-1">Biến động:</span>
+<span class="font-data-mono text-data-mono text-emerald-700">+1,000 viên</span>
+</div>
+</div>
+</div>
+<!-- Reverse Impact Preview (Calculated) -->
+<div class="flex items-center gap-3 p-4 bg-error-container/20 border border-error-container rounded-lg">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">swap_vert</span>
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Đảo ngược biến động:</span>
+<span class="font-data-mono text-data-mono text-error font-bold">-1,000 viên</span>
+</div>
+</div>
+<!-- Required Form Field -->
+<div class="flex flex-col gap-2">
+<label class="font-label-caps text-label-caps text-primary uppercase" for="reason">Lý do đảo chiều <span class="text-error">*</span></label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-md px-3 py-2 font-body-md text-body-md text-primary focus:outline-none focus:ring-1 focus:ring-secondary focus:border-secondary transition-shadow" id="reason" placeholder="Nhập lý do chi tiết cho việc đảo chiều biến động này..." rows="3"></textarea>
+</div>
+<!-- Warning -->
+<div class="flex items-start gap-3 mt-2">
+<span class="material-symbols-outlined text-error mt-0.5" style="font-variation-settings: 'FILL' 1;">warning</span>
+<p class="font-body-sm text-body-sm text-error">Cảnh báo: Thao tác này sẽ làm giảm tồn kho hiện tại của lô tương ứng và ghi lại vĩnh viễn trong sổ cái kiểm toán.</p>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-6 py-4 border-t border-outline-variant bg-surface-container-lowest flex justify-end gap-3">
+<button class="px-4 py-2 font-body-md text-body-md text-primary bg-surface-container-lowest border border-outline-variant rounded hover:bg-surface-container-low transition-colors">
+                Hủy
+            </button>
+<button class="px-4 py-2 font-body-md text-body-md text-on-error bg-error rounded hover:bg-on-error-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">history</span>
+                Xác nhận đảo chiều
+            </button>
+</div>
+</div>
+</body></html>

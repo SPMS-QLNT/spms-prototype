@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kiểm định hàng trả về - SPMS</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<!-- Tailwind CSS & Theme Config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-low": "#f1f3ff",
+                        "primary-fixed": "#7ffc97",
+                        "surface-container-high": "#e1e8fd",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "on-tertiary-fixed": "#3f0016",
+                        "tertiary-container": "#c74668",
+                        "secondary": "#006a63",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "surface-container": "#e9edff",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-secondary-container": "#006f67",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "surface-dim": "#d3daef",
+                        "on-primary-container": "#f7fff2",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#dce2f7",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#005320",
+                        "inverse-on-surface": "#edf0ff",
+                        "inverse-surface": "#293040",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#00873a",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "tertiary": "#a72d51",
+                        "background": "#f9f9ff",
+                        "primary": "#006b2c",
+                        "surface-bright": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#006e2d",
+                        "on-surface": "#141b2b",
+                        "secondary-container": "#99efe5",
+                        "tertiary-fixed": "#ffd9de",
+                        "on-background": "#141b2b",
+                        "outline": "#6e7b6c",
+                        "on-primary-fixed": "#002109",
+                        "inverse-primary": "#62df7d",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#fffbff",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-secondary-fixed": "#00201d",
+                        "surface-container-highest": "#dce2f7",
+                        "outline-variant": "#bdcaba"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "table-row-height": "44px",
+                        "form-gap": "20px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "compact-padding": "8px"
+                    },
+                    fontFamily: {
+                        "page-title": ["Inter", "sans-serif"],
+                        "table-cell": ["Inter", "sans-serif"],
+                        "caption": ["Inter", "sans-serif"],
+                        "label-caps": ["Inter", "sans-serif"],
+                        "section-title": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"]
+                    },
+                    fontSize: {
+                        "page-title": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "600" }],
+                        "table-cell": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+                        "caption": ["12px", { lineHeight: "16px", letterSpacing: "0.01em", fontWeight: "500" }],
+                        "label-caps": ["11px", { lineHeight: "12px", letterSpacing: "0.05em", fontWeight: "700" }],
+                        "section-title": ["18px", { lineHeight: "28px", fontWeight: "600" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased h-screen flex flex-col overflow-hidden">
+<!-- Task-Focused Header (Navigation Shell Suppressed per Semantic Mandate) -->
+<header class="flex-none flex items-center justify-between px-container-margin h-table-row-height bg-surface border-b border-outline-variant relative z-10 shadow-sm shadow-black/5">
+<button class="flex items-center gap-compact-padding text-primary hover:bg-surface-container-low px-2 py-1 rounded transition-colors group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 focus:ring-offset-surface">
+<span class="material-symbols-outlined text-[18px] transition-transform group-hover:-translate-x-1">arrow_back</span>
+<span class="font-caption text-caption">Quay lại danh sách</span>
+</button>
+<div class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
+<h1 class="font-section-title text-section-title text-on-surface">Kiểm định hàng trả về</h1>
+<span class="font-caption text-caption text-on-surface-variant">Quy trình thẩm định chất lượng</span>
+</div>
+<div class="w-[120px] text-right">
+<span class="font-caption text-caption text-outline">ID: RTN-88241</span>
+</div>
+</header>
+<!-- Main Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto p-container-margin flex flex-col items-center">
+<div class="w-full max-w-3xl flex flex-col gap-form-gap">
+<!-- Item Summary Card (Clinical Bento style) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-gutter shadow-sm flex flex-col gap-gutter">
+<div class="flex items-start justify-between border-b border-outline-variant pb-compact-padding">
+<div class="flex items-center gap-gutter">
+<div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined fill">medication</span>
+</div>
+<div>
+<h2 class="font-section-title text-section-title text-on-surface">Amoxicillin 500mg Capsules</h2>
+<p class="font-caption text-caption text-on-surface-variant">Nhà cung cấp: Dược phẩm TW1</p>
+</div>
+</div>
+<div class="bg-surface-container-high px-3 py-1 rounded-full border border-outline-variant">
+<span class="font-label-caps text-label-caps text-on-surface uppercase">Chờ kiểm định</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-gutter">
+<div class="flex flex-col gap-1">
+<span class="font-caption text-caption text-on-surface-variant">Số Lô (Batch)</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">L-202311A</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-caption text-caption text-on-surface-variant">Hạn sử dụng (HSD)</span>
+<div class="flex items-center gap-1">
+<span class="font-body-md text-body-md text-on-surface font-medium">15/12/2025</span>
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span> <!-- >90 days indicator -->
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-caption text-caption text-on-surface-variant">Số lượng trả</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">50 Hộp (Vỉ 10 viên)</span>
+</div>
+</div>
+</section>
+<!-- Inspection Checklist -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="bg-surface-container-low px-gutter py-3 border-b border-outline-variant flex items-center justify-between">
+<h3 class="font-section-title text-section-title text-on-surface">Bộ tiêu chí kiểm tra</h3>
+<span class="font-caption text-caption text-on-surface-variant">Yêu cầu hoàn thành tất cả</span>
+</div>
+<div class="flex flex-col" id="checklist-container">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-gutter border-b border-outline-variant hover:bg-surface/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">verified</span>
+<span class="font-body-md text-body-md text-on-surface">Seal / Niêm phong nguyên vẹn</span>
+</div>
+<div class="flex rounded-lg border border-outline-variant overflow-hidden bg-surface-container-low p-1 gap-1">
+<button class="checklist-btn pass-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-primary" data-status="pass" type="button">ĐẠT</button>
+<button class="checklist-btn fail-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-error" data-status="fail" type="button">KHÔNG ĐẠT</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-gutter border-b border-outline-variant hover:bg-surface/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">inventory_2</span>
+<span class="font-body-md text-body-md text-on-surface">Bao bì không biến dạng, ố bẩn</span>
+</div>
+<div class="flex rounded-lg border border-outline-variant overflow-hidden bg-surface-container-low p-1 gap-1">
+<button class="checklist-btn pass-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-primary" data-status="pass" type="button">ĐẠT</button>
+<button class="checklist-btn fail-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-error" data-status="fail" type="button">KHÔNG ĐẠT</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center justify-between p-gutter border-b border-outline-variant hover:bg-surface/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">tag</span>
+<span class="font-body-md text-body-md text-on-surface">Đúng số lô ghi nhận</span>
+</div>
+<div class="flex rounded-lg border border-outline-variant overflow-hidden bg-surface-container-low p-1 gap-1">
+<button class="checklist-btn pass-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-primary" data-status="pass" type="button">ĐẠT</button>
+<button class="checklist-btn fail-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-error" data-status="fail" type="button">KHÔNG ĐẠT</button>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="flex items-center justify-between p-gutter border-b border-outline-variant hover:bg-surface/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">calendar_today</span>
+<span class="font-body-md text-body-md text-on-surface">Hạn sử dụng hợp lệ (&gt;6 tháng)</span>
+</div>
+<div class="flex rounded-lg border border-outline-variant overflow-hidden bg-surface-container-low p-1 gap-1">
+<button class="checklist-btn pass-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-primary" data-status="pass" type="button">ĐẠT</button>
+<button class="checklist-btn fail-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-error" data-status="fail" type="button">KHÔNG ĐẠT</button>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="flex items-center justify-between p-gutter border-b border-outline-variant hover:bg-surface/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">ac_unit</span>
+<span class="font-body-md text-body-md text-on-surface">Đảm bảo điều kiện bảo quản (Nhiệt độ)</span>
+</div>
+<div class="flex rounded-lg border border-outline-variant overflow-hidden bg-surface-container-low p-1 gap-1">
+<button class="checklist-btn pass-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-primary" data-status="pass" type="button">ĐẠT</button>
+<button class="checklist-btn fail-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-error" data-status="fail" type="button">KHÔNG ĐẠT</button>
+</div>
+</div>
+<!-- Item 6 -->
+<div class="flex items-center justify-between p-gutter hover:bg-surface/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">visibility</span>
+<span class="font-body-md text-body-md text-on-surface">Chất lượng cảm quan viên thuốc</span>
+</div>
+<div class="flex rounded-lg border border-outline-variant overflow-hidden bg-surface-container-low p-1 gap-1">
+<button class="checklist-btn pass-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-primary" data-status="pass" type="button">ĐẠT</button>
+<button class="checklist-btn fail-btn font-caption text-caption px-4 py-1.5 rounded-md transition-all text-on-surface-variant hover:bg-surface-variant focus:outline-none focus:ring-2 focus:ring-error" data-status="fail" type="button">KHÔNG ĐẠT</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Final Result & Action Area -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-gutter shadow-sm flex items-center justify-between mt-4">
+<div class="flex items-center gap-gutter">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center transition-colors" id="result-icon-container">
+<span class="material-symbols-outlined text-[24px] text-on-surface-variant" id="result-icon">pending</span>
+</div>
+<div>
+<h4 class="font-caption text-caption text-on-surface-variant uppercase tracking-wider">Kết quả kiểm định</h4>
+<p class="font-section-title text-section-title text-on-surface" id="result-text">Chưa hoàn tất</p>
+</div>
+</div>
+<div id="action-buttons-container">
+<!-- Default disabled state -->
+<button class="font-body-md text-body-md bg-surface-variant text-on-surface-variant px-6 py-2.5 rounded-lg opacity-60 cursor-not-allowed border border-outline-variant" disabled="" id="btn-pending">
+                        Vui lòng hoàn thành checklist
+                    </button>
+<!-- Success Action -->
+<button class="hidden font-body-md text-body-md bg-primary text-on-primary px-6 py-2.5 rounded-lg hover:opacity-90 focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface transition-all flex items-center gap-2 shadow-sm" id="btn-approve">
+<span class="material-symbols-outlined text-[18px]">thumb_up</span>
+                        Duyệt tái nhập
+                    </button>
+<!-- Fail Action -->
+<button class="hidden font-body-md text-body-md bg-error text-on-error px-6 py-2.5 rounded-lg hover:opacity-90 focus:ring-2 focus:ring-error focus:ring-offset-2 focus:ring-offset-surface transition-all flex items-center gap-2 shadow-sm" id="btn-reject">
+<span class="material-symbols-outlined text-[18px]">delete_forever</span>
+                        Chuyển xử lý hủy
+                    </button>
+</div>
+</section>
+</div>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const rows = document.querySelectorAll('#checklist-container > div');
+            const resultText = document.getElementById('result-text');
+            const resultIcon = document.getElementById('result-icon');
+            const resultIconContainer = document.getElementById('result-icon-container');
+            const btnPending = document.getElementById('btn-pending');
+            const btnApprove = document.getElementById('btn-approve');
+            const btnReject = document.getElementById('btn-reject');
+
+            let selections = new Array(rows.length).fill(null);
+
+            rows.forEach((row, index) => {
+                const passBtn = row.querySelector('.pass-btn');
+                const failBtn = row.querySelector('.fail-btn');
+
+                passBtn.addEventListener('click', () => handleSelection(index, 'pass', passBtn, failBtn));
+                failBtn.addEventListener('click', () => handleSelection(index, 'fail', failBtn, passBtn));
+            });
+
+            function handleSelection(index, status, selectedBtn, otherBtn) {
+                // Update visual state of buttons
+                selectedBtn.classList.remove('bg-transparent', 'text-on-surface-variant', 'hover:bg-surface-variant');
+                otherBtn.classList.add('bg-transparent', 'text-on-surface-variant', 'hover:bg-surface-variant');
+                
+                if (status === 'pass') {
+                    selectedBtn.classList.add('bg-primary-container', 'text-on-primary-container', 'font-bold');
+                    otherBtn.classList.remove('bg-error-container', 'text-on-error-container', 'font-bold');
+                } else {
+                    selectedBtn.classList.add('bg-error-container', 'text-on-error-container', 'font-bold');
+                    otherBtn.classList.remove('bg-primary-container', 'text-on-primary-container', 'font-bold');
+                }
+
+                selections[index] = status;
+                evaluateOverallStatus();
+            }
+
+            function evaluateOverallStatus() {
+                const isComplete = selections.every(val => val !== null);
+                if (!isComplete) return;
+
+                const hasFail = selections.includes('fail');
+
+                // Hide pending
+                btnPending.classList.add('hidden');
+
+                if (hasFail) {
+                    // Overall FAIL
+                    resultText.textContent = 'KHÔNG ĐẠT (Cần hủy)';
+                    resultText.classList.remove('text-primary');
+                    resultText.classList.add('text-error');
+                    
+                    resultIcon.textContent = 'cancel';
+                    resultIcon.classList.remove('text-on-surface-variant', 'text-primary');
+                    resultIcon.classList.add('text-error');
+                    
+                    resultIconContainer.classList.remove('bg-surface-container', 'bg-primary-container');
+                    resultIconContainer.classList.add('bg-error-container');
+
+                    btnApprove.classList.add('hidden');
+                    btnReject.classList.remove('hidden');
+                } else {
+                    // Overall PASS
+                    resultText.textContent = 'ĐẠT YÊU CẦU';
+                    resultText.classList.remove('text-error');
+                    resultText.classList.add('text-primary');
+                    
+                    resultIcon.textContent = 'check_circle';
+                    resultIcon.classList.remove('text-on-surface-variant', 'text-error');
+                    resultIcon.classList.add('text-primary');
+                    
+                    resultIconContainer.classList.remove('bg-surface-container', 'bg-error-container');
+                    resultIconContainer.classList.add('bg-primary-container');
+
+                    btnReject.classList.add('hidden');
+                    btnApprove.classList.remove('hidden');
+                }
+            }
+        });
+    </script>
+</body></html>

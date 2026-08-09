@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Quản lý chi nhánh</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px; /* Default size */
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Custom scrollbar for enterprise density */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f3ff; /* surface-container-low */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bdcaba; /* outline-variant */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6e7b6c; /* outline */
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#a72d51",
+                        "on-background": "#141b2b",
+                        "tertiary-fixed": "#ffd9de",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#99efe5",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-surface": "#141b2b",
+                        "primary": "#006b2c",
+                        "surface": "#f9f9ff",
+                        "primary-fixed": "#7ffc97",
+                        "surface-container-high": "#e1e8fd",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#00873a",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#002109",
+                        "surface-container": "#e9edff",
+                        "background": "#f9f9ff",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6e7b6c",
+                        "surface-dim": "#d3daef",
+                        "on-surface-variant": "#3e4a3d",
+                        "inverse-surface": "#293040",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "surface-container-highest": "#dce2f7",
+                        "on-primary-fixed-variant": "#005320",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "outline-variant": "#bdcaba",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-variant": "#dce2f7",
+                        "on-secondary-container": "#006f67",
+                        "surface-container-low": "#f1f3ff",
+                        "on-primary-container": "#f7fff2",
+                        "secondary": "#006a63",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#00201d",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "tertiary-container": "#c74668",
+                        "inverse-primary": "#62df7d",
+                        "surface-tint": "#006e2d",
+                        "on-tertiary-fixed": "#3f0016",
+                        "surface-bright": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-margin": "24px",
+                        "gutter": "16px",
+                        "compact-padding": "8px",
+                        "form-gap": "20px",
+                        "table-row-height": "44px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "caption": ["Inter"],
+                        "section-title": ["Inter"],
+                        "page-title": ["Inter"],
+                        "table-cell": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-hidden">
+<!-- Shared Component: SideNavBar -->
+<aside class="bg-surface w-[260px] h-screen fixed left-0 top-0 border-r border-outline-variant flex flex-col h-full py-4 z-50">
+<!-- Brand Logo Area -->
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-size: 20px;">local_pharmacy</span>
+</div>
+<div>
+<h1 class="text-page-title font-page-title text-primary tracking-tight">SPMS</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">Pharmacy System</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 flex flex-col gap-1 px-2 overflow-y-auto">
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high transition-colors duration-200 cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Tổng quan</span>
+</a>
+<!-- Active Tab (Matched intent: "Hệ thống / Chi nhánh" maps to "Hệ thống") -->
+<a class="flex items-center gap-3 px-4 py-2.5 bg-secondary-container text-on-secondary-container border-l-4 border-primary rounded-r-DEFAULT cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-body-md text-body-md font-semibold">Hệ thống</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high transition-colors duration-200 cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-body-md text-body-md">Kinh doanh</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high transition-colors duration-200 cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Kho</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high transition-colors duration-200 cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-body-md text-body-md">Tài chính</span>
+</a>
+<!-- Inactive Tab -->
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high transition-colors duration-200 cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-body-md text-body-md">Quản trị</span>
+</a>
+</nav>
+<!-- User Footer Mini -->
+<div class="mt-auto px-6 pt-4 border-t border-outline-variant flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface font-caption">
+                NA
+             </div>
+<div class="flex-1 min-w-0">
+<p class="font-caption text-caption text-on-surface truncate">Nguyễn Văn An</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant truncate">Quản lý</p>
+</div>
+</div>
+</aside>
+<!-- Shared Component: TopNavBar -->
+<header class="bg-surface h-16 fixed top-0 right-0 left-[260px] z-40 border-b border-outline-variant flex justify-between items-center px-6 h-full">
+<!-- Branch Selector -->
+<div class="flex items-center gap-2 cursor-pointer group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">location_city</span>
+<span class="font-label-caps text-label-caps text-primary font-bold">Nhà thuốc Trung tâm - Hà Nội</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" style="font-size: 18px;">expand_more</span>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-[260px] pt-16 h-screen overflow-y-auto bg-background">
+<div class="p-container-margin max-w-screen-2xl mx-auto flex flex-col h-[calc(100vh-64px)]">
+<!-- Page Header Section -->
+<div class="mb-6 flex-shrink-0">
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="flex text-on-surface-variant font-caption text-caption mb-2">
+<ol class="inline-flex items-center space-x-1 md:space-x-3">
+<li class="inline-flex items-center">
+<a class="inline-flex items-center hover:text-primary transition-colors" href="#">
+                                Hệ thống
+                            </a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[16px] mx-1">chevron_right</span>
+<span class="text-on-surface ml-1 md:ml-2">Chi nhánh</span>
+</div>
+</li>
+</ol>
+</nav>
+<!-- Title & Actions -->
+<div class="flex justify-between items-end">
+<h2 class="font-page-title text-page-title text-on-surface">Quản lý chi nhánh</h2>
+<button class="bg-primary text-on-primary font-caption text-caption px-4 py-2 rounded flex items-center gap-2 hover:bg-surface-tint transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+                        Thêm chi nhánh
+                    </button>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface border border-outline-variant rounded p-4 mb-4 flex flex-wrap gap-gutter items-center flex-shrink-0 shadow-sm">
+<!-- Search Box -->
+<div class="flex-1 min-w-[280px] max-w-md relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 20px;">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border border-outline-variant rounded bg-surface-bright text-on-surface font-body-md text-body-md placeholder-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Tìm theo mã hoặc tên chi nhánh..." type="text"/>
+</div>
+<!-- Status Dropdown -->
+<div class="w-48 relative">
+<select class="block w-full pl-3 pr-10 py-2 border border-outline-variant rounded bg-surface-bright text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent appearance-none">
+<option value="all">Tất cả trạng thái</option>
+<option value="active">Đang hoạt động</option>
+<option value="inactive">Ngừng hoạt động</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-size: 20px;">arrow_drop_down</span>
+</div>
+</div>
+<!-- Refresh action -->
+<button class="ml-auto w-10 h-10 rounded border border-outline-variant flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors" title="Làm mới dữ liệu">
+<span class="material-symbols-outlined" style="font-size: 20px;">refresh</span>
+</button>
+</div>
+<!-- Data Table Container (High Density Enterprise Style) -->
+<div class="flex-1 border border-outline-variant rounded bg-surface overflow-hidden flex flex-col shadow-sm relative">
+<!-- Table Wrapper for Horizontal Scroll -->
+<div class="overflow-x-auto flex-1 h-full">
+<table class="w-full text-left border-collapse whitespace-nowrap">
+<thead class="bg-surface-container border-b border-outline-variant sticky top-0 z-20">
+<tr>
+<!-- Sticky First Column Header -->
+<th class="sticky left-0 bg-surface-container z-30 px-compact-padding py-2 font-caption text-caption text-on-surface border-r border-outline-variant min-w-[120px]">
+                                    Mã chi nhánh
+                                </th>
+<th class="px-compact-padding py-2 font-caption text-caption text-on-surface min-w-[240px]">Tên chi nhánh</th>
+<th class="px-compact-padding py-2 font-caption text-caption text-on-surface min-w-[300px]">Địa chỉ</th>
+<th class="px-compact-padding py-2 font-caption text-caption text-on-surface min-w-[140px]">Số điện thoại</th>
+<th class="px-compact-padding py-2 font-caption text-caption text-on-surface min-w-[180px]">Email</th>
+<th class="px-compact-padding py-2 font-caption text-caption text-on-surface min-w-[140px]">Số GP GPP</th>
+<th class="px-compact-padding py-2 font-caption text-caption text-on-surface min-w-[120px]">Mã số thuế</th>
+<th class="px-compact-padding py-2 font-caption text-caption text-on-surface min-w-[140px]">Trạng thái</th>
+<th class="px-compact-padding py-2 font-caption text-caption text-on-surface text-center w-[120px] sticky right-0 bg-surface-container border-l border-outline-variant z-20">Thao tác</th>
+</tr>
+</thead>
+<tbody class="font-table-cell text-table-cell text-on-surface divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="h-table-row-height hover:bg-surface-container-low transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container-low px-compact-padding py-1.5 border-r border-outline-variant z-10">
+<span class="font-medium text-primary">CN001</span>
+</td>
+<td class="px-compact-padding py-1.5 truncate max-w-[240px]" title="Nhà thuốc Trung tâm - Hà Nội">Nhà thuốc Trung tâm - Hà Nội</td>
+<td class="px-compact-padding py-1.5 truncate max-w-[300px]" title="123 Lê Duẩn, Hoàn Kiếm, Hà Nội">123 Lê Duẩn, Hoàn Kiếm, Hà Nội</td>
+<td class="px-compact-padding py-1.5">024.3824.1234</td>
+<td class="px-compact-padding py-1.5 text-on-surface-variant">hanoi@spms.com</td>
+<td class="px-compact-padding py-1.5">123/GPP-HN</td>
+<td class="px-compact-padding py-1.5">0101234567</td>
+<td class="px-compact-padding py-1.5">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-primary-container text-on-primary-container">
+                                        Đang hoạt động
+                                    </span>
+</td>
+<td class="px-compact-padding py-1.5 text-center sticky right-0 bg-surface group-hover:bg-surface-container-low border-l border-outline-variant z-10">
+<div class="flex justify-center items-center gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Xem chi tiết">
+<span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Chỉnh sửa">
+<span class="material-symbols-outlined" style="font-size: 18px;">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors" title="Khóa">
+<span class="material-symbols-outlined" style="font-size: 18px;">lock</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="h-table-row-height hover:bg-surface-container-low transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container-low px-compact-padding py-1.5 border-r border-outline-variant z-10">
+<span class="font-medium text-primary">CN002</span>
+</td>
+<td class="px-compact-padding py-1.5 truncate max-w-[240px]" title="Nhà thuốc Chi nhánh - Đống Đa">Nhà thuốc Chi nhánh - Đống Đa</td>
+<td class="px-compact-padding py-1.5 truncate max-w-[300px]" title="45 Tôn Đức Thắng, Đống Đa, Hà Nội">45 Tôn Đức Thắng, Đống Đa, Hà Nội</td>
+<td class="px-compact-padding py-1.5">024.3824.5678</td>
+<td class="px-compact-padding py-1.5 text-on-surface-variant">dongda@spms.com</td>
+<td class="px-compact-padding py-1.5">124/GPP-HN</td>
+<td class="px-compact-padding py-1.5">0101234568</td>
+<td class="px-compact-padding py-1.5">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-primary-container text-on-primary-container">
+                                        Đang hoạt động
+                                    </span>
+</td>
+<td class="px-compact-padding py-1.5 text-center sticky right-0 bg-surface group-hover:bg-surface-container-low border-l border-outline-variant z-10">
+<div class="flex justify-center items-center gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Xem chi tiết">
+<span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Chỉnh sửa">
+<span class="material-symbols-outlined" style="font-size: 18px;">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors" title="Khóa">
+<span class="material-symbols-outlined" style="font-size: 18px;">lock</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="h-table-row-height hover:bg-surface-container-low transition-colors group">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container-low px-compact-padding py-1.5 border-r border-outline-variant z-10">
+<span class="font-medium text-primary">CN003</span>
+</td>
+<td class="px-compact-padding py-1.5 truncate max-w-[240px]" title="Nhà thuốc Chi nhánh - Cầu Giấy">Nhà thuốc Chi nhánh - Cầu Giấy</td>
+<td class="px-compact-padding py-1.5 truncate max-w-[300px]" title="89 Xuân Thủy, Cầu Giấy, Hà Nội">89 Xuân Thủy, Cầu Giấy, Hà Nội</td>
+<td class="px-compact-padding py-1.5">024.3824.9012</td>
+<td class="px-compact-padding py-1.5 text-on-surface-variant">caugiay@spms.com</td>
+<td class="px-compact-padding py-1.5">125/GPP-HN</td>
+<td class="px-compact-padding py-1.5">0101234569</td>
+<td class="px-compact-padding py-1.5">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-primary-container text-on-primary-container">
+                                        Đang hoạt động
+                                    </span>
+</td>
+<td class="px-compact-padding py-1.5 text-center sticky right-0 bg-surface group-hover:bg-surface-container-low border-l border-outline-variant z-10">
+<div class="flex justify-center items-center gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Xem chi tiết">
+<span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Chỉnh sửa">
+<span class="material-symbols-outlined" style="font-size: 18px;">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors" title="Khóa">
+<span class="material-symbols-outlined" style="font-size: 18px;">lock</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 (Inactive) -->
+<tr class="h-table-row-height hover:bg-surface-container-low transition-colors group bg-surface-lowest">
+<td class="sticky left-0 bg-surface-lowest group-hover:bg-surface-container-low px-compact-padding py-1.5 border-r border-outline-variant z-10">
+<span class="font-medium text-on-surface-variant">CN004</span>
+</td>
+<td class="px-compact-padding py-1.5 truncate max-w-[240px] text-on-surface-variant" title="Nhà thuốc Chi nhánh - Ba Đình">Nhà thuốc Chi nhánh - Ba Đình</td>
+<td class="px-compact-padding py-1.5 truncate max-w-[300px] text-on-surface-variant" title="12 Đội Cấn, Ba Đình, Hà Nội">12 Đội Cấn, Ba Đình, Hà Nội</td>
+<td class="px-compact-padding py-1.5 text-on-surface-variant">024.3824.3456</td>
+<td class="px-compact-padding py-1.5 text-on-surface-variant opacity-70">badinh@spms.com</td>
+<td class="px-compact-padding py-1.5 text-on-surface-variant">126/GPP-HN</td>
+<td class="px-compact-padding py-1.5 text-on-surface-variant">0101234570</td>
+<td class="px-compact-padding py-1.5">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-error-container text-on-error-container">
+                                        Ngừng hoạt động
+                                    </span>
+</td>
+<td class="px-compact-padding py-1.5 text-center sticky right-0 bg-surface-lowest group-hover:bg-surface-container-low border-l border-outline-variant z-10">
+<div class="flex justify-center items-center gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Xem chi tiết">
+<span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+</button>
+<button class="text-on-surface-variant opacity-50 cursor-not-allowed" disabled="" title="Chỉnh sửa (Bị vô hiệu hóa)">
+<span class="material-symbols-outlined" style="font-size: 18px;">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Mở khóa">
+<span class="material-symbols-outlined" style="font-size: 18px;">lock_open</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="h-table-row-height hover:bg-surface-container-low transition-colors group border-b-transparent">
+<td class="sticky left-0 bg-surface group-hover:bg-surface-container-low px-compact-padding py-1.5 border-r border-outline-variant z-10">
+<span class="font-medium text-primary">CN005</span>
+</td>
+<td class="px-compact-padding py-1.5 truncate max-w-[240px]" title="Nhà thuốc Chi nhánh - Hai Bà Trưng">Nhà thuốc Chi nhánh - Hai Bà Trưng</td>
+<td class="px-compact-padding py-1.5 truncate max-w-[300px]" title="56 Bạch Mai, Hai Bà Trưng, Hà Nội">56 Bạch Mai, Hai Bà Trưng, Hà Nội</td>
+<td class="px-compact-padding py-1.5">024.3824.7890</td>
+<td class="px-compact-padding py-1.5 text-on-surface-variant">hbt@spms.com</td>
+<td class="px-compact-padding py-1.5">127/GPP-HN</td>
+<td class="px-compact-padding py-1.5">0101234571</td>
+<td class="px-compact-padding py-1.5">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-primary-container text-on-primary-container">
+                                        Đang hoạt động
+                                    </span>
+</td>
+<td class="px-compact-padding py-1.5 text-center sticky right-0 bg-surface group-hover:bg-surface-container-low border-l border-outline-variant z-10">
+<div class="flex justify-center items-center gap-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Xem chi tiết">
+<span class="material-symbols-outlined" style="font-size: 18px;">visibility</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors" title="Chỉnh sửa">
+<span class="material-symbols-outlined" style="font-size: 18px;">edit</span>
+</button>
+<button class="text-on-surface-variant hover:text-error transition-colors" title="Khóa">
+<span class="material-symbols-outlined" style="font-size: 18px;">lock</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="bg-surface border-t border-outline-variant px-4 py-3 flex items-center justify-between flex-shrink-0">
+<div class="font-caption text-caption text-on-surface-variant">
+                        Hiển thị 1 - 5 trong số 24 chi nhánh
+                    </div>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined" style="font-size: 20px;">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-caption">
+                            1
+                        </button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low font-caption">
+                            2
+                        </button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low font-caption">
+                            3
+                        </button>
+<span class="w-8 text-center text-on-surface-variant font-caption">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined" style="font-size: 20px;">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

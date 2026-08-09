@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Danh sách nhân viên - SPMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#fffbff",
+                        "on-primary-container": "#f7fff2",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#8a143c",
+                        "surface": "#f9f9ff",
+                        "tertiary-fixed-dim": "#ffb2bf",
+                        "secondary": "#006a63",
+                        "surface-variant": "#dce2f7",
+                        "on-primary-fixed-variant": "#005320",
+                        "on-error": "#ffffff",
+                        "surface-container": "#e9edff",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#3e4a3d",
+                        "on-primary-fixed": "#002109",
+                        "on-secondary-container": "#006f67",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "secondary-fixed-dim": "#80d5cb",
+                        "inverse-on-surface": "#edf0ff",
+                        "primary": "#006b2c",
+                        "tertiary-fixed": "#ffd9de",
+                        "surface-dim": "#d3daef",
+                        "on-surface": "#141b2b",
+                        "primary-fixed": "#7ffc97",
+                        "outline": "#6e7b6c",
+                        "outline-variant": "#bdcaba",
+                        "secondary-fixed": "#9cf2e8",
+                        "on-tertiary-fixed": "#3f0016",
+                        "secondary-container": "#99efe5",
+                        "surface-container-highest": "#dce2f7",
+                        "surface-bright": "#f9f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-background": "#141b2b",
+                        "inverse-primary": "#62df7d",
+                        "surface-tint": "#006e2d",
+                        "background": "#f9f9ff",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#293040",
+                        "tertiary": "#a72d51",
+                        "primary-container": "#00873a",
+                        "on-secondary-fixed": "#00201d",
+                        "tertiary-container": "#c74668",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-container-low": "#f1f3ff",
+                        "primary-fixed-dim": "#62df7d",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "form-gap": "20px",
+                        "compact-padding": "8px",
+                        "table-row-height": "44px"
+                    },
+                    "fontFamily": {
+                        "table-cell": ["Inter"],
+                        "page-title": ["Inter"],
+                        "body-md": ["Inter"],
+                        "section-title": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "table-cell": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "page-title": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "section-title": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "12px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-hidden flex h-screen">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface w-[260px] h-screen fixed left-0 top-0 border-r border-outline-variant dark:border-outline flex flex-col h-full py-4 z-50">
+<div class="px-6 mb-8 flex items-center gap-3 cursor-pointer">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center text-on-primary-container font-bold text-lg">
+<span class="material-symbols-outlined fill">local_pharmacy</span>
+</div>
+<div>
+<h1 class="text-page-title font-page-title text-primary dark:text-inverse-primary">SPMS</h1>
+<p class="font-caption text-caption text-on-surface-variant">Pharmacy System</p>
+</div>
+</div>
+<ul class="flex-1 flex flex-col px-3 gap-1">
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Tổng quan</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-secondary-container text-on-secondary-container border-l-4 border-primary dark:border-primary-fixed-dim transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Hệ thống</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span>Kinh doanh</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Kho</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span>Tài chính</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span>Quản trị</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-[260px] flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface border-b border-outline-variant h-16 flex justify-between items-center px-6 shrink-0 z-40 relative">
+<div class="flex items-center gap-2 text-on-surface-variant font-caption text-caption">
+<span>Hệ thống</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-medium text-on-surface">Nhân viên</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">location_on</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Nhà thuốc Trung tâm - Hà Nội</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+<div class="h-8 w-px bg-outline-variant"></div>
+<div class="flex items-center gap-3 cursor-pointer">
+<div class="text-right">
+<div class="font-caption text-caption font-medium text-on-surface">Nguyễn Văn An</div>
+<div class="font-caption text-caption text-on-surface-variant text-[10px]">Quản lý</div>
+</div>
+<img alt="Nguyễn Văn An" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A small, professional headshot of an Asian male pharmacist wearing a white lab coat, smiling subtly against a light gray clinic background. Studio lighting, high resolution, realistic corporate portrait style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZveQZBNvsaoxByxeTR0fX9flWJ7mw9y6nSj9K_VXj4673t8QlkkB-TzlKFmVqesQMPd4GxNS2oc5DKBKNhPvT9SVpoIEfcyWkbv5Wg55qAsvHwc8SdgKKO1PWWGzFUXIUqmX8c54u9mpJeEEJxJmUf-dPr0n8W39iYdypkJHhLhQSNq7ZRFVz8hrT3uCA9_hINSjYr3smrLonyUMGM_JKkT5oK6PkU_NrcA6SWFTF3xK5julQ0dtV-Q"/>
+</div>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<main class="flex-1 bg-surface-container-lowest overflow-auto p-container-margin">
+<!-- Header Section -->
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-page-title text-page-title text-on-surface">Danh sách nhân viên</h2>
+<button class="bg-[#16A34A] hover:bg-primary-container text-white px-4 py-2 rounded-lg font-caption text-caption font-medium flex items-center gap-2 transition-colors duration-200">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Thêm nhân viên
+                </button>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface p-4 rounded-xl border border-outline-variant mb-6 flex flex-wrap gap-4 items-end">
+<div class="flex-1 min-w-[280px]">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1">Tìm kiếm</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant text-on-surface rounded-lg pl-10 pr-3 py-2 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-shadow" placeholder="Tìm theo tên, mã NV hoặc SĐT" type="text"/>
+</div>
+</div>
+<div class="w-48">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1">Chi nhánh</label>
+<select class="w-full bg-surface-container-low border border-outline-variant text-on-surface rounded-lg px-3 py-2 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%24%2024%22%20fill%3D%22none%22%20stroke%3D%22%236e7b6c%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_8px_center] bg-[length:16px]">
+<option>Tất cả chi nhánh</option>
+<option>Nhà thuốc Trung tâm - Hà Nội</option>
+</select>
+</div>
+<div class="w-40">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1">Nhóm quyền</label>
+<select class="w-full bg-surface-container-low border border-outline-variant text-on-surface rounded-lg px-3 py-2 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%24%2024%22%20fill%3D%22none%22%20stroke%3D%22%236e7b6c%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_8px_center] bg-[length:16px]">
+<option>Tất cả quyền</option>
+<option>Quản lý</option>
+<option>Bán hàng</option>
+</select>
+</div>
+<div class="w-36">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1">Trạng thái</label>
+<select class="w-full bg-surface-container-low border border-outline-variant text-on-surface rounded-lg px-3 py-2 font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%24%2024%22%20fill%3D%22none%22%20stroke%3D%22%236e7b6c%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_8px_center] bg-[length:16px]">
+<option>Tất cả</option>
+<option>Active</option>
+<option>Locked</option>
+</select>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse whitespace-nowrap">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-4 py-3 font-label-caps text-label-caps text-on-surface-variant font-semibold sticky left-0 bg-surface-container-low z-10 w-24">Mã NV</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-on-surface-variant font-semibold">Họ tên</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-on-surface-variant font-semibold">Liên hệ</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-on-surface-variant font-semibold">Chi nhánh</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-on-surface-variant font-semibold">Nhóm quyền</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-on-surface-variant font-semibold">Trạng thái</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-on-surface-variant font-semibold">Lần đăng nhập cuối</th>
+<th class="px-4 py-3 font-label-caps text-label-caps text-on-surface-variant font-semibold text-right">Thao tác</th>
+</tr>
+</thead>
+<tbody class="font-table-cell text-table-cell text-on-surface divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors h-[44px]">
+<td class="px-4 font-medium sticky left-0 bg-inherit border-r border-outline-variant/30">NV001</td>
+<td class="px-4 font-medium">Nguyễn Văn An</td>
+<td class="px-4">
+<div class="flex flex-col">
+<span>0901234567</span>
+<span class="text-[11px] text-on-surface-variant">an.nv@spms.vn</span>
+</div>
+</td>
+<td class="px-4 text-on-surface-variant">Nhà thuốc Trung tâm - Hà Nội</td>
+<td class="px-4"><span class="bg-[#DCFCE7] text-[#16A34A] px-2 py-0.5 rounded text-[11px] font-medium border border-[#16A34A]/20">Quản lý</span></td>
+<td class="px-4">
+<div class="flex items-center gap-1.5 text-[#16A34A]">
+<div class="w-2 h-2 rounded-full bg-[#16A34A]"></div>
+<span class="text-[12px] font-medium">Active</span>
+</div>
+</td>
+<td class="px-4 text-on-surface-variant text-[12px]">10/11/2023 08:30</td>
+<td class="px-4 text-right">
+<div class="flex justify-end gap-2 text-on-surface-variant">
+<button class="hover:text-primary transition-colors" title="View"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="hover:text-primary transition-colors" title="Edit"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="hover:text-error transition-colors" title="Lock"><span class="material-symbols-outlined text-[18px]">lock</span></button>
+<button class="hover:text-primary transition-colors" title="Reset Password"><span class="material-symbols-outlined text-[18px]">key</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors h-[44px]">
+<td class="px-4 font-medium sticky left-0 bg-inherit border-r border-outline-variant/30">NV002</td>
+<td class="px-4 font-medium">Trần Thị B</td>
+<td class="px-4">
+<div class="flex flex-col">
+<span>0912345678</span>
+<span class="text-[11px] text-on-surface-variant">b.tt@spms.vn</span>
+</div>
+</td>
+<td class="px-4 text-on-surface-variant">Nhà thuốc Trung tâm - Hà Nội</td>
+<td class="px-4"><span class="bg-surface-container-high text-on-surface px-2 py-0.5 rounded text-[11px] font-medium border border-outline-variant">Nhân viên bán hàng</span></td>
+<td class="px-4">
+<div class="flex items-center gap-1.5 text-[#16A34A]">
+<div class="w-2 h-2 rounded-full bg-[#16A34A]"></div>
+<span class="text-[12px] font-medium">Active</span>
+</div>
+</td>
+<td class="px-4 text-on-surface-variant text-[12px]">09/11/2023 17:45</td>
+<td class="px-4 text-right">
+<div class="flex justify-end gap-2 text-on-surface-variant">
+<button class="hover:text-primary transition-colors" title="View"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="hover:text-primary transition-colors" title="Edit"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="hover:text-error transition-colors" title="Lock"><span class="material-symbols-outlined text-[18px]">lock</span></button>
+<button class="hover:text-primary transition-colors" title="Reset Password"><span class="material-symbols-outlined text-[18px]">key</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors h-[44px]">
+<td class="px-4 font-medium sticky left-0 bg-inherit border-r border-outline-variant/30">NV003</td>
+<td class="px-4 font-medium">Lê Văn C</td>
+<td class="px-4">
+<div class="flex flex-col">
+<span>0987654321</span>
+<span class="text-[11px] text-on-surface-variant">c.lv@spms.vn</span>
+</div>
+</td>
+<td class="px-4 text-on-surface-variant">Nhà thuốc Cơ sở 2</td>
+<td class="px-4"><span class="bg-surface-container-high text-on-surface px-2 py-0.5 rounded text-[11px] font-medium border border-outline-variant">Nhân viên bán hàng</span></td>
+<td class="px-4">
+<div class="flex items-center gap-1.5 text-error">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-[12px] font-medium">Locked</span>
+</div>
+</td>
+<td class="px-4 text-on-surface-variant text-[12px]">01/10/2023 10:15</td>
+<td class="px-4 text-right">
+<div class="flex justify-end gap-2 text-on-surface-variant">
+<button class="hover:text-primary transition-colors" title="View"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="hover:text-primary transition-colors" title="Edit"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="hover:text-[#16A34A] transition-colors" title="Unlock"><span class="material-symbols-outlined text-[18px]">lock_open</span></button>
+<button class="hover:text-primary transition-colors" title="Reset Password"><span class="material-symbols-outlined text-[18px]">key</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="bg-surface border-t border-outline-variant px-4 py-3 flex items-center justify-between">
+<div class="font-caption text-caption text-on-surface-variant">
+                        Hiển thị 1 - 3 trong số 45 nhân viên
+                    </div>
+<div class="flex items-center gap-1">
+<button class="p-1 text-outline hover:text-on-surface disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-7 h-7 flex items-center justify-center rounded bg-primary-container text-on-primary-container font-medium text-[12px]">1</button>
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-high text-on-surface font-medium text-[12px]">2</button>
+<button class="w-7 h-7 flex items-center justify-center rounded hover:bg-surface-container-high text-on-surface font-medium text-[12px]">3</button>
+<span class="text-on-surface-variant px-1">...</span>
+<button class="p-1 text-outline hover:text-on-surface">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

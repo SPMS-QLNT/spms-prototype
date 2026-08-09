@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SPMS - Khóa chi nhánh</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#a72d51",
+                      "on-background": "#141b2b",
+                      "tertiary-fixed": "#ffd9de",
+                      "on-primary": "#ffffff",
+                      "secondary-container": "#99efe5",
+                      "tertiary-fixed-dim": "#ffb2bf",
+                      "on-error": "#ffffff",
+                      "primary-fixed-dim": "#62df7d",
+                      "on-surface": "#141b2b",
+                      "primary": "#006b2c",
+                      "surface": "#f9f9ff",
+                      "primary-fixed": "#7ffc97",
+                      "surface-container-high": "#e1e8fd",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#00873a",
+                      "inverse-on-surface": "#edf0ff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#002109",
+                      "surface-container": "#e9edff",
+                      "background": "#f9f9ff",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#6e7b6c",
+                      "surface-dim": "#d3daef",
+                      "on-surface-variant": "#3e4a3d",
+                      "inverse-surface": "#293040",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#8a143c",
+                      "surface-container-highest": "#dce2f7",
+                      "on-primary-fixed-variant": "#005320",
+                      "secondary-fixed": "#9cf2e8",
+                      "on-secondary-fixed-variant": "#00504a",
+                      "outline-variant": "#bdcaba",
+                      "on-tertiary-container": "#fffbff",
+                      "surface-variant": "#dce2f7",
+                      "on-secondary-container": "#006f67",
+                      "surface-container-low": "#f1f3ff",
+                      "on-primary-container": "#f7fff2",
+                      "secondary": "#006a63",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#00201d",
+                      "secondary-fixed-dim": "#80d5cb",
+                      "tertiary-container": "#c74668",
+                      "inverse-primary": "#62df7d",
+                      "surface-tint": "#006e2d",
+                      "on-tertiary-fixed": "#3f0016",
+                      "surface-bright": "#f9f9ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-margin": "24px",
+                      "gutter": "16px",
+                      "compact-padding": "8px",
+                      "form-gap": "20px",
+                      "table-row-height": "44px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "caption": [
+                              "Inter"
+                      ],
+                      "section-title": [
+                              "Inter"
+                      ],
+                      "page-title": [
+                              "Inter"
+                      ],
+                      "table-cell": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "12px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "section-title": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "page-title": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "table-cell": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for clinical cleanliness */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dce2f7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #bdcaba;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-hidden">
+<!-- Mock Background App Context (Behind the Modal) -->
+<!-- SideNavBar (from JSON) -->
+<aside class="w-[260px] h-screen fixed left-0 top-0 bg-surface border-r border-outline-variant flex flex-col h-full py-4 z-30">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-on-primary-container font-bold">S</div>
+<div>
+<h1 class="text-page-title font-page-title text-primary">SPMS</h1>
+<p class="font-caption text-caption text-on-surface-variant">Pharmacy System</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<!-- Navigation Items. Active context is 'Hệ thống' (System/Branches) -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Tổng quan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-secondary-container text-on-secondary-container border-l-4 border-primary cursor-pointer transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-body-md text-body-md font-medium">Hệ thống</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-body-md text-body-md">Kinh doanh</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Kho</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-body-md text-body-md">Tài chính</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="font-body-md text-body-md">Quản trị</span>
+</a>
+</nav>
+</aside>
+<!-- TopNavBar (from JSON) -->
+<header class="h-16 fixed top-0 right-0 left-[260px] z-20 bg-surface border-b border-outline-variant flex justify-between items-center px-6">
+<div class="flex items-center gap-4">
+<h2 class="font-page-title text-page-title font-bold text-primary">SPMS</h2>
+<div class="h-6 w-[1px] bg-outline-variant mx-2"></div>
+<span class="font-label-caps text-label-caps text-primary font-bold">Nhà thuốc Trung tâm - Hà Nội</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="flex items-center gap-2 pl-4 border-l border-outline-variant cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline">
+<!-- Placeholder avatar to match design spec style -->
+<div class="w-full h-full flex items-center justify-center text-primary font-bold text-xs">NA</div>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Nguyễn Văn An - Quản lý</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (Mock Data for context behind overlay) -->
+<main class="ml-[260px] pt-16 h-screen bg-background overflow-auto">
+<div class="p-container-margin">
+<!-- Mock Table Structure -->
+<div class="bg-surface rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="p-4 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-section-title text-section-title text-on-surface">Danh sách Chi nhánh</h3>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-caps text-label-caps flex items-center gap-2 hover:bg-surface-tint transition-colors">
+<span class="material-symbols-outlined text-sm">add</span> Thêm mới
+                    </button>
+</div>
+<!-- Table headers -->
+<div class="grid grid-cols-12 gap-4 px-4 py-3 bg-surface-container-low border-b border-outline-variant font-caption text-caption text-on-surface-variant">
+<div class="col-span-3">Mã &amp; Tên Chi nhánh</div>
+<div class="col-span-4">Địa chỉ</div>
+<div class="col-span-3">Người quản lý</div>
+<div class="col-span-2 text-right">Trạng thái</div>
+</div>
+<!-- Mock Row -->
+<div class="grid grid-cols-12 gap-4 px-4 h-table-row-height items-center border-b border-outline-variant/50 hover:bg-surface-container-low transition-colors font-table-cell text-table-cell text-on-surface">
+<div class="col-span-3 font-medium">CN001 - Hai Bà Trưng</div>
+<div class="col-span-4 text-on-surface-variant truncate">123 Trần Khát Chân, Quận Hai Bà Trưng, Hà Nội</div>
+<div class="col-span-3">Trần Thị B</div>
+<div class="col-span-2 flex justify-end">
+<span class="px-2 py-1 rounded bg-secondary-container text-on-secondary-container font-label-caps text-[10px]">Đang hoạt động</span>
+</div>
+</div>
+<!-- Selected Row Mock -->
+<div class="grid grid-cols-12 gap-4 px-4 h-table-row-height items-center bg-surface-container-low border-b border-outline-variant/50 font-table-cell text-table-cell text-on-surface">
+<div class="col-span-3 font-medium">CN002 - Đống Đa</div>
+<div class="col-span-4 text-on-surface-variant truncate">456 Tây Sơn, Quận Đống Đa, Hà Nội</div>
+<div class="col-span-3">Lê Văn C</div>
+<div class="col-span-2 flex justify-end">
+<span class="px-2 py-1 rounded bg-secondary-container text-on-secondary-container font-label-caps text-[10px]">Đang hoạt động</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- ========================================== -->
+<!-- MODAL OVERLAY (The actual requested component) -->
+<!-- ========================================== -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+<!-- Backdrop -->
+<div aria-hidden="true" class="absolute inset-0 bg-on-background/30 backdrop-blur-[2px] transition-opacity"></div>
+<!-- Modal Dialog -->
+<div aria-labelledby="modal-title" aria-modal="true" class="relative bg-surface w-full max-w-[440px] rounded-xl border border-outline-variant shadow-[0_8px_30px_rgb(0,0,0,0.08)] overflow-hidden transform transition-all flex flex-col" role="dialog">
+<!-- Modal Header (Accent strip at top to signify danger) -->
+<div class="h-1 w-full bg-error"></div>
+<div class="p-container-margin pb-6">
+<div class="flex items-start gap-4">
+<!-- Warning Icon -->
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-error border border-error/20">
+<span class="material-symbols-outlined" data-icon="lock" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<!-- Content -->
+<div class="flex-1 pt-1">
+<h3 class="font-section-title text-section-title text-on-surface mb-2" id="modal-title">
+                            Khóa chi nhánh?
+                        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Chi nhánh bị khóa sẽ không thể tạo chứng từ kho mới. Các giao dịch hiện tại đang xử lý có thể bị gián đoạn.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Modal Actions -->
+<div class="px-container-margin py-4 bg-surface-container-lowest border-t border-outline-variant flex justify-end gap-3">
+<button class="px-5 py-2.5 rounded-lg border border-outline text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-low hover:text-on-surface transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" type="button">
+                    Hủy
+                </button>
+<button class="px-5 py-2.5 rounded-lg bg-error text-on-error font-label-caps text-label-caps hover:bg-[#a01515] transition-colors focus:outline-none focus:ring-2 focus:ring-error focus:ring-offset-2 flex items-center gap-2 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock_person">lock_person</span>
+                    Xác nhận khóa
+                </button>
+</div>
+</div>
+</div>
+</body></html>
